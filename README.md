@@ -175,15 +175,10 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
 
 1. Power off the Steam Deck. 
 2. While powered off press VOLDOWN + Power and manually boot into SteamOS / Clover.
-3. Open a konsole terminal and disable the Windows EFI - \
-   cd ~/1Clover-tools \
-   ./disable-windows-efi.sh\
-   ![image](https://user-images.githubusercontent.com/98122529/211460833-6ba6893c-3768-4a34-b5bc-700815159771.png)
-
-3. Reboot the Steam Deck and it will boot back to the Clover graphical menu.
-
+3. SteamOS will automatically fix the dual boot entries! On next reboot it will go back to Clover!
+   
 ### Q5. Windows automatically installed updates and on reboot it goes automatically to Windows!
-This is similar to Q4. Refer to Q4 on how to fix it.
+This is similar to Q4. Manually boot into SteamOS and it will automatically fix the dual boot entries! On next reboot it will go back to Clover!
 
 ### Q6. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!
 
