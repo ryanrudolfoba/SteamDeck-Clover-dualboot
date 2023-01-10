@@ -5,6 +5,8 @@
 
 This repository contains the instructions and scripts on how to install [Clover - a graphical boot manager.](https://github.com/CloverHackyColor/CloverBootloader)
 
+![image](https://user-images.githubusercontent.com/98122529/211457186-49b61cae-2f84-45ed-893c-c5edf1752418.png)
+
 This will mostly benefit Steam Deck users who have setup a dual boot and wants to have a graphical way to select which OS to boot from.
 > **NOTE**\
 > If you are going to use this script for a video tutorial, PLEASE reference on your video where you got the script! This will make the support process easier!
