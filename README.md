@@ -31,7 +31,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 
 1. **NEW** - Use a different boot manager - Clover.
 2. **NEW** - Does not rename / move Windows EFI entries. Finally I figured this one out because of a BUG / FEATURE in the UEFI firmware.
-3. <font size=”5”>**NEW** - When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own! No need to manually type commands / scripts. This makes it feasible for branch changes, BIOS updates wherein the EFI entries got removed from the list etc etc.</font>
+3. <font size=”15”>**NEW** - When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own! No need to manually type commands / scripts. This makes it feasible for branch changes, BIOS updates wherein the EFI entries got removed from the list etc etc.</font>
 4. Does not rely on 3rd party systemd scripts / powershell scripts / EasyUEFI.
 5. All-in-One script - install, disable / re-enable, uninstall!
 6. Doesn't rely on pacman repositories - uses the latest (as of this writing V5151) Clover ISO from [here.](https://github.com/CloverHackyColor/CloverBootloader/releases/download/5151/Clover-5151-X64.iso.7z)
