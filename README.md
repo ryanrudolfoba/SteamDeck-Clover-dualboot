@@ -142,15 +142,10 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
 4. Make sure screen orientation is set to Landscape.
 5. Make sure Unbranded Boot is configured and enabled.
 6. Power off the Steam Deck. 
-7. While powered off press VOLDOWN + Power and manually boot into SteamOS / rEFInd.
-8. Open a konsole terminal and disable the Windows EFI - \
-   cd ~/1Clover-tools \
-   ./disable-windows-efi.sh\
-   ![image](https://user-images.githubusercontent.com/98122529/211460833-6ba6893c-3768-4a34-b5bc-700815159771.png)
-         
-8. Reboot Steam Deck and it will boot back to the Clover graphical menu.
+7. While powered off press VOLDOWN + Power and manually boot into SteamOS / Clover.
+8. SteamOS will automatically fix the dual boot entries! On next reboot it will go back to Clover!
 
-### Q3. I need to perform a GPU / APU driver upgrade in Windows. What do i do?
+### Q3. I need to perform a GPU / APU driver upgrade in Windows. What do I do?
 
 1. Boot into SteamOS.
 2. Open a konsole terminal and re-enable the Windows EFI - \
@@ -164,12 +159,7 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
 6. Make sure screen orientation is set to Landscape.
 7. Power off the Steam Deck.
 8. While powered off press VOLDOWN + Power and manually boot into SteamOS / rEFInd.
-9. Open a konsole terminal and disable the Windows EFI - \
-   cd ~/1Clover-tools \
-   ./disable-windows-efi.sh\
-   ![image](https://user-images.githubusercontent.com/98122529/211460833-6ba6893c-3768-4a34-b5bc-700815159771.png)
-   
-7. Reboot Steam Deck and it will boot back to the Clover graphical menu.
+9. SteamOS will automatically fix the dual boot entries! On next reboot it will go back to Clover!
        
 ### Q4. I reinstalled Windows and now it boots directly to Windows instead of Clover!
 
