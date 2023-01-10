@@ -30,10 +30,11 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 > It is encouraged to please review the config.plist, make changes as needed for improvement and contribute back.
 
 1. **NEW** - Use a different boot manager - Clover.
-2. **NEW** - Does not rename / move Windows EFI entries! Finally I figured this one out because of a BUG / FEATURE in the UEFI firmware!
-3. Does not rely on 3rd party systemd scripts / powershell scripts / EasyUEFI.
-4. All-in-One script - install, disable / re-enable, uninstall!
-5. Doesn't rely on pacman repositories - uses the latest (as of this writing V5151) Clover ISO from [here.](https://github.com/CloverHackyColor/CloverBootloader/releases/download/5151/Clover-5151-X64.iso.7z)
+2. **NEW** - Does not rename / move Windows EFI entries. Finally I figured this one out because of a BUG / FEATURE in the UEFI firmware.
+3. <font size=”5”>**NEW** - When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own! No need to manually type commands / scripts. This makes it feasible for branch changes, BIOS updates wherein the EFI entries got removed from the list etc etc.</font>
+4. Does not rely on 3rd party systemd scripts / powershell scripts / EasyUEFI.
+5. All-in-One script - install, disable / re-enable, uninstall!
+6. Doesn't rely on pacman repositories - uses the latest (as of this writing V5151) Clover ISO from [here.](https://github.com/CloverHackyColor/CloverBootloader/releases/download/5151/Clover-5151-X64.iso.7z)
 
 
 ## !!! WARNING - WARNING - WARNING !!!
@@ -53,7 +54,7 @@ I don't know what the behavior will be if those are present in the system. Remov
 **Prerequisites for Windows**
 > **NOTE**\
 > This applies to Windows installed on the internal SSD. I haven't tested external SSD / microSD.
-1. No scripts / scheduled tasks related to rEFInd or EasyEUFI.
+1. No scripts / scheduled tasks related to rEFInd or EasyUEFI.
 2. APU / GPU drivers has been installed and screen orientation set to Landscape.
 3. Configure Unbranded Boot. This is to minimize the graphical glitches when booting Windows.
     * Go to Control Panel > Programs and Features > Turn Windows Features On or Off.
@@ -69,7 +70,8 @@ I don't know what the behavior will be if those are present in the system. Remov
 
 > **IMPORTANT**\
 > Once the install is completed, do not change the password for the deck account! Leave it as "deck" (without quotes).\
-> This password is also used by the post install scripts located in ~/1Clover-tools
+> This password is also used by the post install scripts located in ~/1Clover-tools\
+> If you are not comfortable with this, then edit the script and change every occurence of "deck" to your preferred password.
 
 > **IMPORTANT2**\
 > Because of a BUG / FEATURE in the UEFI firmware, I was able to "disable" the Windows Boot Manager without renaming / moving files.\
@@ -77,7 +79,7 @@ I don't know what the behavior will be if those are present in the system. Remov
 > a. If the SteamDeck is OFF and you press VOLDOWN + POWER or VOLUP + POWER, the Windows Boot Manager will get reactivated.\
 > b. Performing a Windows Update will get the Windows Boot Manager reactivated.\
 > c. From within Clover, if you select the EXIT CLOVER button it will reactivate the Windows Boot Manager.\
-> When this happens, the easy fix is to boot back to SteamOS and run the disable-windows-efi.sh script to re-arrange the boot order.
+> When this happens, the easy fix is to boot back to SteamOS and it will fix the dual boot entries on its own! No need to type lenghty commands - the process is streamlied for the end user.
 
 Using the script is fairly easy -
 
