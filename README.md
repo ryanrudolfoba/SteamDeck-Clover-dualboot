@@ -28,7 +28,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 > **NOTE1**\
 > This is a continuation of my rEFInd script from [here.](https://github.com/ryanrudolfoba/SteamDeck-rEFInd-dualboot)\
 > The design goal is the same from my rEFInd implementation - make as little changes as possible to the system.\
-> The script only copies files to the /esp/efi/clover location and manipulates the EFI boot orders.\
+> The script only copies files to the /esp/efi/clover location and manipulates the EFI boot orders. No files are renamed / moved.\
 > Extra scripts are saved in ~/1Clover-tools which just manipulates the EFI boot orders, and an uninstall to reverse any changes made.\
 > There are no extra systemd scripts created, no extra power shell scripts needed and no need for EasyUEFI.
 
