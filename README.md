@@ -189,7 +189,7 @@ This happens even if not using dualboot / Clover / rEFInd.
 ### Q7. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!
 
 1. Boot into SteamOS.
-2. Open a konsole terminal and re-enable the Windows EFI - \
+2. Open a konsole terminal and run the uninstall script - \
    cd ~/1Clover-tools \
    ./uninstall-Clover.sh\
    ![image](https://user-images.githubusercontent.com/98122529/211840095-85745118-fa64-4ef8-b2c1-78dbf0443459.png)
