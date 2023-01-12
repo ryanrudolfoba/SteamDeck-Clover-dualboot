@@ -140,6 +140,13 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
    bcdedit.exe -set {globalsettings} bootuxdisabled on\
    bcdedit.exe -set {bootmgr} noerrordisplay on
 
+Alternative Solution -
+1. Boot to Windows.
+2. Go to Start > Run > msconfig
+3. Click the Boot tab.
+4. Put a check mark on NO GUI BOOT.
+![image](https://user-images.githubusercontent.com/98122529/212195550-45ddb14f-463e-4f63-ac81-6e685737aa3d.png)
+
 ### Q2. Windows boots up in garbled graphics!
 ![image](https://user-images.githubusercontent.com/98122529/211198222-5cce38ff-3f20-4386-8715-c408fea6a4b0.png)
 
