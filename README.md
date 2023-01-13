@@ -24,13 +24,19 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 2. This is for educational and research purposes only!
 
 
-## But Why Use Another Boot Manager?!? What's Diffrent?!?
+## But Why Use Another Boot Manager?!? What's Different?!?
 > **NOTE1**\
 > This is a continuation of my rEFInd script from [here.](https://github.com/ryanrudolfoba/SteamDeck-rEFInd-dualboot)\
-> The design goal is the same from my rEFInd implementation - make as little changes as possible to the system.\
-> The script only copies files to the /esp/efi/clover location and manipulates the EFI boot orders. No files are renamed / moved.\
-> Extra scripts are saved in ~/1Clover-tools which just manipulates the EFI boot orders, and an uninstall to reverse any changes made.\
-> There are no extra systemd scripts created, no extra power shell scripts needed and no need for EasyUEFI.
+> The design goal is the same from my rEFInd implementation - make as little changes as possible to the system.
+
+> **For the SteamOS side**\
+> The script copies files to the /esp/efi/clover location and manipulates the EFI boot orders. No files are renamed / moved.\
+> Extra scripts are saved in ~/1Clover-tools which manipulates the EFI boot orders, and an uninstall to reverse any changes made.\
+> There are no extra systemd scripts created, ~~no extra power shell scripts needed~~ and no need for EasyUEFI.
+
+> **For the Windows side**\
+> The script creates a folder called C:\1Clover-tools and creates a Scheduled Task.\
+> The Scheduled Task runs the powershell script saved in C:\1Clover-tools. The powershell script queries the EFI entries and sets Clover to be the next boot entry.
 
 > **NOTE2**\
 > If the EFI boot entries are missing due to BIOS updates or due to official SteamOS updates, just manually reboot into SteamOS and it will fix the dual boot automatically. No need to type any commands!
@@ -42,7 +48,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 1. **NEW** - Use a different boot manager - Clover.
 2. **NEW** - Does not rename / move Windows EFI entries.
 3. **NEW** - When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own!
-4. Does not rely on 3rd party systemd scripts / powershell scripts / EasyUEFI.
+4. Does not rely on 3rd party systemd scripts / ~~powershell scripts~~ / EasyUEFI.
 5. All-in-One script - install, disable / re-enable, uninstall!
 6. Doesn't rely on pacman repositories - uses the latest (as of this writing V5151) Clover ISO from [here.](https://github.com/CloverHackyColor/CloverBootloader/releases/download/5151/Clover-5151-X64.iso.7z)
 
@@ -73,21 +79,42 @@ I don't know what the behavior will be if those are present in the system. Remov
         bcdedit.exe -set {globalsettings} bootuxdisabled on\
         bcdedit.exe -set {bootmgr} noerrordisplay on
 
+Alternative Solution -
+1. Boot to Windows.
+2. Go to Start > Run > msconfig
+3. Click the Boot tab.
+4. Put a check mark on NO GUI BOOT.
+
+![image](https://user-images.githubusercontent.com/98122529/212195550-45ddb14f-463e-4f63-ac81-6e685737aa3d.png)
+
+
 ## Using the Script
 > **NOTE1 - please read carefully below**
 > 1. Make sure you fully read and understand the disclaimer, warnings and prerequisites!
 > 2. The script will create a directory called ~/1Clover-tools with scripts to enable / disable Windows EFI and an uninstall to reverse any changes made. Do not delete this folder!
 
 > **NOTE2**\
-> The design goal is the same from my rEFInd implementation - make as little changes as possible to the system.\
-> The script only copies files to the /esp/efi/clover location and manipulates the EFI boot orders. No files are renamed / moved.\
-> Extra scripts are saved in ~/1Clover-tools which just manipulates the EFI boot orders, and an uninstall to reverse any changes made.\
-> There are no extra systemd scripts created, no extra power shell scripts needed and no need for EasyUEFI.
+> The design goal is the same from my rEFInd implementation - make as little changes as possible to the system.
 
-Using the script is fairly easy -
+> **For the SteamOS side**\
+> The script copies files to the /esp/efi/clover location and manipulates the EFI boot orders. No files are renamed / moved.\
+> Extra scripts are saved in ~/1Clover-tools which manipulates the EFI boot orders, and an uninstall to reverse any changes made.\
+> There are no extra systemd scripts created, ~~no extra power shell scripts needed~~ and no need for EasyUEFI.
 
-1. Open a konsole terminal.
-2. Clone the github repo. \
+> **For the Windows side**\
+> The script creates a folder called C:\1Clover-tools and creates a Scheduled Task.\
+> The Scheduled Task runs the powershell script saved in C:\1Clover-tools. The powershell script queries the EFI entries and sets Clover to be the next boot entry.
+
+> **NOTE3**\
+> The installation is divided into 2 parts - 1 for SteamOS, and 1 for Windows.\
+> The recommended way is to do the steps on SteamOS first, and then do the steps for Windows.
+
+
+**Installation Steps for SteamOS**
+
+1. Go into Desktop Mode.
+2. Open a konsole terminal.
+3. Clone the github repo. \
    cd ~/ \
    git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
    
@@ -109,13 +136,42 @@ Using the script is fairly easy -
 
    **4c.**
          Script will continue to run and perform sanity checks all throughout the install process.
-         ![image](https://user-images.githubusercontent.com/98122529/211833904-25c15d63-bd66-4da6-a6c1-d493966f0fb0.png)
+         ![image](https://user-images.githubusercontent.com/98122529/212214600-7df4d15a-fbe3-4aee-bd38-5b1d1175313c.png)
 
          
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
 ![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
 
 
+**Installation Steps for Windows**
+1. Download the ZIP by pressing the GREEN CODE BUTTON, then select Download ZIP.
+![image](https://user-images.githubusercontent.com/98122529/212368293-2b5f59ac-b480-4f72-b7c5-3122e57476e4.png)
+
+2. Go to your Downloads folder and then extract the zip.
+3. Right click CloverWindows.bat and select RUNAS Administrator.
+![image](https://user-images.githubusercontent.com/98122529/212368736-c9b10eb0-ecfe-4ccb-b035-1aa55f959d94.png)
+
+4. The script will automatically create the C:\1Clover-tools folder and copy the files in there.
+5. It will also automatically create the Scheduled Task called CloverTask-donotdelete
+![image](https://user-images.githubusercontent.com/98122529/212368944-9be9e55a-ce96-43d8-9fb0-bf5f17a2bcc8.png)
+
+5. Go to Task Scheduler and the CloverTask will show up in there.
+5. Right-click the CloverTask and select Properties.
+![image](https://user-images.githubusercontent.com/98122529/212369284-76266936-d9d6-495e-aaf9-44d3abb7b129.png)
+
+6. Under the General tab, make sure it looks like this. Change it if it doesn't then press OK.
+![image](https://user-images.githubusercontent.com/98122529/212369626-8a02f229-3a94-45d0-ad1f-929a4a7e51be.png)
+
+7. Right click the task and select RUN.
+![image](https://user-images.githubusercontent.com/98122529/212369786-6a973906-a849-4c60-85cb-556963754997.png)
+
+8. Close Task Scheduler. Go to C:\1Clover-tools and look for the file called status.txt.
+
+9. Open status.txt and the Clover GUID should be the same as the bootsequence. Sample below.
+![image](https://user-images.githubusercontent.com/98122529/212370053-2bd6dbd8-3d21-43a9-8498-cd0f156c6b9c.png)
+
+10. Reboot and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
+![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
 
 ## FAQ / Troubleshooting
 Read this for your Common Questions and Answers!
@@ -145,12 +201,14 @@ Alternative Solution -
 2. Go to Start > Run > msconfig
 3. Click the Boot tab.
 4. Put a check mark on NO GUI BOOT.
+
 ![image](https://user-images.githubusercontent.com/98122529/212195550-45ddb14f-463e-4f63-ac81-6e685737aa3d.png)
 
 ### Q2. Windows boots up in garbled graphics!
 ![image](https://user-images.githubusercontent.com/98122529/211198222-5cce38ff-3f20-4386-8715-c408fea6a4b0.png)
 
 1. Boot into SteamOS.
+2. Go to Desktop Mode.
 8. Open a konsole terminal and re-enable the Windows EFI - \
    cd ~/1Clover-tools \
    ./enable-windows-efi.sh\
@@ -166,33 +224,34 @@ Alternative Solution -
 ### Q3. I need to perform a GPU / APU driver upgrade in Windows. What do I do?
 
 1. Boot into SteamOS.
-2. Open a konsole terminal and re-enable the Windows EFI - \
+2. Go to Desktop Mode.
+3. Open a konsole terminal and re-enable the Windows EFI - \
    cd ~/1Clover-tools \
    ./enable-windows-efi.sh\
-   ![image](https://user-images.githubusercontent.com/98122529/211840283-3a3039bc-bc67-4f2f-b5a5-e8d20aea5ecd.png)
+   ![image](https://user-images.githubusercontent.com/98122529/212214891-ea322f50-2704-4676-b550-9071d41947ff.png)
    
 3. Reboot the Steam Deck and it will automatically load Windows.
 4. Install the GPU / APU driver upgrade and reboot Windows.
-5. After the reboot it will automatically load Windows.
-6. Make sure screen orientation is set to Landscape.
-7. Power off the Steam Deck.
-8. While powered off press VOLDOWN + Power and manually boot into SteamOS / rEFInd.
-9. SteamOS will automatically fix the dual boot entries! On next reboot it will go back to Clover!
+5. After the reboot it will go back to Clover.
+6. Select Windows and wait until it loads.
+7. Make sure screen orientation is set to Landscape.
+8. If everything looks good, reboot and it will go back to Clover.
+
        
 ### Q4. I reinstalled Windows and now it boots directly to Windows instead of Clover!
 
-1. Power off the Steam Deck. 
-2. While powered off press VOLDOWN + Power and manually boot into SteamOS / Clover.
-3. SteamOS will automatically fix the dual boot entries! On next reboot it will go back to Clover!
-   
+1. Follow the steps for the Windows install.
+
 ### Q5. Windows automatically installed updates and on reboot it goes automatically to Windows!
-This is similar to Q4. Manually boot into SteamOS and it will automatically fix the dual boot entries! On next reboot it will go back to Clover!
+1. Manually boot into SteamOS and it will automatically fix the dual boot entries.
+2. On the next reboot it will go to Clover.
 
 ### Q6. There was a SteamOS update and it wiped all my boot entries!
 This happens even if not using dualboot / Clover / rEFInd.
 1. Turn OFF the Steam Deck. While powered OFF, press VOLUP + POWER.
 2. Go to Boot from File > efi > steamos > steamcl.efi
-3. Wait until SteamOS boots up to game mode and thats it!
+3. Wait until SteamOS boots up and it will automatically fix the dual boot entries.
+4. On the next reboot it will go to Clover.
 
 ### Q7. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!
 
