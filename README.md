@@ -72,12 +72,10 @@ I don't know what the behavior will be if those are present in the system. Remov
 > This applies to Windows installed on the internal SSD / external SSD / microSD.
 1. No scripts / scheduled tasks related to rEFInd or EasyUEFI.
 2. APU / GPU drivers has been installed and screen orientation set to Landscape.
-3. Configure Unbranded Boot. This is to minimize the graphical glitches when booting Windows.
-    * Go to Control Panel > Programs and Features > Turn Windows Features On or Off.
-    * Expand "Device Lockdown", and then put a check mark on "Unbranded Boot"
-    * Open command prompt with admin privileges and enter the commands to disable the boot graphics animation-\
-        bcdedit.exe -set {globalsettings} bootuxdisabled on\
-        bcdedit.exe -set {bootmgr} noerrordisplay on
+3. Configure bcdedit to use the highest mode -
+    * Open command prompt with admin privileges and enter the commands -\
+        bcdedit.exe -set {globalsettings} highestmode on
+        
 
 Alternative Solution -
 1. Boot to Windows.
