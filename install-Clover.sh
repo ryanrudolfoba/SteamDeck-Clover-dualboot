@@ -30,7 +30,7 @@ else
 fi
 
 # sudo password is already set by the end user, all good let's go!
-echo -e "$current_password\n" | sudo -S steamos-readonly disable &> /dev/null
+echo -e "$current_password\n" | sudo -S ls &> /dev/null
 if [ $? -eq 0 ]
 then
 	echo 1st sanity check. So far so good!
@@ -74,7 +74,6 @@ do
 	sudo efibootmgr -b $entry -B &> /dev/null
 done
 
-
 # Sanity check - is SteamOS EFI entry exists?
 efibootmgr | grep "Steam" &> /dev/null
 
@@ -89,12 +88,9 @@ fi
 # install Clover to the EFI system partition
 sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\clover\cloverx64.efi" &> /dev/null
 
-# rearrange boot order and remove Windows from the EFI list!
+# make Clover the next boot option!
 Clover=$(efibootmgr |  grep -i Clover | colrm 9 | colrm 1 4)
-SteamOS=$(efibootmgr | grep -i Steam | colrm 9 | colrm 1 4)
-sudo efibootmgr -o $Clover,$SteamOS &> /dev/null 
-
-sudo steamos-readonly enable &> /dev/null
+sudo efibootmgr -n $Clover &> /dev/null
 
 # Final sanity check
 efibootmgr | grep "Clover - GUI" &> /dev/null
@@ -112,50 +108,31 @@ echo \**************************************************************************
 echo Post install scripts saved in 1Clover-tools. Use them as needed -
 echo \****************************************************************************************************
 echo enable-windows-efi.sh   -   Use this script to re-enable Windows EFI entry and temp disable Clover.
-echo disable-windows-efi.sh  -   Use this script to disable Windows EFI entry and re-enable Clover.
 echo uninstall-Clover.sh     -   Use this to completely uninstall Clover from the EFI system partition.
 echo \****************************************************************************************************
 echo \****************************************************************************************************
 
+#################################################################################
 ################################ post install ###################################
+#################################################################################
 
+# create ~/1Clover-tools and place the scripts in there
 mkdir ~/1Clover-tools &> /dev/null
 rm ~/1Clover-tools/*.sh &> /dev/null
+
+# enable-windows-efi.sh
 cat > ~/1Clover-tools/enable-windows-efi.sh << EOF
 #!/bin/bash
 
-sudo steamos-readonly disable &> /dev/null
-
-# rearrange boot order and make Windows EFI the top priority!
-Clover=\$(efibootmgr |  grep -i Clover | colrm 9 | colrm 1 4)
-SteamOS=\$(efibootmgr | grep -i SteamOS | colrm 9 | colrm 1 4)
+# make Windows the next boot option!
 Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
-sudo efibootmgr -o \$Windows,\$Clover,\$SteamOS &> /dev/null
-
-sudo steamos-readonly enable &> /dev/null
+sudo efibootmgr -n \$Windows &> /dev/null
 echo Clover has been deactivated and Windows EFI entry has been re-enabled!
-echo Run the script disable-windows-efi.sh to reactivate Clover!
 EOF
 
-cat > ~/1Clover-tools/disable-windows-efi.sh << EOF
-#!/bin/bash
-
-sudo steamos-readonly disable &> /dev/null
-
-# rearrange boot order and remove Windows EFI from the list!
-Clover=\$(efibootmgr |  grep -i Clover | colrm 9 | colrm 1 4)
-SteamOS=\$(efibootmgr | grep -i SteamOS | colrm 9 | colrm 1 4)
-sudo efibootmgr -o \$Clover,\$SteamOS &> /dev/null
-
-sudo steamos-readonly enable &> /dev/null
-echo Clover has been activated and Windows EFI entry has been disabled!
-echo Run the script enable-windows-efi.sh to re-enable Windows EFI.
-EOF
-
+# uninstall-Clover.sh
 cat > ~/1Clover-tools/uninstall-Clover.sh << EOF
 #!/bin/bash
-
-sudo steamos-readonly disable &> /dev/null
 
 # remove Clover from the EFI system partition
 sudo rm -rf /esp/efi/clover
@@ -165,90 +142,52 @@ do
 	sudo efibootmgr -b \$entry -B &> /dev/null
 done
 
-# rearrange boot order
-SteamOS=\$(efibootmgr | grep -i SteamOS | colrm 9 | colrm 1 4)
-Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
-sudo efibootmgr -o \$SteamOS,\$Windows &> /dev/null
-
 grep -v 1Clover-tools ~/.bash_profile > ~/.bash_profile.temp
 mv ~/.bash_profile.temp ~/.bash_profile
 
 rm -rf ~/1Clover-tools/*
 
-sudo steamos-readonly enable &> /dev/null
-
+# make Windows the next boot option!
+Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
+sudo efibootmgr -n \$Windows &> /dev/null
 echo Clover has been uninstalled and the Windows EFI entry has been restored!
 EOF
 
+# post-install-Clover.sh
 cat > ~/1Clover-tools/post-install-Clover.sh << EOF
 #!/bin/bash
+echo -e "$current_password\n" | sudo -S ls &> /dev/null
 
-echo -e "$current_password\n" | sudo -S steamos-readonly disable &> /dev/null
+date  > ~/1Clover-tools/status.txt
+
+echo BIOS Version : \$(sudo dmidecode -s bios-version) >> ~/1Clover-tools/status.txt
 
 # Sanity Check - are the needed EFI entries available?
 
 efibootmgr | grep -i Clover &> /dev/null
 if [ \$? -eq 0 ]
 then
-	echo Clover EFI entry exists! No need to re-add Clover.
+	echo Clover EFI entry exists! No need to re-add Clover. >> ~/1Clover-tools/status.txt
 else
-	echo Clover EFI entry is not found. Need to re-ad Clover.
+	echo Clover EFI entry is not found. Need to re-ad Clover. >> ~/1Clover-tools/status.txt
 	sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\clover\cloverx64.efi" &> /dev/null
 fi
 
 efibootmgr | grep -i Steam &> /dev/null
 if [ \$? -eq 0 ]
 then
-	echo SteamOS EFI entry exists! No need to re-add SteamOS.
+	echo SteamOS EFI entry exists! No need to re-add SteamOS. >> ~/1Clover-tools/status.txt
 else
-	echo SteamOS EFI entry is not found. Need to re-add SteamOS.
+	echo SteamOS EFI entry is not found. Need to re-add SteamOS. >> ~/1Clover-tools/status.txt
 	sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "SteamOS" -l "\EFI\steamos\steamcl.efi" &> /dev/null
 fi
 
-# Sanity Check - is Windows in the boot order?
-CurrentBoot=\$(efibootmgr | grep -i bootorder | tr -s " "  | cut -d " "  -f 2 )
-FirstBoot=\$(efibootmgr | grep -i bootorder | tr -s " "  | cut -d " "  -f 2 | cut -d "," -f 1)
-Windows1=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4 | head -n1)
-Windows2=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4 | tail -n1)
-SteamOS=\$(efibootmgr | grep -i Steam | colrm 9 | colrm 1 4)
+# make Clover the next boot option!
 Clover=\$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
+sudo efibootmgr -n \$Clover &> /dev/null
 
-echo \$CurrentBoot - Current Boot Order
-echo \$FirstBoot - First Boot Item
-echo \$Windows1 - Windows1
-echo \$Windows2 - Windows2
-echo \$SteamOS - SteamOS
-echo \$Clover - Clover
-
-echo \$CurrentBoot | grep \$Windows1
-if [ \$? -eq 0 ]
-then
-	echo Windows is in the boot order! Need to re-arrange the boot order!
-	sudo efibootmgr -o \$Clover,\$SteamOS
-else
-	echo Windows is not in the boot order. Nothing needs to be done!
-fi
-
-echo \$CurrentBoot | grep \$Windows2
-if [ \$? -eq 0 ]
-then
-	echo Windows is in the boot order! Need to re-arrange the boot order!
-	sudo efibootmgr -o \$Clover,\$SteamOS
-else
-	echo Windows is not in the boot order. Nothing needs to be done!
-fi
-
-# Check if Clover is the first boot
-echo \$FirstBoot | grep \$Clover
-if [ \$? -eq 0 ]
-then
-	echo Clover is already the first boot order! Nothing needs to be done.
-	echo "Clover is OK" > ~/1Clover-tools/status.txt
-else
-	echo Clover is not the first boot order. Need to re-arrange the boot order!
-	sudo efibootmgr -o \$Clover,\$SteamOS
-	echo "Clover is OK" > ~/1Clover-tools/status.txt
-fi
+echo "*** Current state of EFI entries ****" >> ~/1Clover-tools/status.txt
+efibootmgr >> ~/1Clover-tools/status.txt
 EOF
 
 grep 1Clover-tools ~/.bash_profile &> /dev/null
