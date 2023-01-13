@@ -72,19 +72,10 @@ I don't know what the behavior will be if those are present in the system. Remov
 > This applies to Windows installed on the internal SSD / external SSD / microSD.
 1. No scripts / scheduled tasks related to rEFInd or EasyUEFI.
 2. APU / GPU drivers has been installed and screen orientation set to Landscape.
-3. Configure bcdedit to use the highest mode -
+3. This is VERY IMPORTANT! Do not skip this step - \
     * Open command prompt with admin privileges and enter the commands -\
         bcdedit.exe -set {globalsettings} highestmode on
         
-
-Alternative Solution -
-1. Boot to Windows.
-2. Go to Start > Run > msconfig
-3. Click the Boot tab.
-4. Put a check mark on NO GUI BOOT.
-
-![image](https://user-images.githubusercontent.com/98122529/212195550-45ddb14f-463e-4f63-ac81-6e685737aa3d.png)
-
 
 ## Using the Script
 > **NOTE1 - please read carefully below**
