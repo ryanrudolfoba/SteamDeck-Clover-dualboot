@@ -140,26 +140,26 @@ I don't know what the behavior will be if those are present in the system. Remov
 3. Right click CloverWindows.bat and select RUNAS Administrator.
 ![image](https://user-images.githubusercontent.com/98122529/212368736-c9b10eb0-ecfe-4ccb-b035-1aa55f959d94.png)
 
-4. The script will automatically create the C:\1Clover-tools folder and copy the files in there.
+4. The script will automatically create the C:\1Clover-tools folder and copy the files in there.\
 5. It will also automatically create the Scheduled Task called CloverTask-donotdelete
 ![image](https://user-images.githubusercontent.com/98122529/212368944-9be9e55a-ce96-43d8-9fb0-bf5f17a2bcc8.png)
 
-5. Go to Task Scheduler and the CloverTask will show up in there.
-5. Right-click the CloverTask and select Properties.
+6. Go to Task Scheduler and the CloverTask will show up in there.
+7. Right-click the CloverTask and select Properties.
 ![image](https://user-images.githubusercontent.com/98122529/212369284-76266936-d9d6-495e-aaf9-44d3abb7b129.png)
 
-6. Under the General tab, make sure it looks like this. Change it if it doesn't then press OK.
+8. Under the General tab, make sure it looks like this. Change it if it doesn't then press OK.
 ![image](https://user-images.githubusercontent.com/98122529/212369626-8a02f229-3a94-45d0-ad1f-929a4a7e51be.png)
 
-7. Right click the task and select RUN.
+9. Right click the task and select RUN.
 ![image](https://user-images.githubusercontent.com/98122529/212369786-6a973906-a849-4c60-85cb-556963754997.png)
 
-8. Close Task Scheduler. Go to C:\1Clover-tools and look for the file called status.txt.
+10. Close Task Scheduler. Go to C:\1Clover-tools and look for the file called status.txt.
 
-9. Open status.txt and the Clover GUID should be the same as the bootsequence. Sample below.
+11. Open status.txt and the Clover GUID should be the same as the bootsequence. Sample below.
 ![image](https://user-images.githubusercontent.com/98122529/212370053-2bd6dbd8-3d21-43a9-8498-cd0f156c6b9c.png)
 
-10. Reboot and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
+12. Reboot and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
 ![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
 
 ## FAQ / Troubleshooting
