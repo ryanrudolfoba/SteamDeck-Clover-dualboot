@@ -158,6 +158,7 @@ I don't know what the behavior will be if those are present in the system. Remov
 ![image](https://user-images.githubusercontent.com/98122529/212369626-8a02f229-3a94-45d0-ad1f-929a4a7e51be.png)
 
 9. Right click the task and select RUN.
+
 ![image](https://user-images.githubusercontent.com/98122529/212369786-6a973906-a849-4c60-85cb-556963754997.png)
 
 10. Close Task Scheduler. Go to C:\1Clover-tools and look for the file called status.txt.
@@ -169,7 +170,7 @@ I don't know what the behavior will be if those are present in the system. Remov
 ![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
 
 ## FAQ / Troubleshooting
-Read this for your Common Questions and Answers!
+Read this for your Common Questions and Answers! This will be regularly updated and some of the answers in here are contributions from the [WindowsOnDeck reddit community!](https://www.reddit.com/r/WindowsOnDeck/)
 
 
 ### Q0. How do I check that the ISO is not tampered?
