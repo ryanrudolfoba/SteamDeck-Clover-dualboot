@@ -9,6 +9,12 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 > **NOTE**\
 > If you are going to use this script for a video tutorial, PLEASE reference on your video where you got the script! This will make the support process easier!
 
+> **NOTE2**\
+> If anyone is good at graphics editing, please take a look at the [Clover themes here.](https://github.com/CloverHackyColor/CloverThemes)
+> \
+> Please pick several themes, edit the icons / backgrounds etc etc and let me know a download link.\
+> I can integrate that so the theme is tailor fitted for the SteamOS / Steam Deck. Thank you!
+
 ## Screenshots
 
 ![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
