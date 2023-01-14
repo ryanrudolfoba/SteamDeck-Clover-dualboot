@@ -73,7 +73,7 @@ I don't know what the behavior will be if those are present in the system. Remov
 1. No scripts / scheduled tasks related to rEFInd or EasyUEFI.
 2. APU / GPU drivers has been installed and screen orientation set to Landscape.
 3. This is VERY IMPORTANT! Do not skip this step - \
-    * Open command prompt with admin privileges and enter the commands -\
+    * Open command prompt with admin privileges and enter the command -
         bcdedit.exe -set {globalsettings} highestmode on
         
 
@@ -178,37 +178,26 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
 ![image](https://user-images.githubusercontent.com/98122529/211201387-36311ba8-7ac4-44e7-938c-25d5ed2a3e5f.png)
 
 1. Boot to Windows.
-2. Go to Control Panel > Programs and Features > Turn Windows Features On or Off.
-3. Expand "Device Lockdown", and then put a check mark on "Unbranded Boot"
-![image](https://user-images.githubusercontent.com/98122529/211198710-68105c60-3710-4e9d-bf44-11ab7bc1e67e.png)
-4. Open command prompt with admin privileges and enter the commands to disable the boot graphics animation -\
-   bcdedit.exe -set {globalsettings} bootuxdisabled on\
-   bcdedit.exe -set {bootmgr} noerrordisplay on
-
-Alternative Solution -
-1. Boot to Windows.
-2. Go to Start > Run > msconfig
-3. Click the Boot tab.
-4. Put a check mark on NO GUI BOOT.
-
-![image](https://user-images.githubusercontent.com/98122529/212195550-45ddb14f-463e-4f63-ac81-6e685737aa3d.png)
+2. Open command prompt with admin privileges and enter the command -
+   bcdedit.exe -set {globalsettings} highestmode on
+      
 
 ### Q2. Windows boots up in garbled graphics!
 ![image](https://user-images.githubusercontent.com/98122529/211198222-5cce38ff-3f20-4386-8715-c408fea6a4b0.png)
 
 1. Boot into SteamOS.
 2. Go to Desktop Mode.
-8. Open a konsole terminal and re-enable the Windows EFI - \
+3. Open a konsole terminal and re-enable the Windows EFI - \
    cd ~/1Clover-tools \
    ./enable-windows-efi.sh\
    ![image](https://user-images.githubusercontent.com/98122529/211840322-46c3ab90-2ed4-4abc-84a6-ae82cce1d917.png)
    
-3. Reboot the Steam Deck and it will boot directly to Windows.
-4. Make sure screen orientation is set to Landscape.
-5. Make sure Unbranded Boot is configured and enabled.
-6. Power off the Steam Deck. 
-7. While powered off press VOLDOWN + Power and manually boot into SteamOS / Clover.
-8. SteamOS will automatically fix the dual boot entries! On next reboot it will go back to Clover!
+4. Reboot the Steam Deck and it will boot directly to Windows.
+6. Open command prompt with admin privileges and enter the command -
+   bcdedit.exe -set {globalsettings} highestmode on
+
+7. Make sure screen orientation is set to Landscape.
+8. Reboot and it will go back to Clover!
 
 ### Q3. I need to perform a GPU / APU driver upgrade in Windows. What do I do?
 
