@@ -18,6 +18,8 @@ pause
 goto :end
 
 :success
+rem - to the bcdedit in case the end user forgot in the pre-requisites!
+bcdedit.exe -set {globalsettings} highestmode on
 echo Scheduled Task has been created!
 echo.
 echo 1. Go to Windows Administrative Tools, then Scheduled Task.
