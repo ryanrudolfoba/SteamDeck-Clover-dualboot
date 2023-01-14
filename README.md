@@ -144,6 +144,7 @@ I don't know what the behavior will be if those are present in the system. Remov
 
 2. Go to your Downloads folder and then extract the zip.
 3. Right click CloverWindows.bat and select RUNAS Administrator.
+
 ![image](https://user-images.githubusercontent.com/98122529/212368736-c9b10eb0-ecfe-4ccb-b035-1aa55f959d94.png)
 
 4. The script will automatically create the C:\1Clover-tools folder and copy the files in there.\
