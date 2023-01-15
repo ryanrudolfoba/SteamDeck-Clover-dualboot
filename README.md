@@ -170,6 +170,9 @@ I don't know what the behavior will be if those are present in the system. Remov
 12. Reboot and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
 ![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
 
+
+**[ALTERNATIVELY YOU CAN CREATE THE SCHEDULED TASK MANUALLY](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/1#issuecomment-1383070761)**
+
 ## FAQ / Troubleshooting
 Read this for your Common Questions and Answers! This will be regularly updated and some of the answers in here are contributions from the [WindowsOnDeck reddit community!](https://www.reddit.com/r/WindowsOnDeck/)
 
