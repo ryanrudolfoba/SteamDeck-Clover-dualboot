@@ -8,7 +8,7 @@ $clover = bcdedit.exe /enum firmware | Select-String -pattern cloverx64.efi -Con
 $clover = $clover -replace '.*\{' -replace '\}.*'
 
 # set Clover GUID to be the next bootsequence
-bcdedit /set "{fwbootmgr}" bootsequence "$clover" /addfirst
+bcdedit /set "{fwbootmgr}" bootsequence "{$clover}" /addfirst
 
 # create log file for troubleshooting
 "*** Clover log file for troubleshooting ***" | out-file C:\1Clover-tools\status.txt
