@@ -1,14 +1,18 @@
 @echo off
-rem - create 1Clover-tools folder and copy the powershell script
-mkdir C:\1Clover-tools
-copy %~dp0custom\CloverTask.ps1 c:\1Clover-tools
 cls
-echo Clover Windows Install Script by ryanrudolf
+echo Clover Windows install script by ryanrudolf
 echo https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
+echo.
+ping -n 3 localhost > nul
 
-rem - delete existing task and then create it
-schtasks /delete /tn CloverTask-donotdelete /f
-schtasks /create /tn CloverTask-donotdelete /xml %~dp0custom\CloverTask.xml
+rem - remove / re-create 1Clover-tools folder and copy the powershell script
+rmdir /s /q C:\1Clover-tools
+mkdir C:\1Clover-tools
+copy "%~dp0custom\CloverTask.ps1" C:\1Clover-tools > nul
+
+rem - delete / re-create the CloverTask
+schtasks /delete /tn CloverTask-donotdelete /f 2> nul
+schtasks /create /tn CloverTask-donotdelete /xml "%~dp0custom\CloverTask.xml"
 
 if %errorlevel% equ 0 goto :success
 if %errorlevel% neq 0 goto :accessdenied
@@ -18,9 +22,6 @@ pause
 goto :end
 
 :success
-rem - to the bcdedit in case the end user forgot in the pre-requisites!
-bcdedit.exe -set {globalsettings} highestmode on
-echo Scheduled Task has been created!
 echo.
 echo 1. Go to Windows Administrative Tools, then Scheduled Task.
 echo 2. Right-click the task called CloverTask, then select Properties.
