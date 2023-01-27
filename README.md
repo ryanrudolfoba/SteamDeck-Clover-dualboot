@@ -39,6 +39,9 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 **Mojave - SteamOS, Windows and Batocera (microSD)**
 ![image](https://user-images.githubusercontent.com/98122529/214861730-66b21114-09bd-43f4-ae30-f1c3efb24d4a.png)
 
+**Easily add / remove themes using Dolphin File Manager**
+![image](https://user-images.githubusercontent.com/98122529/214928509-7d6cae5e-107e-4bcd-baa7-2051f6ddb269.png)
+
 
 ## !!! WARNING - WARNING - WARNING !!!
 > **WARNING!**\
