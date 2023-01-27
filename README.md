@@ -108,20 +108,20 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
    ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png)
 
 4. The script will check if sudo passwword is already set.\
-   **4a.**
+   **a.**
          If it is already set, enter the current sudo password and the script will continue.\
          If wrong password is provided the script will exit immdediately. Re-run the script and enter the correct sudo password!
          ![image](https://user-images.githubusercontent.com/98122529/215194972-02cbcdf2-0d8e-41cf-b39c-417049d1b5c6.png)
 
-   **4b.**
+   **b.**
          If the sudo password is blank / not yet set by the end user, the script will prompt to setup the sudo password. Re-run the script to continue.
          ![image](https://user-images.githubusercontent.com/98122529/215194796-58b9c638-d21a-4e26-a1c9-12743fd36196.png)
 
-   **4c.**
+   **c.**
          Script will continue to run and perform sanity checks all throughout the install process.
          ![image](https://user-images.githubusercontent.com/98122529/215194418-20597cef-4851-440d-b1c5-9428662349ad.png)
 
-   **4d.**
+   **d.**
          If there is an error on step5, then you need to manually download the zip file when doing the steps for Windows.
          ![image](https://user-images.githubusercontent.com/98122529/215194686-00c1a2aa-c429-4b76-8ca7-c526bc59e2c2.png)
          
