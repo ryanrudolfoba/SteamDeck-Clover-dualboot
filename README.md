@@ -122,8 +122,11 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
          ![image](https://user-images.githubusercontent.com/98122529/215194418-20597cef-4851-440d-b1c5-9428662349ad.png)
          
          If there is an error on step5, then you need to manually download the zip file when doing the steps for Windows.
-         ![image](https://user-images.githubusercontent.com/98122529/215194686-00c1a2aa-c429-4b76-8ca7-c526bc59e2c2.png)
+         ![image](https://user-images.githubusercontent.com/98122529/215194686-00c1a2aa-c429-4b76-8ca7-c526bc59e2c2.png)         
 
+   **4d.**
+         If there is an error on step5, then you need to manually download the zip file when doing the steps for Windows.
+         ![image](https://user-images.githubusercontent.com/98122529/215194686-00c1a2aa-c429-4b76-8ca7-c526bc59e2c2.png)
          
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
 ![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)
