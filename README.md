@@ -14,7 +14,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 2. This is for educational and research purposes only!
 
 ## What's New (as of January 26 2023)
-1. **added experimental version** - no need for Windows powershell script / scheduled task.
+1. **added experimental version (this is what i use)** - no need for Windows powershell script / scheduled task.
 2. color coded the install script - if the output is RED then something went wrong.
 3. updated script and scheduled task on the Windows side.
 4. updated config.plist to support Windows, Batocera and Ventoy on microSD / external SSD.
