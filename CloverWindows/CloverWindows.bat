@@ -6,7 +6,6 @@ echo.
 ping -n 3 localhost > nul
 
 rem - remove / re-create 1Clover-tools folder and copy the powershell script
-rmdir /s /q C:\1Clover-tools
 mkdir C:\1Clover-tools
 copy "%~dp0custom\CloverTask.ps1" C:\1Clover-tools > nul
 
