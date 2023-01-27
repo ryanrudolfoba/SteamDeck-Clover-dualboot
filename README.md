@@ -78,11 +78,11 @@ I don't know what the behavior will be if those are present in the system. Remov
 > This applies to Windows installed on the internal SSD / external SSD / microSD.
 1. No scripts / scheduled tasks related to rEFInd or EasyUEFI.
 2. APU / GPU drivers has been installed and screen orientation set to Landscape.
-3. This is VERY IMPORTANT! Do not skip this step -
+3. This is VERY IMPORTANT! Do not skip this step! 
     * Open command prompt with admin privileges and enter the command -\
-        bcdedit.exe -set {globalsettings} highestmode on
+        ``bcdedit.exe -set {globalsettings} highestmode on``
+    * If this complains about 'The Parameter is incorrect' see Q1 in the FAQ below for the command for your system.
         
-
 ## Using the Script
 > **NOTE1 - please read carefully below**
 > 1. Make sure you fully read and understand the disclaimer, warnings and prerequisites!
@@ -110,13 +110,13 @@ I don't know what the behavior will be if those are present in the system. Remov
 1. Go into Desktop Mode.
 2. Open a konsole terminal.
 3. Clone the github repo. \
-   cd ~/ \
-   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
+   ``cd ~/`` \
+   ``git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot``
    
 3. Execute the script! \
-   cd ~/SteamDeck-Clover-dualboot \
-   chmod +x install-Clover.sh \
-   ./install-Clover.sh
+   ``cd ~/SteamDeck-Clover-dualboot`` \
+   ``chmod +x install-Clover.sh`` \
+   ``./install-Clover.sh``
    ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png)
 
 4. The script will check if sudo passwword is already set.\
@@ -189,9 +189,22 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
 ![image](https://user-images.githubusercontent.com/98122529/211201387-36311ba8-7ac4-44e7-938c-25d5ed2a3e5f.png)
 
 1. Boot to Windows.
-2. Open command prompt with admin privileges and enter the command -\
-   bcdedit.exe -set {globalsettings} highestmode on
-      
+2. Open command prompt (cmd.exe) with admin privileges and enter the command -\
+   ``bcdedit.exe -set {globalsettings} highestmode on``
+   
+   ![image](https://user-images.githubusercontent.com/11047768/215108848-b6a2628e-696a-4bec-81c2-ade74b6d85a0.png)
+   
+   If you are using Windows 11 enter this command -\
+   ``bcdedit /set {globalsettings} highestmode on``
+   
+   ![image](https://user-images.githubusercontent.com/11047768/215110177-e67bd4a5-efad-471d-adc8-3eab9000ddf0.png)
+
+   
+   Alternatively, if you are using Windows PowerShell, open with admin privilieges and enter the command -\
+   ``bcdedit /set "{globalsettings}" highestmode on``
+   
+   ![image](https://user-images.githubusercontent.com/11047768/215107501-ec061ce1-d8ec-411a-a002-1c97c1175bae.png)
+
 
 ### Q2. Windows boots up in garbled graphics!
 ![image](https://user-images.githubusercontent.com/98122529/211198222-5cce38ff-3f20-4386-8715-c408fea6a4b0.png)
@@ -204,11 +217,27 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
    ![image](https://user-images.githubusercontent.com/98122529/211840322-46c3ab90-2ed4-4abc-84a6-ae82cce1d917.png)
    
 4. Reboot the Steam Deck and it will boot directly to Windows.
-6. Open command prompt with admin privileges and enter the command -\
-   bcdedit.exe -set {globalsettings} highestmode on
+5. Open command prompt (cmd.exe) with admin privileges and enter the command -\
+   ``bcdedit.exe -set {globalsettings} highestmode on``
+   
+   ![image](https://user-images.githubusercontent.com/11047768/215108848-b6a2628e-696a-4bec-81c2-ade74b6d85a0.png)
+   
+   If you are using Windows 11 enter this command -\
+   ``bcdedit /set {globalsettings} highestmode on``
+   
+   ![image](https://user-images.githubusercontent.com/11047768/215110177-e67bd4a5-efad-471d-adc8-3eab9000ddf0.png)
 
-7. Make sure screen orientation is set to Landscape.
-8. Reboot and it will go back to Clover!
+   
+   Alternatively, if you are using Windows PowerShell, open with admin privilieges and enter the command -\
+   ``bcdedit /set "{globalsettings}" highestmode on``
+   
+   ![image](https://user-images.githubusercontent.com/11047768/215107501-ec061ce1-d8ec-411a-a002-1c97c1175bae.png)
+
+6. Make sure screen orientation is set to Landscape.
+   
+   ![image](https://user-images.githubusercontent.com/11047768/215110746-bc396867-8403-4802-a88e-0945b21ebae1.png)
+
+7. Reboot and it will go back to Clover!
 
 ### Q3. I need to perform a GPU / APU driver upgrade in Windows. What do I do?
 
@@ -225,8 +254,7 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
 6. Select Windows and wait until it loads.
 7. Make sure screen orientation is set to Landscape.
 8. If everything looks good, reboot and it will go back to Clover.
-
-       
+      
 ### Q4. I reinstalled Windows and now it boots directly to Windows instead of Clover!
 
 1. Follow the steps for the Windows install.
@@ -246,8 +274,8 @@ This happens even if not using dualboot / Clover / rEFInd.
 
 1. Boot into SteamOS.
 2. Open a konsole terminal and run the uninstall script - \
-   cd ~/1Clover-tools \
-   ./uninstall-Clover.sh\
+   ``cd ~/1Clover-tools`` \
+   ``./uninstall-Clover.sh`` \
    ![image](https://user-images.githubusercontent.com/98122529/211840095-85745118-fa64-4ef8-b2c1-78dbf0443459.png)
    
 3. Reboot the Steam Deck and it will automatically load Windows. Clover has been uninstalled!
