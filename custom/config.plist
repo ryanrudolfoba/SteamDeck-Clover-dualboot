@@ -582,7 +582,7 @@
 					<key>Type</key>
 					<string>Windows</string>
 					<key>FullTitle</key>
-					<string>Windows External SSD / microSD</string>
+					<string>Windows Internal SSD / External SSD / microSD</string>
 				</dict>
 			</array>
 			<key>Tool</key>
