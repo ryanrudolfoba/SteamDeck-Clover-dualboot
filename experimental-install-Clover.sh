@@ -55,13 +55,13 @@ else
 fi
 
 # copy Clover files to EFI system partition
-sudo mkdir -p /esp/efi/clover && sudo cp -Rf ~/temp-clover/efi/clover /esp/efi/ && sudo cp custom/config.plist /esp/efi/clover && sudo cp -Rf custom/themes/* /esp/efi/clover/themes
+sudo mkdir -p /esp/efi/clover && sudo cp -Rf ~/temp-clover/efi/clover /esp/efi/ && sudo cp custom/experimental-config.plist /esp/efi/clover/config.plist && sudo cp -Rf custom/themes/* /esp/efi/clover/themes
 
 if [ $? -eq 0 ]
 then
 	echo -e "$GREEN"3rd sanity check. Clover has been copied to the EFI system partition!
 else
-	echo -e "$RED"Error copying files. Something went wrong.
+	echo -e $"RED"Error copying files. Something went wrong.
 	sudo umount ~/temp-clover
 	rmdir ~/temp-clover
 	exit
@@ -91,28 +91,14 @@ fi
 # install Clover to the EFI system partition
 sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\clover\cloverx64.efi" &> /dev/null
 
-# make Clover the next boot option!
-Clover=$(efibootmgr |  grep -i Clover | colrm 9 | colrm 1 4)
+# backup and disable the Windows EFI entry!
+sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft/Boot/bootmgfw.efi.orig && sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft
+
+# re-arrange the boot order and make Clover the priority!
+Clover=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
+SteamOS=$(efibootmgr | grep -i SteamOS | colrm 9 | colrm 1 4)
 sudo efibootmgr -n $Clover &> /dev/null
-
-# copy Windows scripts to the Windows partition
-Windows=$(sudo blkid | grep "Basic data partition" | grep 'nvme.*ntfs.*Basic data partition' | cut -d ":" -f 1 | head -n1)
-mkdir ~/windows-temp
-sudo mount $Windows ~/windows-temp &> /dev/null
-
-if [ $? -eq 0 ]
-then
-	echo -e "$GREEN"5th sanity check. Windows C drive successfully mounted! Copying scripts to the C drive.
-	sudo rm -rf ~/windows-temp/1Clover-tools || sudo mkdir -p ~/windows-temp/1Clover-tools
-	sudo cp -R CloverWindows ~/windows-temp/1Clover-tools
-	sync ; sleep 5
-else
-	echo -e "$RED"5th sanity check. Error mounting the Windows C drive!
-	echo -e "$RED"Please manually download the zip file from the github when doing the Windows install!
-fi
-
-sudo umount ~/windows-temp &> /dev/null
-rmdir ~/windows-temp
+sudo efibootmgr -o $Clover,$SteamOS &> /dev/null
 
 # Final sanity check
 efibootmgr | grep "Clover - GUI" &> /dev/null
@@ -143,22 +129,30 @@ echo \**************************************************************************
 #################################################################################
 
 # create ~/1Clover-tools and place the scripts in there
-mkdir  ~/1Clover-tools &> /dev/null
+mkdir ~/1Clover-tools &> /dev/null
 rm ~/1Clover-tools/* &> /dev/null
 
 # enable-windows-efi.sh
 cat > ~/1Clover-tools/enable-windows-efi.sh << EOF
 #!/bin/bash
 
+# restore Windows EFI entry from backup
+sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
+
 # make Windows the next boot option!
 Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
 sudo efibootmgr -n \$Windows &> /dev/null
-echo Clover has been deactivated and Windows EFI entry has been re-enabled!
+
+echo Clover has been temporarily deactivated and Windows EFI entry has been re-enabled!
 EOF
 
 # uninstall-Clover.sh
 cat > ~/1Clover-tools/uninstall-Clover.sh << EOF
 #!/bin/bash
+
+# restore Windows EFI entry from backup
+sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
+sudo rm /esp/efi/Microsoft/bootmgfw.efi
 
 # remove Clover from the EFI system partition
 sudo rm -rf /esp/efi/clover
@@ -168,55 +162,59 @@ do
 	sudo efibootmgr -b \$entry -B &> /dev/null
 done
 
+rm -rf ~/1Clover-tools/*
+
 grep -v 1Clover-tools ~/.bash_profile > ~/.bash_profile.temp
 mv ~/.bash_profile.temp ~/.bash_profile
 
-rm -rf ~/1Clover-tools/*
-
-# make Windows the next boot option!
-Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
-sudo efibootmgr -n \$Windows &> /dev/null
-
 # delete dolphin root extension
 rm ~/.local/share/kservices5/ServiceMenus/open_as_root.desktop
+
 echo Clover has been uninstalled and the Windows EFI entry has been restored!
 EOF
 
 # post-install-Clover.sh
 cat > ~/1Clover-tools/post-install-Clover.sh << EOF
 #!/bin/bash
+
+CloverStatus=~/1Clover-tools/status.txt
+
 echo -e "$current_password\n" | sudo -S ls &> /dev/null
 
-date  > ~/1Clover-tools/status.txt
-
-echo BIOS Version : \$(sudo dmidecode -s bios-version) >> ~/1Clover-tools/status.txt
+echo Clover Experimental Version > \$CloverStatus
+date  >> \$CloverStatus
+echo BIOS Version : \$(sudo dmidecode -s bios-version) >> \$CloverStatus
 
 # Sanity Check - are the needed EFI entries available?
 
 efibootmgr | grep -i Clover &> /dev/null
 if [ \$? -eq 0 ]
 then
-	echo Clover EFI entry exists! No need to re-add Clover. >> ~/1Clover-tools/status.txt
+	echo Clover EFI entry exists! No need to re-add Clover. >> \$CloverStatus
 else
-	echo Clover EFI entry is not found. Need to re-ad Clover. >> ~/1Clover-tools/status.txt
+	echo Clover EFI entry is not found. Need to re-ad Clover. >> \$CloverStatus
 	sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\clover\cloverx64.efi" &> /dev/null
 fi
 
 efibootmgr | grep -i Steam &> /dev/null
 if [ \$? -eq 0 ]
 then
-	echo SteamOS EFI entry exists! No need to re-add SteamOS. >> ~/1Clover-tools/status.txt
+	echo SteamOS EFI entry exists! No need to re-add SteamOS. >> \$CloverStatus
 else
-	echo SteamOS EFI entry is not found. Need to re-add SteamOS. >> ~/1Clover-tools/status.txt
+	echo SteamOS EFI entry is not found. Need to re-add SteamOS. >> \$CloverStatus
 	sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "SteamOS" -l "\EFI\steamos\steamcl.efi" &> /dev/null
 fi
 
-# make Clover the next boot option!
-Clover=\$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
-sudo efibootmgr -n \$Clover &> /dev/null
+# disable the Windows EFI entry!
+sudo test -f /esp/efi/Microsoft/Boot/bootmgfw.efi && echo Windows EFI exists! Moving it to /esp/efi/Microsoft >> \$CloverStatus && sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft &>> \$CloverStatus
 
-echo "*** Current state of EFI entries ****" >> ~/1Clover-tools/status.txt
-efibootmgr >> ~/1Clover-tools/status.txt
+# re-arrange the boot order and make Clover the priority!
+Clover=\$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
+SteamOS=\$(efibootmgr | grep -i SteamOS | colrm 9 | colrm 1 4)
+sudo efibootmgr -o \$Clover,\$SteamOS &> /dev/null
+
+echo "*** Current state of EFI entries ****" >> \$CloverStatus
+efibootmgr >> \$CloverStatus
 EOF
 
 grep 1Clover-tools ~/.bash_profile &> /dev/null
