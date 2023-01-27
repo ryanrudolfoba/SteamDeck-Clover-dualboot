@@ -23,6 +23,7 @@ goto :end
 
 :success
 echo.
+bcdedit.exe -set {globalsettings} highestmode on
 echo 1. Go to Windows Administrative Tools, then Scheduled Task.
 echo 2. Right-click the task called CloverTask, then select Properties.
 echo 3. Under the General Tab, change the option to RUN WHETHER USER IS LOGGED IN OR NOT.
