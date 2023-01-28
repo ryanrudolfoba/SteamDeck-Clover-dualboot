@@ -173,35 +173,30 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 > The free space on the esp partition is around ~25MB. Make sure the themes you download don't exceed this size!\
 > You can have multiple themes installed and Clover will automatically pick a random theme on every reboot!
 
-1. Boot into Desktop Mode.
-2. Open a konsole terminal and verify you have enough space in the esp partition -\
-   df -h | grep "File\\|esp"
-   
-   On this example there is still around 27MB free space -\
-   ![image](https://user-images.githubusercontent.com/98122529/214897987-72936746-47c7-4996-b60f-26bae249d9cb.png)
-
-2. Visit the [Clover Themes github](https://github.com/CloverHackyColor/CloverThemes) to download the themes.
-3. Open Dolphin File Manager.
-4. Navigate to /esp on the lower left side. It will say "Could not enter folder /esp"
+1. Boot into Desktop Mode and then open Dolphin File Manager.
+2. Navigate to /esp on the lower left side. It will say "Could not enter folder /esp"
    ![image](https://user-images.githubusercontent.com/98122529/214927546-75e5cd14-1c0a-499d-8491-d5221e20f3a8.png)
 
-6. Right-click and select "Open as Root."
+3. Right-click and select "Open as Root."
    ![image](https://user-images.githubusercontent.com/98122529/214929527-f9e9a435-f715-4803-88f9-5b30e043a84c.png)
 
-8. Enter the sudo password when prompted.
+4. Enter the sudo password when prompted.
 
    ![image](https://user-images.githubusercontent.com/98122529/214928042-eda04c7e-41d0-4d0f-9ae8-6aa3003b5032.png)
    
 
-9. A new folder will appear for the esp partition.
-   ![image](https://user-images.githubusercontent.com/98122529/214928185-8a34143c-f78f-4ed6-b5a6-edc7e2b1998a.png)
+5. A new folder will appear for the esp partition.\
+   Take note of the free space located in the lower right side. On this example the free space is around 26MB.
+   ![image](https://user-images.githubusercontent.com/98122529/215268989-56a661dc-e2c5-40fb-b57e-9b49a4de93a7.png)
 
-10. Navigate to efi > clover > themes. It will show a list of themes installed. By default it will show 3 - random, Catalina and Mojave.
+6. Visit the [Clover Themes github](https://github.com/CloverHackyColor/CloverThemes) to download the themes. Make sure the themes you download doesn't exceed the free space of the esp partition from step6.
+
+7. Navigate to efi > clover > themes. It will show a list of themes installed. By default it will show 3 - random, Catalina and Mojave.
    ![image](https://user-images.githubusercontent.com/98122529/214928509-7d6cae5e-107e-4bcd-baa7-2051f6ddb269.png)
 
-11. **Don't delete the random folder!** It is needed so that when there are multiple themes installed, Clover will randomly pick a theme on every reboot.
-12. Delete the themes you don't want and copy / paste new themes that you have downloaded.
-13. Reboot and enjoy the new theme!
+8. **Don't delete the random folder!** It is needed so that when there are multiple themes installed, Clover will randomly pick a theme on every reboot.
+9. Delete the themes you don't want and copy / paste new themes that you have downloaded.
+10. Reboot and enjoy the new theme!
 
 > **NOTE**
 > When adding your own theme, make sure to name your custom SteamOS and Batocera icons as follows -\
