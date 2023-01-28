@@ -538,6 +538,22 @@
 					<key>Hidden</key>
 					<false/>
 					<key>Image</key>
+					<string>os_win</string>
+					<key>Path</key>
+					<string>\EFI\MICROSOFT\bootmgfw.efi</string>
+					<key>Title</key>
+					<string>Windows</string>
+					<key>Type</key>
+					<string>Windows</string>
+					<key>FullTitle</key>
+					<string>Windows Internal SSD</string>
+				</dict>
+				<dict>
+					<key>Disabled</key>
+					<false/>
+					<key>Hidden</key>
+					<false/>
+					<key>Image</key>
 					<string>os_batocera</string>
 					<key>Path</key>
 					<string>\EFI\BOOT\BOOTX64.efi</string>
@@ -582,7 +598,7 @@
 					<key>Type</key>
 					<string>Windows</string>
 					<key>FullTitle</key>
-					<string>Windows Internal SSD / External SSD / microSD</string>
+					<string>Windows External SSD / microSD</string>
 				</dict>
 			</array>
 			<key>Tool</key>

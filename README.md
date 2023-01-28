@@ -9,64 +9,48 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 > **NOTE**\
 > If you are going to use this script for a video tutorial, PLEASE reference on your video where you got the script! This will make the support process easier!
 
-> **NOTE2**\
-> If anyone is good at graphics editing, please take a look at the [Clover themes here.](https://github.com/CloverHackyColor/CloverThemes)
-> \
-> Please pick several themes, edit the icons / backgrounds etc etc and let me know a download link.\
-> I can integrate that so the theme is tailor fitted for the SteamOS / Steam Deck. Thank you!
-
-## Screenshots
-
-![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
-![image](https://user-images.githubusercontent.com/98122529/211849287-31965fef-030a-4b80-9082-5be677e3e005.png)
-![image](https://user-images.githubusercontent.com/98122529/211457186-49b61cae-2f84-45ed-893c-c5edf1752418.png)
-![image](https://user-images.githubusercontent.com/98122529/211794305-7408975f-6d1b-4ba0-808d-5700f7b78ef8.png)
-![image](https://user-images.githubusercontent.com/98122529/211794427-0753e4fc-f96d-492a-bd2b-f2b59464b509.png)
-
-
 ## Disclaimer
-
 1. Do this at your own risk!
 2. This is for educational and research purposes only!
 
+## What's New (as of January 26 2023)
+1. **added experimental version (this is what i use)** - no need for Windows powershell script / scheduled task.
+2. color coded the install script - if the output is RED then something went wrong.
+3. updated script and scheduled task on the Windows side.
+4. updated config.plist to support Windows, Batocera and Ventoy on microSD / external SSD.
+5. easily add / remove themes via drag and drop / copy-paste in Dolphin file manager.
+6. add multiple themes and Clover will automatically choose a random theme on each reboot.
+7. Catalina and Mojave theme bundled by default.
+8. community contributed icons / logos for SteamOS and Batocera (thanks to WindowsOnDeck reddit members u/ch3vr0n5 and u/ChewyYui)
+9. re-wrote and re-organized the README.
 
-## But Why Use Another Boot Manager?!? What's Different?!?
-> **NOTE1**\
-> This is a continuation of my rEFInd script from [here.](https://github.com/ryanrudolfoba/SteamDeck-rEFInd-dualboot)\
-> The design goal is the same from my rEFInd implementation - make as little changes as possible to the system.
+## Old Changelog - January 11 2023
+1. Initial Release based on [Clover v5151.](https://github.com/CloverHackyColor/CloverBootloader/releases/download/5151/Clover-5151-X64.iso.7z)
+2. Does not rename / move Windows EFI entries.
+3. When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own.
+4. Makes as few changes as possible - doesn't rely on pacman repositories, no systemd scripts and no EasyUEFI.
+5. All-in-One script - install, disable / re-enable, uninstall.
 
-> **For the SteamOS side**\
-> The script copies files to the /esp/efi/clover location and manipulates the EFI boot orders. No files are renamed / moved.\
-> Extra scripts are saved in ~/1Clover-tools which manipulates the EFI boot orders, and an uninstall to reverse any changes made.\
-> There are no extra systemd scripts created, ~~no extra power shell scripts needed~~ and no need for EasyUEFI.
+## Screenshots
+**Catalina - SteamOS, Windows and Batocera (microSD)**
+![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)
 
-> **For the Windows side**\
-> The script creates a folder called C:\1Clover-tools and creates a Scheduled Task.\
-> The Scheduled Task runs the powershell script saved in C:\1Clover-tools. The powershell script queries the EFI entries and sets Clover to be the next boot entry.
 
-> **NOTE2**\
-> If the EFI boot entries are missing due to BIOS updates or due to official SteamOS updates, just manually reboot into SteamOS and it will fix the dual boot automatically. No need to type any commands!
+**Mojave - SteamOS, Windows and Batocera (microSD)**
+![image](https://user-images.githubusercontent.com/98122529/214861730-66b21114-09bd-43f4-ae30-f1c3efb24d4a.png)
 
-> **NOTE3**\
-> The config.plist for Clover is 1100+ lines! The config I have bundled here does the basic function - present SteamOS and Windows (on the internal SSD) for dual boot.\
-> It is encouraged to please review the config.plist, make changes as needed for improvement and contribute back.
-
-1. **NEW** - Use a different boot manager - Clover.
-2. **NEW** - Does not rename / move Windows EFI entries.
-3. **NEW** - When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own!
-4. Does not rely on 3rd party systemd scripts / ~~powershell scripts~~ / EasyUEFI.
-5. All-in-One script - install, disable / re-enable, uninstall!
-6. Doesn't rely on pacman repositories - uses the latest (as of this writing V5151) Clover ISO from [here.](https://github.com/CloverHackyColor/CloverBootloader/releases/download/5151/Clover-5151-X64.iso.7z)
+**Easily add / remove themes using Dolphin File Manager**
+![image](https://user-images.githubusercontent.com/98122529/214928509-7d6cae5e-107e-4bcd-baa7-2051f6ddb269.png)
 
 
 ## !!! WARNING - WARNING - WARNING !!!
 > **WARNING!**\
 > Please carefully read the items below!
 1. The script has been thoroughly tested on a fresh SteamOS and Windows install.
-2. If your SteamOS has prior traces of rEFInd or scripts / systemd services related to rEFInd, it is suggested to uninstall / remove those first before proceeding. If you were using my rEFInd script then it's all good as I don't use systemd services.
+2. If your SteamOS has prior traces of rEFInd or scripts / systemd services related to rEFInd, it is suggested to uninstall / remove those first before proceeding.
 3. If your Windows install has scripts or programs related to rEFInd / EasyUEFI, it is suggested to uninstall / remove those first before proceeding.
 
-I don't know what the behavior will be if those are present in the system. Remove them first before using this script!
+**I don't know what the behavior will be if those are present in the system. Remove them first before using this script!**
 
 ## Prerequisites for SteamOS and Windows
 **Prerequisites for SteamOS**
@@ -84,28 +68,26 @@ I don't know what the behavior will be if those are present in the system. Remov
     * If this complains about 'The Parameter is incorrect' see Q1 in the FAQ below for the command for your system.
         
 ## Using the Script
-> **NOTE1 - please read carefully below**
+> **NOTE - please read carefully**
 > 1. Make sure you fully read and understand the disclaimer, warnings and prerequisites!
-> 2. The script will create a directory called ~/1Clover-tools with scripts to enable / disable Windows EFI and an uninstall to reverse any changes made. Do not delete this folder!
+> 2. The script creates a directory called ~/1Clover-tools with extra scripts to enable / disable Windows EFI and an uninstall to reverse any changes made. Do not delete this folder!
+> 3. The installation is divided into 2 parts - 1 for SteamOS, and 1 for Windows. The recommended way is to do the steps on SteamOS first, and then do the steps for Windows.
 
-> **NOTE2**\
-> The design goal is the same from my rEFInd implementation - make as little changes as possible to the system.
-
-> **For the SteamOS side**\
+> **What does the script do / change on the SteamOS side?!?**\
 > The script copies files to the /esp/efi/clover location and manipulates the EFI boot orders. No files are renamed / moved.\
 > Extra scripts are saved in ~/1Clover-tools which manipulates the EFI boot orders, and an uninstall to reverse any changes made.\
-> There are no extra systemd scripts created, ~~no extra power shell scripts needed~~ and no need for EasyUEFI.
+> There are no extra systemd scripts created.
 
-> **For the Windows side**\
-> The script creates a folder called C:\1Clover-tools and creates a Scheduled Task.\
-> The Scheduled Task runs the powershell script saved in C:\1Clover-tools. The powershell script queries the EFI entries and sets Clover to be the next boot entry.
-
-> **NOTE3**\
-> The installation is divided into 2 parts - 1 for SteamOS, and 1 for Windows.\
-> The recommended way is to do the steps on SteamOS first, and then do the steps for Windows.
+> **What does the script do / change on the Windows side?!?**\
+> The script creates a folder called C:\1Clover-tools and creates a Scheduled Task called CloverTask-donotdelete.\
+> The Scheduled Task runs a powershell script saved in C:\1Clover-tools. The powershell script queries the EFI entries and sets Clover to be the next boot entry.
 
 
 **Installation Steps for SteamOS**
+> **NOTE1 - please read carefully**\
+> If you are using an older version of my script, it is recommended to uninstall it first before installing the new one!\
+> To uninstall the old version, please follow the steps in FAQ Q7.\
+> There is now an experimental version that is much easier and quicker to install as it doesn't need any scripts / scheduled task on the Windows side.
 
 1. Go into Desktop Mode.
 2. Open a konsole terminal.
@@ -113,32 +95,47 @@ I don't know what the behavior will be if those are present in the system. Remov
    ``cd ~/`` \
    ``git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot``
    
-3. Execute the script! \
+3. Execute the script!
+   NOTE: There is an experimental version that is much easier and quicker to install. If you want to use the experimental version instead, then perform this steps -\
+   ``chmod +x experimental-install-Clover.sh`` \
+   ``./experimental-install-Clover.sh`` \
+   \
+   
+   Once the install is done then that's it! Reboot and enjoy Clover. But if you don't want to use the experimental version then do the steps below!
    ``cd ~/SteamDeck-Clover-dualboot`` \
    ``chmod +x install-Clover.sh`` \
    ``./install-Clover.sh``
-   ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png)
+
+  ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png)
 
 4. The script will check if sudo passwword is already set.\
-   **4a.**
+   **a.**
          If it is already set, enter the current sudo password and the script will continue.\
          If wrong password is provided the script will exit immdediately. Re-run the script and enter the correct sudo password!
-         ![image](https://user-images.githubusercontent.com/98122529/211832404-dd234fd2-33af-4b3b-834b-10ecc2b0d1c3.png)
+         ![image](https://user-images.githubusercontent.com/98122529/215194972-02cbcdf2-0d8e-41cf-b39c-417049d1b5c6.png)
 
-   **4b.**
+   **b.**
          If the sudo password is blank / not yet set by the end user, the script will prompt to setup the sudo password. Re-run the script to continue.
-         ![image](https://user-images.githubusercontent.com/98122529/211833223-f7a096e5-9ae3-4481-8ad1-569e6f21adb0.png)
+         ![image](https://user-images.githubusercontent.com/98122529/215194796-58b9c638-d21a-4e26-a1c9-12743fd36196.png)
 
-   **4c.**
+   **c.**
          Script will continue to run and perform sanity checks all throughout the install process.
-         ![image](https://user-images.githubusercontent.com/98122529/212214600-7df4d15a-fbe3-4aee-bd38-5b1d1175313c.png)
+         ![image](https://user-images.githubusercontent.com/98122529/215194418-20597cef-4851-440d-b1c5-9428662349ad.png)
 
+   **d.**
+         If there is an error on step5, then you need to manually download the zip file when doing the steps for Windows.
+         ![image](https://user-images.githubusercontent.com/98122529/215194686-00c1a2aa-c429-4b76-8ca7-c526bc59e2c2.png)
          
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
-![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
+![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)
 
 
 **Installation Steps for Windows**
+> NOTE: If you use the experimental script for Clover, then no need for this steps!
+
+> NOTE2: Check first if the script has been copied to C:\1Clover-tools. If CloverWindows.bat is there already then just follow step 3 onwards.\
+> If C:\1Clover-tools doesn't exist then start from step 1.
+
 1. Download the ZIP by pressing the GREEN CODE BUTTON, then select Download ZIP.
 ![image](https://user-images.githubusercontent.com/98122529/212368293-2b5f59ac-b480-4f72-b7c5-3122e57476e4.png)
 
@@ -168,10 +165,51 @@ I don't know what the behavior will be if those are present in the system. Remov
 ![image](https://user-images.githubusercontent.com/98122529/212370053-2bd6dbd8-3d21-43a9-8498-cd0f156c6b9c.png)
 
 12. Reboot and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.
-![image](https://user-images.githubusercontent.com/98122529/211849206-72c5d027-1d38-413d-9673-34c2ae36abfe.png)
+![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)
 
 
-**[ALTERNATIVELY YOU CAN CREATE THE SCHEDULED TASK MANUALLY](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/1#issuecomment-1383070761)**
+## How to Add / Remove Themes
+> **NOTE**
+> The esp partition is only 64MB in size. This is where SteamOS, Windows and Clover EFI entries are saved.\
+> The free space on the esp partition is around ~25MB. Make sure the themes you download don't exceed this size!\
+> You can have multiple themes installed and Clover will automatically pick a random theme on every reboot!
+
+1. Boot into Desktop Mode.
+2. Open a konsole terminal and verify you have enough space in the esp partition -\
+   df -h | grep "File\\|esp"
+   
+   On this example there is still around 27MB free space -\
+   ![image](https://user-images.githubusercontent.com/98122529/214897987-72936746-47c7-4996-b60f-26bae249d9cb.png)
+
+2. Visit the [Clover Themes github](https://github.com/CloverHackyColor/CloverThemes) to download the themes.
+3. Open Dolphin File Manager.
+4. Navigate to /esp on the lower left side. It will say "Could not enter folder /esp"
+   ![image](https://user-images.githubusercontent.com/98122529/214927546-75e5cd14-1c0a-499d-8491-d5221e20f3a8.png)
+
+6. Right-click and select "Open as Root."
+   ![image](https://user-images.githubusercontent.com/98122529/214929527-f9e9a435-f715-4803-88f9-5b30e043a84c.png)
+
+8. Enter the sudo password when prompted.
+
+   ![image](https://user-images.githubusercontent.com/98122529/214928042-eda04c7e-41d0-4d0f-9ae8-6aa3003b5032.png)
+   
+
+9. A new folder will appear for the esp partition.
+   ![image](https://user-images.githubusercontent.com/98122529/214928185-8a34143c-f78f-4ed6-b5a6-edc7e2b1998a.png)
+
+10. Navigate to efi > clover > themes. It will show a list of themes installed. By default it will show 3 - random, Catalina and Mojave.
+   ![image](https://user-images.githubusercontent.com/98122529/214928509-7d6cae5e-107e-4bcd-baa7-2051f6ddb269.png)
+
+11. **Don't delete the random folder!** It is needed so that when there are multiple themes installed, Clover will randomly pick a theme on every reboot.
+12. Delete the themes you don't want and copy / paste new themes that you have downloaded.
+13. Reboot and enjoy the new theme!
+
+> **NOTE**
+> When adding your own theme, make sure to name your custom SteamOS and Batocera icons as follows -\
+> os_steamos.icns\
+> os_batocera.icns\
+> This are just regular PNG files, but you have to rename them to have the icns file extension.\
+> Sample icons are saved in custom\iconset folder. Thanks to WindowsOnDeck reddit members u/ch3vr0n5 and u/ChewyYui !!!
 
 ## FAQ / Troubleshooting
 Read this for your Common Questions and Answers! This will be regularly updated and some of the answers in here are contributions from the [WindowsOnDeck reddit community!](https://www.reddit.com/r/WindowsOnDeck/)
@@ -257,7 +295,8 @@ SHA384 - ebc10f31977f0c32e9f842cd3114f7c425de7edaf94d0f60f4de260420ee1020074e265
       
 ### Q4. I reinstalled Windows and now it boots directly to Windows instead of Clover!
 
-1. Follow the steps for the Windows install.
+1. If you used the experimental version then just manually reboot to SteamOS and it will fix it on its own.\
+2. If you didn't use the experimantal version then follow the steps for the Windows install.
 
 ### Q5. Windows automatically installed updates and on reboot it goes automatically to Windows!
 1. Manually boot into SteamOS and it will automatically fix the dual boot entries.

@@ -6,7 +6,6 @@ echo.
 ping -n 3 localhost > nul
 
 rem - remove / re-create 1Clover-tools folder and copy the powershell script
-rmdir /s /q C:\1Clover-tools
 mkdir C:\1Clover-tools
 copy "%~dp0custom\CloverTask.ps1" C:\1Clover-tools > nul
 
@@ -23,6 +22,7 @@ goto :end
 
 :success
 echo.
+bcdedit.exe -set {globalsettings} highestmode on
 echo 1. Go to Windows Administrative Tools, then Scheduled Task.
 echo 2. Right-click the task called CloverTask, then select Properties.
 echo 3. Under the General Tab, change the option to RUN WHETHER USER IS LOGGED IN OR NOT.
