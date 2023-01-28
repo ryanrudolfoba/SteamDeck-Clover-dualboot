@@ -89,9 +89,8 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 > To uninstall the old version, please follow the steps in FAQ Q7.\
 > There is now an experimental version that is much easier and quicker to install as it doesn't need any scripts / scheduled task on the Windows side.
 
-1. Go into Desktop Mode.
-2. Open a konsole terminal.
-3. Clone the github repo. \
+1. Go into Desktop Mode and open a konsole terminal.
+2. Clone the github repo. \
    cd ~/ \
    git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
    
@@ -189,7 +188,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
    Take note of the free space located in the lower right side. On this example the free space is around 26MB.
    ![image](https://user-images.githubusercontent.com/98122529/215268989-56a661dc-e2c5-40fb-b57e-9b49a4de93a7.png)
 
-6. Visit the [Clover Themes github](https://github.com/CloverHackyColor/CloverThemes) to download the themes. Make sure the themes you download doesn't exceed the free space of the esp partition from step6.
+6. Visit the [Clover Themes github](https://github.com/CloverHackyColor/CloverThemes) to download the themes. Make sure the themes you download doesn't exceed the free space of the esp partition from step5.
 
 7. Navigate to efi > clover > themes. It will show a list of themes installed. By default it will show 3 - random, Catalina and Mojave.
    ![image](https://user-images.githubusercontent.com/98122529/214928509-7d6cae5e-107e-4bcd-baa7-2051f6ddb269.png)
