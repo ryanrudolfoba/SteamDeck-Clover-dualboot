@@ -286,3 +286,6 @@ This happens even if not using dualboot / Clover / rEFInd.
 
 ### Q8. I like your work how do I show a token of appreciation?
 You can send me a message on reddit / discord to say thanks!
+
+### Q9. Do you accept donations?
+If you want to donate, you can drop by at my [fundraising page to help fight kids cancer! I ride my bike in summertime to help raise awareness and help fight kids cancer!](https://greatcyclechallenge.ca/riders/RyanrudolfOba) [All proceeds go to Canada Sick Kids Foundation.](https://www.sickkids.ca/)
