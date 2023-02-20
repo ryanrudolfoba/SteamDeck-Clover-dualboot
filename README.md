@@ -13,7 +13,13 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 1. Do this at your own risk!
 2. This is for educational and research purposes only!
 
-## What's New (as of January 26 2023)
+## What's New (as of February 20 2023)
+1. added more sanity checks and cleanup in the post-install script
+2. cleaned up the config.plist so it is more manageable and easier to read
+3. changed the mouse pointer speed to 20 to close the [issue reported here](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/3)
+
+
+## Old Changelog - as of January 26 2023
 1. **added experimental version (this is what i use)** - no need for Windows powershell script / scheduled task.
 2. color coded the install script - if the output is RED then something went wrong.
 3. updated script and scheduled task on the Windows side.
