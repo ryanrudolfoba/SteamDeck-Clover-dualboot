@@ -185,6 +185,17 @@ echo Clover Experimental Version > \$CloverStatus
 date  >> \$CloverStatus
 echo BIOS Version : \$(sudo dmidecode -s bios-version) >> \$CloverStatus
 
+# check for dump files
+dumpfiles=\$(ls -l /sys/firmware/efi/efivars/dump-type* 2> /dev/null | wc -l)
+
+if [ \$dumpfiles -gt 0 ]
+then
+	echo dump files exists. performing cleanup. >> \$CloverStatus
+	sudo rm -f /sys/firmware/efi/efivars/dump-type*
+else
+	echo no dump files. no action needed. >> \$CloverStatus
+fi
+
 # Sanity Check - are the needed EFI entries available?
 
 efibootmgr | grep -i Clover &> /dev/null
