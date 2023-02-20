@@ -19,7 +19,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 3. changed the mouse pointer speed to 20 to close the [issue reported here](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/3)
 
 
-## Old Changelog - as of January 26 2023
+## Old Changelog - January 26 2023
 1. **added experimental version (this is what i use)** - no need for Windows powershell script / scheduled task.
 2. color coded the install script - if the output is RED then something went wrong.
 3. updated script and scheduled task on the Windows side.
