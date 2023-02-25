@@ -152,7 +152,7 @@ cat > ~/1Clover-tools/uninstall-Clover.sh << EOF
 
 # restore Windows EFI entry from backup
 sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
-sudo rm /esp/efi/Microsoft/bootmgfw.efi
+
 
 # remove Clover from the EFI system partition
 sudo rm -rf /esp/efi/clover
