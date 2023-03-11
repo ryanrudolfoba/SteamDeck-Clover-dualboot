@@ -2,6 +2,7 @@
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+CLOVER_VERSION='5151'
 
 clear
 
@@ -42,8 +43,13 @@ else
 	exit
 fi
 
+# obtain CLover ISO
+clover_archive=$(curl -s -O -L -w "%{filename_effective}" "https://github.com/CLoverHackyColor/CloverBootloader/releases/download/${CLOVER_VERSION}/Clover-${CLOVER_VERSION}-X64.iso.7z")
+clover_base=$(basename -s .7z $clover_archive)
+7z x $clover_archive -aoa $clover_base
+
 # mount Clover ISO
-sudo mkdir ~/temp-clover && sudo mount Clover-5151-X64.iso ~/temp-clover &> /dev/null
+sudo mkdir ~/temp-clover && sudo mount $clover_base ~/temp-clover &> /dev/null
 if [ $? -eq 0 ]
 then
 	echo -e "$GREEN"2nd sanity check. ISO has been mounted!
@@ -96,23 +102,23 @@ Clover=$(efibootmgr |  grep -i Clover | colrm 9 | colrm 1 4)
 sudo efibootmgr -n $Clover &> /dev/null
 
 # copy Windows scripts to the Windows partition
-Windows=$(sudo blkid | grep "Basic data partition" | grep 'nvme.*ntfs.*Basic data partition' | cut -d ":" -f 1 | head -n1)
-mkdir ~/windows-temp
-sudo mount $Windows ~/windows-temp &> /dev/null
+#Windows=$(sudo blkid | grep "Basic data partition" | grep 'nvme.*ntfs.*Basic data partition' | cut -d ":" -f 1 | head -n1)
+#mkdir ~/windows-temp
+#sudo mount $Windows ~/windows-temp &> /dev/null
 
-if [ $? -eq 0 ]
-then
-	echo -e "$GREEN"5th sanity check. Windows C drive successfully mounted! Copying scripts to the C drive.
-	sudo rm -rf ~/windows-temp/1Clover-tools || sudo mkdir -p ~/windows-temp/1Clover-tools
-	sudo cp -R CloverWindows ~/windows-temp/1Clover-tools
-	sync ; sleep 5
-else
-	echo -e "$RED"5th sanity check. Error mounting the Windows C drive!
-	echo -e "$RED"Please manually download the zip file from the github when doing the Windows install!
-fi
+#if [ $? -eq 0 ]
+#then
+#	echo -e "$GREEN"5th sanity check. Windows C drive successfully mounted! Copying scripts to the C drive.
+#	sudo rm -rf ~/windows-temp/1Clover-tools || sudo mkdir -p ~/windows-temp/1Clover-tools
+#	sudo cp -R CloverWindows ~/windows-temp/1Clover-tools
+#	sync ; sleep 5
+#else
+#	echo -e "$RED"5th sanity check. Error mounting the Windows C drive!
+#	echo -e "$RED"Please manually download the zip file from the github when doing the Windows install!
+#fi
 
-sudo umount ~/windows-temp &> /dev/null
-rmdir ~/windows-temp
+#sudo umount ~/windows-temp &> /dev/null
+#rmdir ~/windows-temp
 
 # Final sanity check
 efibootmgr | grep "Clover - GUI" &> /dev/null
