@@ -133,6 +133,54 @@
 					<key>FullTitle</key>
 					<string>Windows External SSD / microSD</string>
 				</dict>
+				<dict>
+					<key>Disabled</key>
+					<false/>
+					<key>Hidden</key>
+					<false/>
+					<key>Image</key>
+					<string>os_fedora</string>
+					<key>Path</key>
+					<string>\EFI\fedora\shimx64.efi</string>
+					<key>Title</key>
+					<string>Fedora</string>
+					<key>Type</key>
+					<string>Linux</string>
+					<key>FullTitle</key>
+					<string>Fedora Linux</string>
+				</dict>
+				<dict>
+					<key>Disabled</key>
+					<false/>
+					<key>Hidden</key>
+					<false/>
+					<key>Image</key>
+					<string>os_kali</string>
+					<key>Path</key>
+					<string>\EFI\kali\grubx64.efi</string>
+					<key>Title</key>
+					<string>Kali</string>
+					<key>Type</key>
+					<string>Linux</string>
+					<key>FullTitle</key>
+					<string>Kali Linux</string>
+				</dict>
+				<dict>
+					<key>Disabled</key>
+					<false/>
+					<key>Hidden</key>
+					<false/>
+					<key>Image</key>
+					<string>os_ubuntu</string>
+					<key>Path</key>
+					<string>\EFI\ubuntu\shimx64.efi</string>
+					<key>Title</key>
+					<string>Ubuntu</string>
+					<key>Type</key>
+					<string>Linux</string>
+					<key>FullTitle</key>
+					<string>Ubuntu Linux</string>
+				</dict>
 			</array>
 			<key>Tool</key>
 			<array>
