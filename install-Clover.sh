@@ -11,7 +11,6 @@ echo https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
 sleep 2
 
 # Password sanity check - make sure sudo password is already set by end user!
-
 if [ "$(passwd --status deck | tr -s " " | cut -d " " -f 2)" == "P" ]
 then
 	read -s -p "Please enter current sudo password: " current_password ; echo
@@ -44,7 +43,6 @@ else
 fi
 
 ###### Main menu. Ask user for the default OS to be selected in the Clover GUI boot menu.
-
 Choice=$(zenity --width 900 --height 250 --list --radiolist --multiple --title "Clover Install Script for Steam Deck - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\
 	--column "Select One" \
 	--column "Default OS" \
@@ -101,17 +99,6 @@ for entry in $(efibootmgr | grep -i "Clover" | colrm 9 | colrm 1 4)
 do
 	sudo efibootmgr -b $entry -B &> /dev/null
 done
-
-# Sanity check - is SteamOS EFI entry exists?
-efibootmgr | grep "Steam" &> /dev/null
-
-if [ $? -eq 0 ]
-then
-	echo -e "$GREEN"4th sanity check. SteamOS EFI entry is good, no action needed!
-else
-	echo -e "$RED"4th sanity check. SteamOS EFI entry does not exist! Re-creating SteamOS EFI entry.
-	sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "SteamOS" -l "\EFI\steamos\steamcl.efi" &> /dev/null
-fi
 
 # install Clover to the EFI system partition
 sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\clover\cloverx64.efi" &> /dev/null
@@ -177,6 +164,7 @@ cat > ~/1Clover-tools/uninstall-Clover.sh << EOF
 
 # restore Windows EFI entry from backup
 sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
+sudo rm /esp/efi/Microsoft/bootmgfw.efi
 
 # remove Clover from the EFI system partition
 sudo rm -rf /esp/efi/clover
@@ -188,7 +176,7 @@ done
 
 rm -rf ~/1Clover-tools/*
 
-#delete systemd service
+# delete systemd service
 sudo steamos-readonly disable
 sudo systemctl stop clover-bootmanager.service
 sudo rm /etc/systemd/system/clover-bootmanager.service
@@ -226,7 +214,6 @@ else
 fi
 
 # Sanity Check - are the needed EFI entries available?
-
 efibootmgr | grep -i Clover &> /dev/null
 if [ \$? -eq 0 ]
 then
@@ -259,10 +246,9 @@ chown deck:deck \$CloverStatus
 EOF
 
 #clover-bootmanager.service - systemd service that calls post-install-Clover.sh on startup
-#cat > ~/1Clover-Tools/clover-bootmanager.service << EOF
 cat > ~/1Clover-tools/clover-bootmanager.service << EOF
 [Unit]
-Description=Check if Clover and SteamOS EFI entries needs to be re-created
+Description=Custom systemd service for Clover - GUI Boot Manager.
 
 [Service]
 Type=oneshot
@@ -271,34 +257,25 @@ ExecStart=/bin/bash -c '/home/deck/1Clover-tools/post-install-Clover.sh'
 
 [Install]
 WantedBy=multi-user.target
-
 EOF
+
+# inject systemd service to the other rootfs
+echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo -e \"
+[Unit]
+Description=Custom systemd service for Clover - GUI Boot Manager.
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c '/home/deck/1Clover-tools/post-install-Clover.sh'
+
+[Install]
+WantedBy=multiuser.target
+\" > /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
+
+echo "mount -o rw,remount / ; sudo steamos-readonly disable ; systemctl enable --now clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
 
 chmod +x ~/1Clover-tools/*
 sudo cp ~/1Clover-tools/clover-bootmanager.service /etc/systemd/system/clover-bootmanager.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now clover-bootmanager.service
-
-
-# inject systemd service to the other rootfs
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo [Unit] > /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo Description=Check if Clover and SteamOS EFI entries needs to be reactivated >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo [Service] >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo Type=oneshot >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo RemainAfterExit=yes >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo ExecStart=/bin/bash -c \'/home/deck/1Clover-tools/post-install-Clover.sh\' >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo [Install] >> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo WantedBy=multiuser.target>> /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
-
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; systemctl enable --now clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
