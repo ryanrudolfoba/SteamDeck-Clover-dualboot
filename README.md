@@ -17,7 +17,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 2. Makes dual boot with SteamOS / Windows easy with a nice GUI.
 3. No extra config needed for Ventoy, Batocera, Kali, Ubuntu and Fedora. (if there are other OS you want to be added just let me know)
 4. Automatically and easily re-create the dual boot entries if a BIOS / SteamOS / Windows update breaks it.
-5. Add / remove themes, icons, background using Dolphin File Manager.
+5. Supports randome themes (Mojave and Catalina bundled in the install script), add / remove themes, icons, background using Dolphin File Manager.
 
 ## Screenshots
 **Catalina - SteamOS, Windows and Batocera (microSD)**
@@ -269,10 +269,11 @@ Read this for your Common Questions and Answers! This will be regularly updated 
    ![image](https://user-images.githubusercontent.com/98122529/211840322-46c3ab90-2ed4-4abc-84a6-ae82cce1d917.png)<br>
    
 4. Reboot the Steam Deck and it will boot directly to Windows.<br>
-6. Open command prompt with admin privileges and enter the command -<br>
+5. Open command prompt with admin privileges and enter the command -<br>
    bcdedit.exe -set {globalsettings} highestmode on <br>
 
-7. Make sure screen orientation is set to Landscape.<br>
+6. Make sure screen orientation is set to Landscape.<br>
+7. Shutdown the Steam Deck. Press VOLDOWN + POWER and select SteamOS from the list.<br>
 8. Reboot and it will go back to Clover!<br>
 </details>
 
@@ -286,38 +287,36 @@ Read this for your Common Questions and Answers! This will be regularly updated 
    
    ![image](https://user-images.githubusercontent.com/98122529/212214891-ea322f50-2704-4676-b550-9071d41947ff.png)<br>
    
-3. Reboot the Steam Deck and it will automatically load Windows.<br>
-4. Install the GPU / APU driver upgrade and reboot Windows.<br>
-5. After the reboot it will go back to Clover.<br>
-6. Select Windows and wait until it loads.<br>
-7. Make sure screen orientation is set to Landscape.<br>
-8. If everything looks good, reboot and it will go back to Clover.<br>
+4. Reboot the Steam Deck and it will automatically load Windows.<br>
+5. Install the GPU / APU driver upgrade and reboot Windows.<br>
+6. Make sure screen orientation is set to Landscape.<br>
+7. If everything looks good then shutdown the Steam Deck.<br>
+8. Press VOLDOWN + POWER and select SteamOS from the list.<br>
+9. Reboot and it will go back to Clover!<br>
 </details>
        
 <details>
 <summary><b>Q4. I reinstalled Windows and now it boots directly to Windows instead of Clover!</b></summary>
-1. If you used the experimental version then just manually reboot to SteamOS and it will fix it on its own.<br>
-2. If you didn't use the experimantal version then follow the steps for the Windows install.<br>
+1. Shutdown the Steam Deck. While powered OFF, press VOLDOWN + POWER and select SteamOS from the list.<br>
+2. Script will automatically fix the dual boot entries! Reboot and it will go back to Clover!<br>
 </details>
 
 <details>
 <summary><b>Q5. Windows automatically installed updates and on reboot it goes automatically to Windows!</b></summary>
-1. Manually boot into SteamOS and it will automatically fix the dual boot entries.<br>
-2. On the next reboot it will go to Clover.<br>
+1. Shutdown the Steam Deck. While powered OFF, press VOLDOWN + POWER and select SteamOS from the list.<br>
+2. Script will automatically fix the dual boot entries! Reboot and it will go back to Clover!<br>
 </details>
 
 <details>
 <summary><b>Q6. There was a SteamOS update and it wiped all my boot entries!</b></summary>
 This happens even if not using dualboot / Clover / rEFInd.<br>
-1. Turn OFF the Steam Deck. While powered OFF, press VOLUP + POWER.<br>
+1. Shutdown the Steam Deck. While powered OFF, press VOLUP + POWER.<br>
 2. Go to Boot from File > efi > steamos > steamcl.efi<br>
-3. Wait until SteamOS boots up and it will automatically fix the dual boot entries.<br>
-4. On the next reboot it will go to Clover.<br>
+3. Script will automatically fix the dual boot entries! Reboot and it will go back to Clover!<br>
 </details>
 
 <details>
 <summary><b>Q7. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!</b></summary>
-
 1. Boot into SteamOS.<br>
 2. Open a konsole terminal and run the uninstall script - <br>
    cd ~/1Clover-tools <br>
