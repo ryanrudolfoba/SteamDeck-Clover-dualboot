@@ -48,7 +48,7 @@ Choice=$(zenity --width 900 --height 250 --list --radiolist --multiple --title "
 	--column "Default OS" \
 	--column="Comments - Read this carefully!"\
 	FALSE Windows "Choose this and Windows will be the default OS selected in the Clover GUI boot menu."\
-	FALSE SteamOS "Choose this and SteamOS will be the default OS selected in the CLover GUI boot menu."\
+	FALSE SteamOS "Choose this and SteamOS will be the default OS selected in the Clover GUI boot menu."\
 	TRUE EXIT "Select this if you changed your mind and don't want to proceed anymore.")
 
 if [ $? -eq 1 ] || [ "$Choice" == "EXIT" ]
