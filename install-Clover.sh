@@ -63,7 +63,7 @@ fi
 # obtain Clover ISO
 clover_archive=$(curl -s -O -L -w "%{filename_effective}" "https://github.com/CloverHackyColor/CloverBootloader/releases/download/${CLOVER_VERSION}/Clover-${CLOVER_VERSION}-X64.iso.7z")
 clover_base=$(basename -s .7z $clover_archive)
-7z x $clover_archive -aoa $clover_base
+/usr/bin/7z x $clover_archive -aoa $clover_base
 
 # mount Clover ISO
 sudo mkdir ~/temp-clover && sudo mount $clover_base ~/temp-clover &> /dev/null
