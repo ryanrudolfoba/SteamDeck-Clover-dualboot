@@ -37,7 +37,7 @@
 			<key>Banner</key>
 			<true/>
 			<key>Functions</key>
-			<true/>
+			<false/>
 			<key>Help</key>
 			<false/>
 			<key>Label</key>
