@@ -77,12 +77,12 @@ else
 	exit
 fi
 
-# copy Clover files to EFI system partition
-sudo mkdir -p /esp/efi/clover && sudo cp -Rf ~/temp-clover/efi/clover /esp/efi/ && sudo cp custom/$OS-config.plist /esp/efi/clover/config.plist && sudo cp -Rf custom/themes/* /esp/efi/clover/themes
+# copy Clover and HackBGRT files to EFI system partition
+sudo mkdir -p /esp/efi/clover && sudo cp -Rf ~/temp-clover/efi/clover /esp/efi/ && sudo cp custom/$OS-config.plist /esp/efi/clover/config.plist && sudo cp -Rf custom/themes/* /esp/efi/clover/themes && sudo cp -R HackBGRT /esp/efi
 
 if [ $? -eq 0 ]
 then
-	echo -e "$GREEN"3rd sanity check. Clover has been copied to the EFI system partition!
+	echo -e "$GREEN"3rd sanity check. Clover and HackBGRT has been copied to the EFI system partition!
 else
 	echo -e "$RED"Error copying files. Something went wrong.
 	sudo umount ~/temp-clover
@@ -105,6 +105,7 @@ sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\
 
 # backup and disable the Windows EFI entry!
 sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft/Boot/bootmgfw.efi.orig && sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft
+sudo mv /esp/efi/boot/bootx64.efi /esp/efi/boot/bootx64.efi.orig && sudo cp /esp/efi/clover/cloverx64.efi /esp/efi/boot/bootx64.efi
 
 # re-arrange the boot order and make Clover the priority!
 Clover=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
@@ -126,15 +127,6 @@ fi
 # copy dolphin root extension to easily add themes
 mkdir -p ~/.local/share/kservices5/ServiceMenus
 cp custom/open_as_root.desktop ~/.local/share/kservices5/ServiceMenus
-
-sleep 2
-echo \****************************************************************************************************
-echo Post install scripts saved in 1Clover-tools. Use them as needed -
-echo \****************************************************************************************************
-echo enable-windows-efi.sh   -   Use this script to re-enable Windows EFI entry and temp disable Clover.
-echo uninstall-Clover.sh     -   Use this to completely uninstall Clover from the EFI system partition.
-echo \****************************************************************************************************
-echo \****************************************************************************************************
 
 #################################################################################
 ################################ post install ###################################
@@ -164,36 +156,45 @@ cat > ~/1Clover-tools/uninstall-Clover.sh << EOF
 
 # restore Windows EFI entry from backup
 sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
+sudo mv /esp/efi/boot/bootx64.efi.orig /esp/efi/boot/bootx64.efi
 sudo rm /esp/efi/Microsoft/bootmgfw.efi
 
-# remove Clover from the EFI system partition
+# remove Clover and HackBGRT from the EFI system partition
 sudo rm -rf /esp/efi/clover
+sudo rm -rf /esp/efi/HackBGRT
 
 for entry in \$(efibootmgr | grep "Clover - GUI" | colrm 9 | colrm 1 4)
 do
 	sudo efibootmgr -b \$entry -B &> /dev/null
 done
 
-rm -rf ~/1Clover-tools/*
-
 # delete systemd service
 sudo steamos-readonly disable
 sudo systemctl stop clover-bootmanager.service
-sudo rm /etc/systemd/system/clover-bootmanager.service
+sudo rm /etc/systemd/system/clover-bootmanager*
 sudo systemctl daemon-reload
+
+# delete the injected systemd service from rootfs
+mkdir rootfs
+sudo mount /dev/nvme0n1p4 rootfs
+sudo rm rootfs/etc/systemd/system/clover-bootmanager*
+sudo umount rootfs
+
+sudo mount /dev/nvme0n1p5 rootfs
+sudo rm rootfs/etc/systemd/system/clover-bootmanager*
+sudo umount rootfs
 sudo steamos-readonly enable
 
 # delete dolphin root extension
 rm ~/.local/share/kservices5/ServiceMenus/open_as_root.desktop
 
-# delete the injected systemd from the other rootfs
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; sudo rm /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
+rm -rf ~/1Clover-tools/*
 
 echo Clover has been uninstalled and the Windows EFI entry has been restored!
 EOF
 
-# post-install-Clover.sh
-cat > ~/1Clover-tools/post-install-Clover.sh << EOF
+# clover-bootmanager.sh - script that gets called by clover-bootmanager.service on startup
+cat > ~/1Clover-tools/clover-bootmanager.sh << EOF
 #!/bin/bash
 
 CloverStatus=/home/deck/1Clover-tools/status.txt
@@ -245,7 +246,7 @@ efibootmgr >> \$CloverStatus
 chown deck:deck \$CloverStatus
 EOF
 
-#clover-bootmanager.service - systemd service that calls post-install-Clover.sh on startup
+# clover-bootmanager.service - systemd service that calls clover-bootmanager.sh on startup
 cat > ~/1Clover-tools/clover-bootmanager.service << EOF
 [Unit]
 Description=Custom systemd service for Clover - GUI Boot Manager.
@@ -253,29 +254,60 @@ Description=Custom systemd service for Clover - GUI Boot Manager.
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/bash -c '/home/deck/1Clover-tools/post-install-Clover.sh'
+ExecStart=/bin/bash -c '/etc/systemd/system/clover-bootmanager.sh'
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
-# inject systemd service to the other rootfs
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; echo -e \"
-[Unit]
-Description=Custom systemd service for Clover - GUI Boot Manager.
+# clover-bootmanager-status.sh - check if the refresh-rate-unlocker service is running
+cat > ~/1Clover-tools/clover-bootmanager-status.sh << EOF
+#!/bin/bash
 
-[Service]
-Type=oneshot
-RemainAfterExit=yes
-ExecStart=/bin/bash -c '/home/deck/1Clover-tools/post-install-Clover.sh'
+systemctl status clover-bootmanager | grep "active (exited)" > /dev/null
+if [ \$? -ne 0 ]
+then
+	zenity --width 500 --height 100 --warning --title "Clover Boot Manager Service Status" \\
+	--text="Clover Boot Manager Service is not running! \\nGo to desktop mode and run the command - sudo systemctl enable --now clover-bootmanager"
+else
+	zenity --width 500 --height 100 --warning --title "Clover Boot Manager Service Status" --text="Clover Boot Manager Service is running! No further action needed."
+fi
+EOF
 
-[Install]
-WantedBy=multiuser.target
-\" > /etc/systemd/system/clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
+chmod +x ~/1Clover-tools/*.sh
+sudo mv ~/1Clover-tools/clover-bootmanager.service /etc/systemd/system/clover-bootmanager.service
+sudo mv ~/1Clover-tools/clover-bootmanager.sh /etc/systemd/system/clover-bootmanager.sh
 
-echo "mount -o rw,remount / ; sudo steamos-readonly disable ; systemctl enable --now clover-bootmanager.service" | sudo steamos-chroot --partset other -- &> /dev/null
+# inject clover-bootmanager.service to the rootfs
+mkdir rootfs
+sudo steamos-readonly disable
+sudo mount /dev/nvme0n1p4 rootfs
+sudo cp /etc/systemd/system/clover-bootmanager* rootfs/etc/systemd/system
+sudo umount rootfs
 
-chmod +x ~/1Clover-tools/*
-sudo cp ~/1Clover-tools/clover-bootmanager.service /etc/systemd/system/clover-bootmanager.service
+sudo mount /dev/nvme0n1p5 rootfs
+sudo cp /etc/systemd/system/clover-bootmanager* rootfs/etc/systemd/system
+sudo umount rootfs
+rmdir rootfs
+sudo steamos-readonly enable
+
+# start the clover-bootmanager.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now clover-bootmanager.service
+
+# create non-steam game entry for clover-bootmanager-status
+echo -e "$RED"Adding the Clover Boot Manager Service Status as Non-Steam game.
+steamos-add-to-steam ~/1Clover-tools/clover-bootmanager-status.sh
+
+# cleanup - delete the downloaded ISO
+rm Clover-$CLOVER_VERSION-X64.iso*
+
+sleep 2
+echo -e "$GREEN"
+echo \****************************************************************************************************
+echo Post install scripts saved in 1Clover-tools. Use them as needed -
+echo \****************************************************************************************************
+echo enable-windows-efi.sh   -   Use this script to re-enable Windows EFI entry and temp disable Clover.
+echo uninstall-Clover.sh     -   Use this to completely uninstall Clover from the EFI system partition.
+echo \****************************************************************************************************
+echo \****************************************************************************************************
