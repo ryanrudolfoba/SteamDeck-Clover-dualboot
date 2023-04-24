@@ -73,7 +73,7 @@
 					<key>Image</key>
 					<string>os_win</string>
 					<key>Path</key>
-					<string>\EFI\MICROSOFT\bootmgfw.efi</string>
+					<string>\EFI\HackBGRT\HackBGRT.efi</string>
 					<key>Title</key>
 					<string>Windows</string>
 					<key>Type</key>
