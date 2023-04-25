@@ -72,6 +72,12 @@ https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-
 ## Sample Video - Apocalypse Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
 https://user-images.githubusercontent.com/98122529/234082851-a836816f-edbf-43a5-838d-c10c19b56fd5.mp4
 
+## Video Tutorial by baldsealion
+<details>
+<summary><b>Click here if you prefer a video tutorial!</b></summary>
+baldsealion has created a Youtube video tutorial <a href="https://www.youtube.com/watch?v=112Bw7GMqJI">here</a>. This is a good supplement for the instructions in this github.
+</details>
+
 ## What's New (as of April 23 2023)
 1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.
 2. re-write the inject systemd service on the other rootfs.
