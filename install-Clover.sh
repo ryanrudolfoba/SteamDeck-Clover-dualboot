@@ -252,6 +252,7 @@ Choice=\$(zenity --width 950 --height 480 --list --radiolist --multiple \
 	FALSE Enable "Choose this to re-enable Clover EFI entry and Clover systemd service."\\
 	FALSE Windows "Choose this to set Windows as the default item in Clover."\\
 	FALSE SteamOS "Choose this to set SteamOS as the default item in Clover."\\
+	FALSE LastOS "Choose this to set the previous last used OS as the default item in Clover."\\
 	FALSE NewLogo "Choose this to use the custom splash / logo when booting Windows (internal SSD only)."\\
 	FALSE OldLogo "Choose this to revert back to the default SteamOS logo when booting Windows."\\
 	FALSE Uninstall "Choose this to uninstall Clover and revert any changes made."\\
@@ -322,9 +323,11 @@ then
 	then
 		# Windows is installed on the internal SSD - use the custom splash screen!
 		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\HackBGRT\\\HackBGRT\\.efi<\\/string>' /esp/efi/clover/config.plist
+		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
 	else
 		# Windows is not installed on the internal SSD - do not use the custom splash screen!
 		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /esp/efi/clover/config.plist
+		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
 	fi
 
 	zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
@@ -334,7 +337,15 @@ then
 	echo \$Choice
 	# change the Default Loader in config,plist 
 	sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\STEAMOS\\\STEAMCL\\.efi<\\/string>' /esp/efi/clover/config.plist
+	sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
 	zenity --warning --title "Clover Toolbox" --text "SteamOS is now the default boot entry in Clover!" --width 400 --height 75
+
+elif [ "\$Choice" == "LastOS" ]
+then
+	echo \$Choice
+	# change the Default Volume in config,plist 
+	sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>LastBootedVolume<\\/string>' /esp/efi/clover/config.plist
+	zenity --warning --title "Clover Toolbox" --text "The previous OS used is now the default boot entry in Clover!" --width 425 --height 75
 
 elif [ "\$Choice" == "NewLogo" ]
 then
