@@ -30,6 +30,7 @@ boot=\EFI\Microsoft\bootmgfw.efi
 #  - 1/54 chance for splash.bmp, automatically positioned
 #  - 50/54 chance for probable.bmp, automatically positioned
 # Default: just one image.
+#CUSTOMSPLASH-do-not-delete-this-line
 image=path=\EFI\HackBGRT\splash.bmp
 
 # Preferred resolution. Use 0x0 for maximum and -1x-1 for original.
