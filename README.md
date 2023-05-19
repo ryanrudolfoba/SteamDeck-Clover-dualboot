@@ -25,7 +25,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 ![image](https://user-images.githubusercontent.com/98122529/233867354-4d554a4e-1e1f-42f7-968a-31a8c0b677b2.png)
 
 **Clover Toolbox**
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/c6cc42e0-967f-4f23-a235-053548bf82a3)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/fa9d4ed4-7e40-40a1-b1ab-ca937de27cf6)
 
 <details>
 <summary><b>More Screenshots Here</b></summary>
