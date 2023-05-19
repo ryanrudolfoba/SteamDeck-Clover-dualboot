@@ -122,11 +122,17 @@ then
 	&& sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft \
 	&& sudo mv /esp/efi/boot/bootx64.efi /esp/efi/boot/bootx64.efi.orig \
 	&& sudo cp /esp/efi/clover/cloverx64.efi /esp/efi/boot/bootx64.efi
-	sudo sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\HackBGRT\\HackBGRT\.efi<\/string>' /esp/efi/clover/config.plist
+	if [ "$Choice" == "Windows" ]
+	then
+		sudo sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\HackBGRT\\HackBGRT\.efi<\/string>' /esp/efi/clover/config.plist
+	fi
 else
 	# Windows is not installed on the internal SSD - do not use the custom splash screen!
-	#sudo sed -i 's/\\EFI\\HackBGRT\\HackBGRT\.efi/\\EFI\\MICROSOFT\\bootmgfw\.efi/g' /esp/efi/clover/config.plist
-	sudo sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\MICROSOFT\\bootmgfw\.efi<\/string>' /esp/efi/clover/config.plist
+	if [ "$Choice" == "Windows" ]
+	then
+		sudo sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\MICROSOFT\\bootmgfw\.efi<\/string>' /esp/efi/clover/config.plist
+	fi
+	sudo sed -i 's/\\EFI\\HackBGRT\\HackBGRT\.efi/\\EFI\\MICROSOFT\\bootmgfw\.efi/g' /esp/efi/clover/config.plist
 fi
 
 # re-arrange the boot order and make Clover the priority!
@@ -324,10 +330,12 @@ then
 		# Windows is installed on the internal SSD - use the custom splash screen!
 		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\HackBGRT\\\HackBGRT\\.efi<\\/string>' /esp/efi/clover/config.plist
 		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
+		sudo sed -i 's/\\\EFI\\\Microsoft\\\bootmgfw\.efi/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/g' /esp/efi/clover/config.plist
 	else
 		# Windows is not installed on the internal SSD - do not use the custom splash screen!
 		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /esp/efi/clover/config.plist
 		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
+		sudo sed -i 's/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/\\\EFI\\\MICROSOFT\\\bootmgfw\.efi/g' /esp/efi/clover/config.plist
 	fi
 
 	zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
@@ -388,6 +396,7 @@ then
 	# delete dolphin root extension
 	rm ~/.local/share/kservices5/ServiceMenus/open_as_root.desktop
 
+	rm -rf ~/SteamDeck-Clover-dualboot
 	rm -rf ~/1Clover-tools/*
 	rm ~/Desktop/Clover-Toolbox
 	
