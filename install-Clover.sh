@@ -330,7 +330,7 @@ then
 		# Windows is installed on the internal SSD - use the custom splash screen!
 		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\HackBGRT\\\HackBGRT\\.efi<\\/string>' /esp/efi/clover/config.plist
 		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
-		sudo sed -i 's/\\\EFI\\\Microsoft\\\bootmgfw\.efi/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/g' /esp/efi/clover/config.plist
+		sudo sed -i 's/\\\EFI\\\MICROSOFT\\\bootmgfw\.efi/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/g' /esp/efi/clover/config.plist
 	else
 		# Windows is not installed on the internal SSD - do not use the custom splash screen!
 		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /esp/efi/clover/config.plist
