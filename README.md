@@ -24,6 +24,8 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 **Apocalypse - SteamOS, Windows and Batocera (microSD)**
 ![image](https://user-images.githubusercontent.com/98122529/233867354-4d554a4e-1e1f-42f7-968a-31a8c0b677b2.png)
 
+**Clover Toolbox**
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/c6cc42e0-967f-4f23-a235-053548bf82a3)
 
 <details>
 <summary><b>More Screenshots Here</b></summary>
@@ -78,14 +80,20 @@ https://user-images.githubusercontent.com/98122529/234082851-a836816f-edbf-43a5-
 baldsealion has created a Youtube video tutorial <a href="https://www.youtube.com/watch?v=112Bw7GMqJI">here</a>. This is a good supplement for the instructions in this github.
 </details>
 
-## What's New (as of April 23 2023)
-1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.
-2. re-write the inject systemd service on the other rootfs.
-3. added custom splash screen when booting Windows from the internal SSD.
-4. add Clover Boot Manager Service status as non-Steam game to easily check the systemd service from within Game Mode.
+## What's New (as of May 19 2023)
+1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.
+2. Clover Toolbox - a simple GUI to toggle settings
+3. added desktop shortcut to easily access Clover Toolbox
+4. added several Linux distros - CentOS, Debian, Manjaro
 
 <details>
 <summary><b>Old Changelog</b></summary>
+<p><b>April 23 2023</b><br>
+1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.
+2. re-write the inject systemd service on the other rootfs.
+3. added custom splash screen when booting Windows from the internal SSD.
+4. add Clover Boot Manager Service status as non-Steam game to easily check the systemd service from within Game Mode.<br></p>
+
 <p><b>March 31 2023</b><br>
 1. have a simple menu during install to select which OS will be the default in the Clover GUI boot menu.<br>
 2. implement systemd service / inject systemd service on the other rootfs.<br></p>
