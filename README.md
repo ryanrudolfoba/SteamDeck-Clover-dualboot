@@ -25,7 +25,12 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 ![image](https://user-images.githubusercontent.com/98122529/233867354-4d554a4e-1e1f-42f7-968a-31a8c0b677b2.png)
 
 **Clover Toolbox**
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/fa9d4ed4-7e40-40a1-b1ab-ca937de27cf6)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/8308d81f-99f6-4751-abf1-3ebb8436322a)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/2af24382-344b-48a3-8857-1d3d2a93d454)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9754527c-ffcb-42f2-826b-e161211873b7)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/e69f6be4-7a2b-47a4-98f4-45617811d1c8)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/1e19eea7-9471-4948-a55d-6904d68a1020)
+
 
 <details>
 <summary><b>More Screenshots Here</b></summary>
@@ -80,14 +85,18 @@ https://user-images.githubusercontent.com/98122529/234082851-a836816f-edbf-43a5-
 baldsealion has created a Youtube video tutorial <a href="https://www.youtube.com/watch?v=112Bw7GMqJI">here</a>. This is a good supplement for the instructions in this github.
 </details>
 
-## What's New (as of May 19 2023)
-1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.
-2. Clover Toolbox - a simple GUI to toggle settings
-3. added desktop shortcut to easily access Clover Toolbox
-4. added several Linux distros - CentOS, Debian, Manjaro
+## What's New (as of May 24 2023)
+1. cleanup the Clover Toolbox menu so it is easier to read
+2. cleanup the config.plist
 
 <details>
 <summary><b>Old Changelog</b></summary>
+<p><b>May 19 2023</b><br>
+1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.
+2. Clover Toolbox - a simple GUI to toggle settings.
+3. added desktop shortcut to easily access Clover Toolbox.
+4. added several Linux distros - CentOS, Debian, Manjaro.<br></p>
+
 <p><b>April 23 2023</b><br>
 1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.
 2. re-write the inject systemd service on the other rootfs.
