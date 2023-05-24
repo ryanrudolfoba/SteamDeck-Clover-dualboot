@@ -50,10 +50,6 @@
 			<key>Entries</key>
 			<array>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_steamos</string>
 					<key>Path</key>
@@ -66,10 +62,6 @@
 					<string>SteamOS for Steam Deck</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_win</string>
 					<key>Path</key>
@@ -82,10 +74,6 @@
 					<string>Windows Internal SSD</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_batocera</string>
 					<key>Path</key>
@@ -100,10 +88,6 @@
 					<string>Batocera Retro Gaming</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_recovery</string>
 					<key>Path</key>
@@ -118,10 +102,6 @@
 					<string>Ventoy MultiBoot USB</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_win</string>
 					<key>Path</key>
@@ -134,10 +114,6 @@
 					<string>Windows External SSD / microSD</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_fedora</string>
 					<key>Path</key>
@@ -150,10 +126,6 @@
 					<string>Fedora Linux</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_kali</string>
 					<key>Path</key>
@@ -166,10 +138,6 @@
 					<string>Kali Linux</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_ubuntu</string>
 					<key>Path</key>
@@ -182,10 +150,6 @@
 					<string>Ubuntu Linux</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_centos</string>
 					<key>Path</key>
@@ -198,10 +162,6 @@
 					<string>CentOS / RHEL</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_debian</string>
 					<key>Path</key>
@@ -214,10 +174,6 @@
 					<string>Debian Linux</string>
 				</dict>
 				<dict>
-					<key>Disabled</key>
-					<false/>
-					<key>Hidden</key>
-					<false/>
 					<key>Image</key>
 					<string>os_manjaro</string>
 					<key>Path</key>
@@ -250,19 +206,10 @@
 				</dict>
 			</array>
 		</dict>
-		<key>CustomIcons?</key>
-		<false/>
+		<key>CustomIcons</key>
+		<true/>
 		<key>EmbeddedThemeType</key>
 		<string>Daytime</string>
-		<key>Hide</key>
-		<array>
-			<string>GRUBX64.EFI</string>
-			<string>BOOTX64.EFI</string>
-		</array>
-		<key>KbdPrevLang?</key>
-		<false/>
-		<key>Language?</key>
-		<string>en:0</string>
 		<key>Mouse</key>
 		<dict>
 			<key>DoubleClickTime?</key>
@@ -275,24 +222,13 @@
 			<integer>20</integer>
 		</dict>
 		<key>PlayAsync</key>
-		<false/>
+		<true/>
 		<key>ProvideConsoleGop</key>
 		<true/>
 		<key>Scan</key>
-		<dict>
-			<key>Entries</key>
-			<false/>
-			<key>Legacy</key>
-			<false/>
-			<key>Tool</key>
-			<false/>
-		</dict>
+		<false/>
 		<key>ScreenResolution</key>
 		<string>1280x800</string>
-		<key>ShowOptimus?</key>
-		<false/>
-		<key>TextOnly</key>
-		<false/>
 		<key>Timezone</key>
 		<integer>3</integer>
 		<key>Theme</key>
