@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# May 24 2003
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 CLOVER_VERSION='5151'
@@ -25,7 +25,6 @@ then
 		echo -e "$RED"Sudo password is wrong! Re-run the script and make sure to enter the correct sudo password!
 		exit
 	fi
-
 else
 	echo -e "$RED"Sudo password is blank! Setup a sudo password first and then re-run script!
 	passwd
@@ -43,12 +42,12 @@ else
 fi
 
 ###### Main menu. Ask user for the default OS to be selected in the Clover GUI boot menu.
-Choice=$(zenity --width 900 --height 250 --list --radiolist --multiple --title "Clover Install Script for Steam Deck - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\
+Choice=$(zenity --width 800 --height 250 --list --radiolist --multiple --title "Clover Install Script for Steam Deck - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\
 	--column "Select One" \
-	--column "Default OS" \
-	--column="Comments - Read this carefully!"\
-	FALSE Windows "Choose this and Windows will be the default OS selected in the Clover GUI boot menu."\
-	FALSE SteamOS "Choose this and SteamOS will be the default OS selected in the Clover GUI boot menu."\
+	--column "Option" \
+	--column="Description - Read this carefully!"\
+	FALSE Windows "Windows will be the default OS selected in the Clover GUI boot menu."\
+	FALSE SteamOS "SteamOS will be the default OS selected in the Clover GUI boot menu."\
 	TRUE EXIT "Select this if you changed your mind and don't want to proceed anymore.")
 
 if [ $? -eq 1 ] || [ "$Choice" == "EXIT" ]
@@ -245,24 +244,18 @@ fi
 
 while true
 do
-Choice=\$(zenity --width 950 --height 480 --list --radiolist --multiple \
+Choice=\$(zenity --width 750 --height 350 --list --radiolist --multiple \
 	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
 	--column "Select One" \\
-	--column "Function" \\
-	--column="Comments - Read this carefully!"\\
+	--column "Option" \\
+	--column="Description - Read this carefully!"\\
 	FALSE Status "Choose this when filing a bug report!"\\
-	FALSE 5secs "Choose this to set the default timeout to 5secs."\\
-	FALSE 10secs "Choose this to set the default timeout to 10secs."\\
-	FALSE 15secs "Choose this to set the default timeout to 15secs."\\
-	FALSE Disable "Choose this to disable Clover EFI entry and Clover systemd service."\\
-	FALSE Enable "Choose this to re-enable Clover EFI entry and Clover systemd service."\\
-	FALSE Windows "Choose this to set Windows as the default item in Clover."\\
-	FALSE SteamOS "Choose this to set SteamOS as the default item in Clover."\\
-	FALSE LastOS "Choose this to set the previous last used OS as the default item in Clover."\\
-	FALSE NewLogo "Choose this to use the custom splash / logo when booting Windows (internal SSD only)."\\
-	FALSE OldLogo "Choose this to revert back to the default SteamOS logo when booting Windows."\\
+	FALSE Timeout "Set the default timeout to 5 10 or 15secs before it boots the default OS."\\
+	FALSE Service "Disable / Enable the Clover EFI entry and Clover systemd service."\\
+	FALSE Boot "Set the OS that will be booted by default."\\
+	FALSE Logo "Use the new logo or old logo when booting to Windows."\\
 	FALSE Uninstall "Choose this to uninstall Clover and revert any changes made."\\
-	TRUE EXIT "Select this if you changed your mind and don't want to proceed anymore.")
+	TRUE EXIT "***** Exit the Clover Toolbox *****")
 
 if [ \$? -eq 1 ] || [ "\$Choice" == "EXIT" ]
 then
@@ -271,107 +264,165 @@ then
 
 elif [ "\$Choice" == "Status" ]
 then
-	echo \$Choice
 	zenity --warning --title "Clover Toolbox" --text "\$(fold -w 120 -s ~/1Clover-tools/status.txt)" --width 400 --height 600
 
-elif [ "\$Choice" == "5secs" ]
+elif [ "\$Choice" == "Timeout" ]
 then
-	echo \$Choice
-	# change the Default Timeout in config,plist 
-	sudo sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>5<\\/integer>' /esp/efi/clover/config.plist
-	zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to 5secs!" --width 400 --height 75
+Timeout_Choice=\$(zenity --width 500 --height 250 --list --radiolist --multiple \
+	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
+	--column "Select One" \\
+	--column "Option" \\
+	--column="Description - Read this carefully!"\\
+	FALSE 5secs "Set the default timeout to 5secs."\\
+	FALSE 10secs "Set the default timeout to 10secs."\\
+	FALSE 15secs "Set the default timeout to 15secs."\\
+	TRUE EXIT "***** Exit the Clover Toolbox *****")
 
-elif [ "\$Choice" == "10secs" ]
-then
-	echo \$Choice
-	# change the Default Timeout in config,plist 
-	sudo sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>10<\\/integer>' /esp/efi/clover/config.plist
-	zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to 10secs!" --width 400 --height 75
-
-elif [ "\$Choice" == "15secs" ]
-then
-	echo \$Choice
-	# change the Default Timeout in config,plist 
-	sudo sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>15<\\/integer>' /esp/efi/clover/config.plist
-	zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to 15secs!" --width 400 --height 75
-
-elif [ "\$Choice" == "Disable" ]
-then
-	echo \$Choice
-	# restore Windows EFI entry from backup
-	sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
-
-	# make Windows the next boot option!
-	Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
-	sudo efibootmgr -n \$Windows &> /dev/null
-
-	# disable the Clover systemd service
-	sudo systemctl disable --now clover-bootmanager
-	zenity --warning --title "Clover Toolbox" --text "Clover systemd service has been disabled. Windows is now activated!" --width 500 --height 75
-
-elif [ "\$Choice" == "Enable" ]
-then
-	echo \$Choice
-	# enable the Clover systemd service
-	sudo systemctl enable --now clover-bootmanager
-	sudo /etc/systemd/system/clover-bootmanager.sh
-	zenity --warning --title "Clover Toolbox" --text "Clover systemd service has been enabled. Windows is now disabled!" --width 500 --height 75
-
-elif [ "\$Choice" == "Windows" ]
-then
-	echo \$Choice
-	# change the Default Loader in config,plist 
-
-	# test if Windows is installed on the internal SSD
-	sudo ls /esp/efi | grep Microsoft
-
-	if [ \$? -eq 0 ]
+	if [ \$? -eq 1 ] || [ "\$Timeout_Choice" == "EXIT" ]
 	then
-		# Windows is installed on the internal SSD - use the custom splash screen!
-		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\HackBGRT\\\HackBGRT\\.efi<\\/string>' /esp/efi/clover/config.plist
-		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
-		sudo sed -i 's/\\\EFI\\\MICROSOFT\\\bootmgfw\.efi/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/g' /esp/efi/clover/config.plist
-	else
-		# Windows is not installed on the internal SSD - do not use the custom splash screen!
-		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /esp/efi/clover/config.plist
-		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
-		sudo sed -i 's/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/\\\EFI\\\MICROSOFT\\\bootmgfw\.efi/g' /esp/efi/clover/config.plist
+		echo User pressed CANCEL / EXIT.
+		exit
+
+	elif [ "\$Timeout_Choice" == "5secs" ]
+	then
+		# change the Default Timeout to 5secs in config,plist 
+		sudo sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>5<\\/integer>' /esp/efi/clover/config.plist
+		zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to 5secs!" --width 400 --height 75
+
+	elif [ "\$Timeout_Choice" == "10secs" ]
+	then
+		# change the Default Timeout to 10secs in config,plist 
+		sudo sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>10<\\/integer>' /esp/efi/clover/config.plist
+		zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to 10secs!" --width 400 --height 75
+
+	elif [ "\$Timeout_Choice" == "15secs" ]
+	then
+		# change the Default Timeout to 15secs in config,plist 
+		sudo sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>15<\\/integer>' /esp/efi/clover/config.plist
+		zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to 15secs!" --width 400 --height 75
 	fi
 
-	zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
-
-elif [ "\$Choice" == "SteamOS" ]
+elif [ "\$Choice" == "Service" ]
 then
-	echo \$Choice
-	# change the Default Loader in config,plist 
-	sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\STEAMOS\\\STEAMCL\\.efi<\\/string>' /esp/efi/clover/config.plist
-	sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
-	zenity --warning --title "Clover Toolbox" --text "SteamOS is now the default boot entry in Clover!" --width 400 --height 75
+Service_Choice=\$(zenity --width 650 --height 250 --list --radiolist --multiple \
+	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
+	--column "Select One" \\
+	--column "Option" \\
+	--column="Description - Read this carefully!"\\
+	FALSE Disable "Disable the Clover EFI entry and Clover systemd service."\\
+	FALSE Enable "Enable the Clover EFI entry and Clover systemd service."\\
+	TRUE EXIT "***** Exit the Clover Toolbox *****")
 
-elif [ "\$Choice" == "LastOS" ]
-then
-	echo \$Choice
-	# change the Default Volume in config,plist 
-	sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>LastBootedVolume<\\/string>' /esp/efi/clover/config.plist
-	zenity --warning --title "Clover Toolbox" --text "The previous OS used is now the default boot entry in Clover!" --width 425 --height 75
+	if [ \$? -eq 1 ] || [ "\$Service_Choice" == "EXIT" ]
+	then
+		echo User pressed CANCEL / EXIT.
+		exit
 
-elif [ "\$Choice" == "NewLogo" ]
-then
-	echo \$Choice
-	# change HackBGRT config to use te custom splash / logo when booting Windows 
-	sudo sed -i '/\\#CUSTOMSPLASH-do-not-delete-this-line/!b;n;cimage=path=\\\EFI\\\HackBGRT\\\splash\\.bmp' /esp/efi/HackBGRT/config.txt
-	zenity --warning --title "Clover Toolbox" --text "Custom splash / logo is now activated!" --width 400 --height 75
+	elif [ "\$Service_Choice" == "Disable" ]
+	then
+		# restore Windows EFI entry from backup
+		sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
 
-elif [ "\$Choice" == "OldLogo" ]
+		# make Windows the next boot option!
+		Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
+		sudo efibootmgr -n \$Windows &> /dev/null
+
+		# disable the Clover systemd service
+		sudo systemctl disable --now clover-bootmanager
+		zenity --warning --title "Clover Toolbox" --text "Clover systemd service has been disabled. Windows is now activated!" --width 500 --height 75
+
+	elif [ "\$Service_Choice" == "Enable" ]
+	then
+		# enable the Clover systemd service
+		sudo systemctl enable --now clover-bootmanager
+		sudo /etc/systemd/system/clover-bootmanager.sh
+		zenity --warning --title "Clover Toolbox" --text "Clover systemd service has been enabled. Windows is now disabled!" --width 500 --height 75
+	fi
+
+elif [ "\$Choice" == "Boot" ]
 then
-	echo \$Choice
-	# change HackBGRT config to keep the existing splash / SteamOS logo when booting Windows
-	sudo sed -i '/\\#CUSTOMSPLASH-do-not-delete-this-line/!b;n;cimage=keep' /esp/efi/HackBGRT/config.txt
-	zenity --warning --title "Clover Toolbox" --text "Default splash / logo is now activated!" --width 400 --height 75
+Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple \
+	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
+	--column "Select One" \\
+	--column "Option" \\
+	--column="Description - Read this carefully!"\\
+	FALSE Windows "Set Windows as the default OS to boot."\\
+	FALSE SteamOS "Set SteamOS as the default OS to boot."\\
+	FALSE LastOS "The last OS that was booted will be the default."\\
+	TRUE EXIT "***** Exit the Clover Toolbox *****")
+
+	if [ \$? -eq 1 ] || [ "\$Boot_Choice" == "EXIT" ]
+	then
+		echo User pressed CANCEL / EXIT.
+		exit
+
+	elif [ "\$Boot_Choice" == "Windows" ]
+	then
+		# change the Default Loader to Windows in config,plist 
+
+		# test if Windows is installed on the internal SSD
+		sudo ls /esp/efi | grep Microsoft
+
+		if [ \$? -eq 0 ]
+		then
+			# Windows is installed on the internal SSD - use the custom splash screen!
+			sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\HackBGRT\\\HackBGRT\\.efi<\\/string>' /esp/efi/clover/config.plist
+			sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
+			sudo sed -i 's/\\\EFI\\\MICROSOFT\\\bootmgfw\.efi/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/g' /esp/efi/clover/config.plist
+		else
+			# Windows is not installed on the internal SSD - do not use the custom splash screen!
+			sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /esp/efi/clover/config.plist
+			sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
+			sudo sed -i 's/\\\EFI\\\HackBGRT\\\HackBGRT\.efi/\\\EFI\\\MICROSOFT\\\bootmgfw\.efi/g' /esp/efi/clover/config.plist
+		fi
+
+		zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
+
+	elif [ "\$Boot_Choice" == "SteamOS" ]
+	then
+		# change the Default Loader in config,plist 
+		sudo sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\STEAMOS\\\STEAMCL\\.efi<\\/string>' /esp/efi/clover/config.plist
+		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
+		zenity --warning --title "Clover Toolbox" --text "SteamOS is now the default boot entry in Clover!" --width 400 --height 75
+
+	elif [ "\$Boot_Choice" == "LastOS" ]
+	then
+		# change the Default Volume in config,plist 
+		sudo sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>LastBootedVolume<\\/string>' /esp/efi/clover/config.plist
+		zenity --warning --title "Clover Toolbox" --text "The last OS used is now the default boot entry in Clover!" --width 425 --height 75
+	fi
+
+elif [ "\$Choice" == "Logo" ]
+then
+Logo_Choice=\$(zenity --width 750 --height 250 --list --radiolist --multiple \
+	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
+	--column "Select One" \\
+	--column "Option" \\
+	--column="Description - Read this carefully!"\\
+	FALSE NewLogo "Use custom splash / logo when booting to Windows (internal SSD only)."\\
+	FALSE OldLogo "Use default SteamOS logo when booting to Windows."\\
+	TRUE EXIT "***** Exit the Clover Toolbox *****")
+
+	if [ \$? -eq 1 ] || [ "\$Timeout_Choice" == "EXIT" ]
+	then
+		echo User pressed CANCEL / EXIT.
+		exit
+
+	elif [ "\$Logo_Choice" == "NewLogo" ]
+	then
+		# change HackBGRT config to use te custom splash / logo when booting Windows 
+		sudo sed -i '/\\#CUSTOMSPLASH-do-not-delete-this-line/!b;n;cimage=path=\\\EFI\\\HackBGRT\\\splash\\.bmp' /esp/efi/HackBGRT/config.txt
+		zenity --warning --title "Clover Toolbox" --text "Custom splash / logo is now activated!" --width 400 --height 75
+
+	elif [ "\$Logo_Choice" == "OldLogo" ]
+	then
+		# change HackBGRT config to keep the existing splash / SteamOS logo when booting Windows
+		sudo sed -i '/\\#CUSTOMSPLASH-do-not-delete-this-line/!b;n;cimage=keep' /esp/efi/HackBGRT/config.txt
+		zenity --warning --title "Clover Toolbox" --text "Default splash / logo is now activated!" --width 400 --height 75
+	fi
 
 elif [ "\$Choice" == "Uninstall" ]
 then
-	echo \$Choice
 	# restore Windows EFI entry from backup
 	sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
 	sudo mv /esp/efi/boot/bootx64.efi.orig /esp/efi/boot/bootx64.efi
@@ -409,7 +460,7 @@ EOF
 ######################################
 ###### continue with the install #####
 ######################################
-
+# copy the systemd script to a location owned by root to prevent local privilege escalation
 chmod +x ~/1Clover-tools/*.sh
 sudo mv ~/1Clover-tools/clover-bootmanager.service /etc/systemd/system/clover-bootmanager.service
 sudo mv ~/1Clover-tools/clover-bootmanager.sh /etc/systemd/system/clover-bootmanager.sh
