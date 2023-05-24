@@ -93,15 +93,15 @@ baldsealion has created a Youtube video tutorial <a href="https://www.youtube.co
 <details>
 <summary><b>Old Changelog</b></summary>
 <p><b>May 19 2023</b><br>
-1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.
-2. Clover Toolbox - a simple GUI to toggle settings.
-3. added desktop shortcut to easily access Clover Toolbox.
+1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.<br>
+2. Clover Toolbox - a simple GUI to toggle settings.<br>
+3. added desktop shortcut to easily access Clover Toolbox.<br>
 4. added several Linux distros - CentOS, Debian, Manjaro.<br></p>
 
 <p><b>April 23 2023</b><br>
-1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.
-2. re-write the inject systemd service on the other rootfs.
-3. added custom splash screen when booting Windows from the internal SSD.
+1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.<br>
+2. re-write the inject systemd service on the other rootfs.<br>
+3. added custom splash screen when booting Windows from the internal SSD.<br>
 4. add Clover Boot Manager Service status as non-Steam game to easily check the systemd service from within Game Mode.<br></p>
 
 <p><b>March 31 2023</b><br>
