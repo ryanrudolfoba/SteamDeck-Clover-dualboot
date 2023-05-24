@@ -30,6 +30,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9754527c-ffcb-42f2-826b-e161211873b7)
 ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/e69f6be4-7a2b-47a4-98f4-45617811d1c8)
 ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/1e19eea7-9471-4948-a55d-6904d68a1020)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/5925be59-7ebb-4dd8-afd8-c02a10e48c58)
 
 
 <details>
