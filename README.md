@@ -346,23 +346,24 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 2. Go to Desktop Mode.<br>
 3. Double-click Clover Toolbox desktop icon. <br>
 4. Select the item called Service and press OK. <br>
-   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/da520c09-e8cd-4e5c-8ddd-41af02ad872b)
+
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/f7299f1a-989b-4f0b-864f-3a527162a6b5)
    
 5. Press the item called Disable and press OK. <br>
-   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/07c6d589-b286-487b-91d9-cc5bb49856b9)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/0be15a60-6513-4608-8642-412dd0a7646e)
    
-   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
 
-
-5. Reboot and it will automatically boot to Windows. <br>
-6. Install the GPU / APU driver upgrade and reboot Windows.<br>
-7. Make sure screen orientation is set to Landscape.<br>
-8. If everything looks good then shutdown the Steam Deck.<br>
+6. Reboot and it will automatically boot to Windows. <br>
+7. Install the GPU / APU driver upgrade and reboot Windows.<br>
+8. Make sure screen orientation is set to Landscape.<br>
+9. If everything looks good then shutdown the Steam Deck.<br>
 10. Press VOLDOWN + POWER and select SteamOS from the list.<br>
 11. Follow step2 onwards, and on step 5 select the item called Enable. <br>
-   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
    
-   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
+   
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
    
 12. Reboot and it will go back to Clover!
 </details>
@@ -401,7 +402,8 @@ This happens even if not using dualboot / Clover / rEFInd.<br>
 2. Go to Desktop Mode.<br>
 3. Double-click Clover Toolbox desktop icon. <br>
 4. Select the item called Uninstall and press OK. <br>
-   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/dced41a9-74e3-4dca-a90d-38e0e373614a)
+   
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/dced41a9-74e3-4dca-a90d-38e0e373614a)
 
 4. Clover will be uninstalled and on next reboot it will automatically load Windows. Clover has been uninstalled!<br>
 </details>
@@ -412,7 +414,7 @@ You can send me a message on reddit / discord to say thanks!<br>
 </details>
 
 <details>
-<summary><b>Q9. Do you accept donations?</b></summary>
+<summary><b>Q10. Do you accept donations?</b></summary>
 If you want to donate, you can drop by at my <a href="https://greatcyclechallenge.ca/riders/RyanrudolfOba">fundraising page</a> to help fight kids cancer! I ride my bike in summertime to help raise awareness and help fight kids cancer! All proceeds go to <a href="https://www.sickkids.ca/">Canada Sick Kids Foundation.</a><br>
 </details>
 
