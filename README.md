@@ -344,18 +344,27 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 <summary><b>Q3. I need to perform a GPU / APU driver upgrade in Windows. What do I do?</b></summary>
 1. Boot into SteamOS.<br>
 2. Go to Desktop Mode.<br>
-3. Open a konsole terminal and re-enable the Windows EFI - <br>
-   cd ~/1Clover-tools <br>
-   ./enable-windows-efi.sh<br>
+3. Double-click Clover Toolbox desktop icon. <br>
+4. Select the item called Service and press OK. <br>
+   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/da520c09-e8cd-4e5c-8ddd-41af02ad872b)
    
-   ![image](https://user-images.githubusercontent.com/98122529/212214891-ea322f50-2704-4676-b550-9071d41947ff.png)<br>
+5. Press the item called Disable and press OK. <br>
+   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/07c6d589-b286-487b-91d9-cc5bb49856b9)
    
-4. Reboot the Steam Deck and it will automatically load Windows.<br>
-5. Install the GPU / APU driver upgrade and reboot Windows.<br>
-6. Make sure screen orientation is set to Landscape.<br>
-7. If everything looks good then shutdown the Steam Deck.<br>
-8. Press VOLDOWN + POWER and select SteamOS from the list.<br>
-9. Reboot and it will go back to Clover!<br>
+   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
+
+
+5. Reboot and it will automatically boot to Windows. <br>
+6. Install the GPU / APU driver upgrade and reboot Windows.<br>
+7. Make sure screen orientation is set to Landscape.<br>
+8. If everything looks good then shutdown the Steam Deck.<br>
+10. Press VOLDOWN + POWER and select SteamOS from the list.<br>
+11. Follow step2 onwards, and on step 5 select the item called Enable. <br>
+   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
+   
+   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
+   
+12. Reboot and it will go back to Clover!
 </details>
        
 <details>
@@ -389,13 +398,12 @@ This happens even if not using dualboot / Clover / rEFInd.<br>
 <details>
 <summary><b>Q8. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!</b></summary>
 1. Boot into SteamOS.<br>
-2. Open a konsole terminal and run the uninstall script - <br>
-   cd ~/1Clover-tools <br>
-   ./uninstall-Clover.sh <br>
-   ![image](https://user-images.githubusercontent.com/98122529/211840095-85745118-fa64-4ef8-b2c1-78dbf0443459.png)<br>
-   
-3. Manually delete the non-Steam game clover-bootmanager-status.sh<br>
-4. Reboot the Steam Deck and it will automatically load Windows. Clover has been uninstalled!<br>
+2. Go to Desktop Mode.<br>
+3. Double-click Clover Toolbox desktop icon. <br>
+4. Select the item called Uninstall and press OK. <br>
+   ![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/dced41a9-74e3-4dca-a90d-38e0e373614a)
+
+4. Clover will be uninstalled and on next reboot it will automatically load Windows. Clover has been uninstalled!<br>
 </details>
 
 <details>
