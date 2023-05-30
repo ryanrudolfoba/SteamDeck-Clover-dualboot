@@ -120,8 +120,9 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 ## Sample Video - How to Install Clover
 https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-91e4-3933b0fdb523.mp4
 
-## Sample Video - Apocalypse Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
-https://user-images.githubusercontent.com/98122529/234082851-a836816f-edbf-43a5-838d-c10c19b56fd5.mp4
+## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
+https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
+
 
 ## Video Tutorial by baldsealion
 <details>
@@ -437,3 +438,7 @@ And in no particular order -<br>
 - insanelymac and its forum members for creating beautiful Clover themes. <br>
 - Metabolix for his HackBGRT that loads a custom splash screen (BGRT) for Windows. I modified it a bit so it plays nicely with this Clover script.<br>
 - and the rest of WindowsOnDeck reddit community / discord server!
+
+
+
+
