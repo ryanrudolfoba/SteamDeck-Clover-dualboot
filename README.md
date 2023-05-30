@@ -128,7 +128,7 @@ https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93
 <details>
 <summary><b>Click here if you prefer a video tutorial!</b></summary>
 OVERKILL GAMING video tutorial - <a href="https://youtu.be/B4-p0ptsRnI">here</a>.<br>
-OVERKILL GAMING video tutorial (updated) - <a href="[https://youtu.be/B4-p0ptsRnI](https://youtu.be/IraA82T1bxE)">here</a>.<br>
+OVERKILL GAMING video tutorial (updated) - <a href="https://youtu.be/IraA82T1bxE">here</a>.<br>
 baldsealion video tutorial <a href="https://www.youtube.com/watch?v=112Bw7GMqJI">here</a>.<br>
 </details>
 
