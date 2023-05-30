@@ -61,6 +61,7 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 4. Makes as few changes as possible - doesn't rely on pacman repositories, no systemd scripts and no EasyUEFI.<br>
 5. All-in-One script - install, disable / re-enable, uninstall.<br></p>
 </details>
+
 ## Why Use this Clover install script for dual boot?!?
 1. Makes as little changes as possible to the SteamOS / Windows installation.
 2. Makes dual boot with SteamOS / Windows easy with a nice GUI.
