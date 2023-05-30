@@ -124,10 +124,12 @@ https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
 
 
-## Video Tutorial by baldsealion
+## Video Tutorial - this are good supplement for the instructions in this github!
 <details>
 <summary><b>Click here if you prefer a video tutorial!</b></summary>
-baldsealion has created a Youtube video tutorial <a href="https://www.youtube.com/watch?v=112Bw7GMqJI">here</a>. This is a good supplement for the instructions in this github.
+OVERKILL GAMING video tutorial - <a href="https://youtu.be/B4-p0ptsRnI">here</a>.<br>
+OVERKILL GAMING video tutorial (updated) - <a href="[https://youtu.be/B4-p0ptsRnI](https://youtu.be/IraA82T1bxE)">here</a>.<br>
+baldsealion video tutorial <a href="https://www.youtube.com/watch?v=112Bw7GMqJI">here</a>.<br>
 </details>
 
 ## Using the Clover Install Script
