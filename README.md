@@ -10,7 +10,10 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 
 ## Disclaimer
 1. Do this at your own risk!
+
 2. This is for educational and research purposes only!
+
+I've been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
 
 ## What's New (as of May 24 2023)
 1. cleanup the Clover Toolbox menu so it is easier to read
@@ -439,7 +442,8 @@ And in no particular order -<br>
 - Kodi Ross from FB Steam Deck Community for the Rick and Morty theme. <br>
 - insanelymac and its forum members for creating beautiful Clover themes. <br>
 - Metabolix for his HackBGRT that loads a custom splash screen (BGRT) for Windows. I modified it a bit so it plays nicely with this Clover script.<br>
-- and the rest of WindowsOnDeck reddit community / discord server!
+- and the rest of WindowsOnDeck reddit community / discord server!<br>
+- PS I forgot to mention LOUP the author of the OpenAsRoot KDE extension.
 
 
 
