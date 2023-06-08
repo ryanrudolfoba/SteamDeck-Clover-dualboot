@@ -323,25 +323,39 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 <summary><b>Q2. Windows boots up in garbled graphics!</b></summary>
    
 ![image](https://user-images.githubusercontent.com/98122529/211198222-5cce38ff-3f20-4386-8715-c408fea6a4b0.png)<br>
-1. Boot into SteamOS.<br>
+
+1. Boot to SteamOS.<br>
 2. Go to Desktop Mode.<br>
-3. Open a konsole terminal and re-enable the Windows EFI - <br>
-   cd ~/1Clover-tools <br>
-   ./enable-windows-efi.sh<br>
-   ![image](https://user-images.githubusercontent.com/98122529/211840322-46c3ab90-2ed4-4abc-84a6-ae82cce1d917.png)<br>
+3. Double-click Clover Toolbox desktop icon. <br>
+4. Select the item called Service and press OK. <br>
+
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/f7299f1a-989b-4f0b-864f-3a527162a6b5)
    
-4. Reboot the Steam Deck and it will boot directly to Windows.<br>
-5. Open command prompt with admin privileges and enter the command -<br>
+5. Press the item called Disable and press OK. <br>
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/0be15a60-6513-4608-8642-412dd0a7646e)
+   
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
+
+6. Reboot and it will automatically boot to Windows. <br>
+
+7. Open command prompt with admin privileges and enter the command -<br>
    bcdedit.exe -set {globalsettings} highestmode on <br>
 
-6. Make sure screen orientation is set to Landscape.<br>
-7. Shutdown the Steam Deck. Press VOLDOWN + POWER and select SteamOS from the list.<br>
-8. Reboot and it will go back to Clover!<br>
+8. Make sure screen orientation is set to Landscape.<br>
+9. If everything looks good then shutdown the Steam Deck.<br>
+10. Press VOLDOWN + POWER and select SteamOS from the list.<br>
+11. Follow step2 onwards, and on step 5 select the item called Enable. <br>
+   
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
+   
+![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
+   
+12. Reboot and it will go back to Clover!
 </details>
 
 <details>
 <summary><b>Q3. I need to perform a GPU / APU driver upgrade in Windows. What do I do?</b></summary>
-1. Boot into SteamOS.<br>
+1. Boot to SteamOS.<br>
 2. Go to Desktop Mode.<br>
 3. Double-click Clover Toolbox desktop icon. <br>
 4. Select the item called Service and press OK. <br>
