@@ -15,15 +15,6 @@ This will mostly benefit Steam Deck users who have setup a dual boot and wants t
 
 I've been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
 
-## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
-- Clover 5152 (completed)
-- Support Pop!_OS (completed)
-- Additional Windows splash / boot logos (completed)
-- Remove support for Windows To Go sdcard (completed)
-- SteamOS custom splash / boot logo
-- Automatically remove rEFInd if it is previously installed
-- Add support for the upcoming 1200p screen mod
-
 ## What's New (as of May 24 2023)
 1. cleanup the Clover Toolbox menu so it is easier to read
 2. cleanup the config.plist
@@ -469,3 +460,11 @@ And in no particular order -<br>
 - PS I forgot to mention LOUP the author of the OpenAsRoot KDE extension.
 
 
+## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
+- Clover 5152 (completed)
+- Support Pop!_OS (completed)
+- Additional Windows splash / boot logos (completed)
+- Remove support for Windows To Go sdcard (completed)
+- SteamOS custom splash / boot logo
+- Automatically remove rEFInd if it is previously installed
+- Add support for the upcoming 1200p screen mod
