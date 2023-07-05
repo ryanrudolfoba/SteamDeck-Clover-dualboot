@@ -467,4 +467,4 @@ And in no particular order -<br>
 - Remove support for Windows To Go sdcard (completed)
 - Clover Toolbox - option to set static theme or random theme (completed)
 - Perform best effort to automatically remove rEFInd if it is previously installed (completed)
-- Add support for the upcoming 1200p screen mod
+- Add support for the upcoming 1200p screen mod (completed)
