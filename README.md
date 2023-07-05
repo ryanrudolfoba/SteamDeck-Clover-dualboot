@@ -466,6 +466,5 @@ And in no particular order -<br>
 - Additional Windows splash / boot logos (completed)
 - Remove support for Windows To Go sdcard (completed)
 - Clover Toolbox - option to set static theme or random theme (completed)
-- SteamOS custom splash / boot logo
-- Automatically remove rEFInd if it is previously installed
+- Perform best effort to automatically remove rEFInd if it is previously installed (completed)
 - Add support for the upcoming 1200p screen mod
