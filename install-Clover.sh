@@ -65,7 +65,7 @@ elif [ "$Choice" == "SteamOS" ]
 then
 	echo $Choice
 	# change the Default Loader in config,plist 
-	sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\STEAMOS\\STEAMCL\.efi<\\/string>' custom/config.plist
+	sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\STEAMOS\\STEAMCL\.efi<\/string>' custom/config.plist
 fi
 
 # obtain Clover ISO
