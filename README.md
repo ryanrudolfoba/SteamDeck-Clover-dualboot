@@ -461,6 +461,7 @@ And in no particular order -<br>
 
 
 ## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
+- Clover 5153 - need to rewrite the script as this one doesnt use 7z but instead tar lzma compression
 - Clover 5152 (completed)
 - Support Pop!_OS (completed)
 - Additional Windows splash / boot logos (completed)
