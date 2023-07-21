@@ -5,7 +5,7 @@
 A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck running on SteamOS.
 
 * The main program that does all the heavy lifting is [Clover - a graphical boot manager / boot loader.](https://github.com/CloverHackyColor/CloverBootloader)
-* Clover Toolbox as a simple GUI to configure some aspects of Clover script.
+* Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 * Custom Windows splash / boot logo is made possible by [HackBGRT.](https://github.com/Metabolix/HackBGRT) (I modified it a bit and recompiled it to play nicely with Clover script)
 
