@@ -1,19 +1,77 @@
-# Steam Deck - Installing Clover for Dual Boot Between SteamOS and Windows
+# Steam Deck - Installing Clover Script for Dual Boot Between SteamOS and Windows (and other OSes too!)
 
 ## About
 
-All-in-One script and instructions for installing [Clover - a graphical boot manager.](https://github.com/CloverHackyColor/CloverBootloader)
+A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck running on SteamOS.
 
-This will mostly benefit Steam Deck users who have setup a dual boot and wants to have a graphical way to select which OS to boot from.
+* The main program that does all the heavy lifting is [Clover - a graphical boot manager / boot loader.](https://github.com/CloverHackyColor/CloverBootloader)
+* Clover Toolbox as a simple GUI to configure some aspects of Clover script.
+* Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
+* Custom Windows splash / boot logo is made possible by [HackBGRT.](https://github.com/Metabolix/HackBGRT) (I modified it a bit and recompiled it to play nicely with Clover script)
+
+
 > **NOTE**\
 > If you are going to use this script for a video tutorial, PLEASE reference on your video where you got the script! This will make the support process easier!
+> And don't forget to give a shoutout to @10MinuteSteamDeckGamer / ryanrudolf from the Philippines!
+>
+
+<b> If you like my work please show support by subscribing to my [YouTube channel @10MinuteSteamDeckGamer.](https://www.youtube.com/@10MinuteSteamDeckGamer/) </b> <br>
+<b> I'm just passionate about Linux, Windows, how stuff works, and playing retro and modern video games on my Steam Deck! </b>
+<p align="center">
+<a href="https://www.youtube.com/@10MinuteSteamDeckGamer/"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/10minute.png"/> </a>
+</p>
 
 ## Disclaimer
-1. Do this at your own risk!
-
-2. This is for educational and research purposes only!
+1. Do this at your own risk! <br>
+2. This is for educational and research purposes only! <br>
 
 I've been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
+## Quick Install Steps - if you are in a hurry then this is what you need (but really you should read the rest of the README!)
+1. Boot into SteamOS, then go into Desktop Mode and open a konsole terminal.<br>
+2. Clone the github repo. <br>
+   cd ~/ <br>
+   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
+   
+   If it errors that folder already exists, delete the old folder first - <br>
+   rm -rf ~/SteamDeck-Clover-dualboot <br>
+   
+   Then perform the clone again - <br>
+   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
+   
+3. Execute the script! <br>
+   cd ~/SteamDeck-Clover-dualboot <br>
+   chmod +x install-Clover.sh <br>
+   ./install-Clover.sh <br>
+   
+   ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png) <br>
+
+4. The script will check if sudo passwword is already set. <br>
+   <b>a.</b>
+         If it is already set, enter the current sudo password and the script will continue. <br>
+         If wrong password is provided the script will exit immdediately. Re-run the script and enter the correct sudo password! <br>
+         ![image](https://user-images.githubusercontent.com/98122529/215194972-02cbcdf2-0d8e-41cf-b39c-417049d1b5c6.png) <br>
+
+   <b>b.</b>
+         If the sudo password is blank / not yet set by the end user, the script will prompt to setup the sudo password. Re-run the script to continue. <br>
+         ![image](https://user-images.githubusercontent.com/98122529/215194796-58b9c638-d21a-4e26-a1c9-12743fd36196.png) <br>
+
+   <b>c.</b>
+         Script will show a menu. Select which OS will be the default selected in the Clover GUI boot menu. <br>
+         ![image](https://user-images.githubusercontent.com/98122529/229242673-0966ef48-9b6b-41ba-8269-2e8c1d9caca1.png)<br>
+         
+   <b>d.</b>
+         Script will continue to run and perform sanity checks all throughout the install process.<br>
+         ![image](https://user-images.githubusercontent.com/98122529/215194418-20597cef-4851-440d-b1c5-9428662349ad.png)<br>
+
+            
+5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.<br>
+![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)<br>
+
+## Sample Video - How to Install Clover
+https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-91e4-3933b0fdb523.mp4
+
+## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
+https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
 
 ## What's New (as of May 24 2023)
 1. cleanup the Clover Toolbox menu so it is easier to read
@@ -119,13 +177,6 @@ I've been using this script since December 2022 and a lot of users are reporting
 <b>Easily add / remove themes using Dolphin File Manager</b><br>
 ![image](https://user-images.githubusercontent.com/98122529/214928509-7d6cae5e-107e-4bcd-baa7-2051f6ddb269.png)<br>
 </details>
-
-## Sample Video - How to Install Clover
-https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-91e4-3933b0fdb523.mp4
-
-## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
-https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
-
 
 ## Video Tutorial - this are good supplement for the instructions in this github!
 <details>
