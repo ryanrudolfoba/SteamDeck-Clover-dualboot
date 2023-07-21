@@ -12,7 +12,7 @@ A collection of tools that is packaged into an easy to use script that is stream
 
 > **NOTE**\
 > If you are going to use this script for a video tutorial, PLEASE reference on your video where you got the script! This will make the support process easier!
-> And don't forget to give a shoutout to @10MinuteSteamDeckGamer / ryanrudolf from the Philippines!
+> And don't forget to give a shoutout to [@10MinuteSteamDeckGamer](https://www.youtube.com/@10MinuteSteamDeckGamer/) / ryanrudolf from the Philippines!
 >
 
 <b> If you like my work please show support by subscribing to my [YouTube channel @10MinuteSteamDeckGamer.](https://www.youtube.com/@10MinuteSteamDeckGamer/) </b> <br>
