@@ -25,7 +25,8 @@ A collection of tools that is packaged into an easy to use script that is stream
 1. Do this at your own risk! <br>
 2. This is for educational and research purposes only! <br>
 
-I've been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
+I've created and has been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
+
 ## Quick Install Steps - if you are in a hurry then this is what you need (but really you should read the rest of the README!)
 1. Boot into SteamOS, then go into Desktop Mode and open a konsole terminal.<br>
 2. Clone the github repo. <br>
