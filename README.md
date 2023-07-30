@@ -82,7 +82,7 @@ https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-
 ## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
 
-## What's New (as of May 24 2023)
+## What's New (as of July 30 2023)
 1. Updated Clover from 5151 to 5154
 
 <details>
