@@ -21,6 +21,12 @@ A collection of tools that is packaged into an easy to use script that is stream
 <a href="https://www.youtube.com/@10MinuteSteamDeckGamer/"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/10minute.png"/> </a>
 </p>
 
+<b>Monetary donations are also encouraged if you find this project helpful. Your donation inspires me to continue research on the Steam Deck! Clover script, 70Hz mod, SteamOS microSD, Secure Boot, etc.</b>
+
+<p align="center">
+<a href="https://www.paypal.com/donate/?business=VSMP49KYGADT4&no_recurring=0&item_name=Your+donation+inspires+me+to+continue+research+on+the+Steam+Deck%21%0AClover+script%2C+70Hz+mod%2C+SteamOS+microSD%2C+Secure+Boot%2C+etc.%0A%0A&currency_code=CAD"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/QRCode.png"/> </a>
+</p>
+
 ## Disclaimer
 1. Do this at your own risk! <br>
 2. This is for educational and research purposes only! <br>
@@ -75,11 +81,13 @@ https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
 
 ## What's New (as of May 24 2023)
-1. cleanup the Clover Toolbox menu so it is easier to read
-2. cleanup the config.plist
+1. Updated Clover from 5151 to 5154
 
 <details>
 <summary><b>Old Changelog</b></summary>
+<p><b>May 24 2023</b><br>
+1. cleanup the Clover Toolbox menu so it is easier to read<br>
+2. cleanup the config.plist<br></p>
 <p><b>May 19 2023</b><br>
 1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.<br>
 2. Clover Toolbox - a simple GUI to toggle settings.<br>
