@@ -60,6 +60,22 @@
 					<string>Linux</string>
 					<key>FullTitle</key>
 					<string>SteamOS for Steam Deck</string>
+					<key>VolumeType</key>
+					<string>Internal</string>
+				</dict>
+				<dict>
+					<key>Image</key>
+					<string>os_steamos</string>
+					<key>Path</key>
+					<string>\EFI\STEAMOS\STEAMCL.efi</string>
+					<key>Title</key>
+					<string>SteamOS</string>
+					<key>Type</key>
+					<string>Linux</string>
+					<key>FullTitle</key>
+					<string>SteamOS - External SSD</string>
+					<key>VolumeType</key>
+					<string>External</string>
 				</dict>
 				<dict>
 					<key>Image</key>
@@ -72,6 +88,36 @@
 					<string>Windows</string>
 					<key>FullTitle</key>
 					<string>Windows Internal SSD</string>
+					<key>VolumeType</key>
+					<string>Internal</string>
+				</dict>
+				<dict>
+					<key>Image</key>
+					<string>os_win</string>
+					<key>Path</key>
+					<string>\EFI\MICROSOFT\boot\bootmgfw.efi</string>
+					<key>Title</key>
+					<string>Windows</string>
+					<key>Type</key>
+					<string>Windows</string>
+					<key>FullTitle</key>
+					<string>Windows To Go - External SSD</string>
+					<key>VolumeType</key>
+					<string>External</string>
+				</dict>
+				<dict>
+					<key>Image</key>
+					<string>os_win</string>
+					<key>Path</key>
+					<string>\EFI\MICROSOFT\boot\bootmgfw.efi</string>
+					<key>Title</key>
+					<string>Windows</string>
+					<key>Type</key>
+					<string>Windows</string>
+					<key>FullTitle</key>
+					<string>Windows To Go - sdcard</string>
+					<key>VolumeType</key>
+					<string>Internal</string>
 				</dict>
 				<dict>
 					<key>Image</key>
@@ -103,18 +149,6 @@
 				</dict>
 				<dict>
 					<key>Image</key>
-					<string>os_win</string>
-					<key>Path</key>
-					<string>\EFI\MICROSOFT\boot\bootmgfw.efi</string>
-					<key>Title</key>
-					<string>Windows</string>
-					<key>Type</key>
-					<string>Windows</string>
-					<key>FullTitle</key>
-					<string>Windows External SSD / microSD</string>
-				</dict>
-				<dict>
-					<key>Image</key>
 					<string>os_fedora</string>
 					<key>Path</key>
 					<string>\EFI\fedora\shimx64.efi</string>
@@ -123,7 +157,7 @@
 					<key>Type</key>
 					<string>Linux</string>
 					<key>FullTitle</key>
-					<string>Fedora Linux</string>
+					<string>Fedora / Nobara / Bazzite</string>
 				</dict>
 				<dict>
 					<key>Image</key>
@@ -185,6 +219,18 @@
 					<key>FullTitle</key>
 					<string>Manjaro Linux</string>
 				</dict>
+				<dict>
+					<key>Image</key>
+					<string>os_ubuntu</string>
+					<key>Path</key>
+					<string>\EFI\systemd\systemd-bootx64.efi</string>
+					<key>Title</key>
+					<string>Pop!_ OS</string>
+					<key>Type</key>
+					<string>Linux</string>
+					<key>FullTitle</key>
+					<string>Pop!_OS by System76</string>
+				</dict>
 			</array>
 			<key>Tool</key>
 			<array>
@@ -232,7 +278,7 @@
 		<key>Timezone</key>
 		<integer>3</integer>
 		<key>Theme</key>
-		<string>random</string>
+		<string>Apocalypse</string>
 	</dict>
 </dict>
 </plist>
