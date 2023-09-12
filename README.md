@@ -524,7 +524,7 @@ And in no particular order -<br>
 
 ## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
 - Perform best effort to automatically remove rEFInd if it is previously installed
-- Clover 5155 - thanks imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
+- Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
 - Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!)
 - Updated config.plist to support Pop!_OS
 - Updated config.plist to reflect Nobara and Bazzite
