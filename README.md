@@ -523,11 +523,11 @@ And in no particular order -<br>
 
 
 ## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
-- Clover 5153 - need to rewrite the script as this one doesnt use 7z but instead tar lzma compression
-- Clover 5152 (completed)
-- Support Pop!_OS (completed)
-- Additional Windows splash / boot logos (completed)
-- Remove support for Windows To Go sdcard (completed)
-- Clover Toolbox - option to set static theme or random theme (completed)
-- Perform best effort to automatically remove rEFInd if it is previously installed (completed)
-- Add support for the upcoming 1200p screen mod (completed)
+- Perform best effort to automatically remove rEFInd if it is previously installed
+- Clover 5155 - thanks imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
+- Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!)
+- Updated config.plist to support Pop!_OS
+- Updated config.plist to reflect Nobara and Bazzite
+- New config and new logos for HackBGRT (Windows Internal SSD only)
+- Clover Toolbox - option to set static theme or random theme
+- Clover Toolbox - option for DeckHD 1200p screen mod
