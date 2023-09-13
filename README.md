@@ -35,6 +35,13 @@ A collection of tools that is packaged into an easy to use script that is stream
 
 I've created and has been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
 
+## Video Tutorial - How to Install Clover for Steam Deck dual boot
+Click the image below for a video tutorial and to see the functionalities of the script!
+</b>
+<p align="center">
+<a href="https://www.youtube.com/watch?v=heo2yFycnsM"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/banner.png"/> </a>
+</p>
+
 ## Quick Install Steps - if you are in a hurry then this is what you need (but really you should read the rest of the README!)
 Perform some Windows config first! Boot to Windows and open elevated command prompt -
 1. bcdedit.exe -set {globalsettings} highestmode on 
@@ -80,9 +87,6 @@ Once done, boot to SteamOS to install Clover!
             
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.<br>
 ![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)<br>
-
-## Sample Video - How to Install Clover
-https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-91e4-3933b0fdb523.mp4
 
 ## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
@@ -205,13 +209,6 @@ https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93
 ![image](https://user-images.githubusercontent.com/98122529/214928509-7d6cae5e-107e-4bcd-baa7-2051f6ddb269.png)<br>
 </details>
 
-## Video Tutorial - this are good supplement for the instructions in this github!
-<details>
-<summary><b>Click here if you prefer a video tutorial!</b></summary>
-OVERKILL GAMING video tutorial - <a href="https://youtu.be/B4-p0ptsRnI">here</a>.<br>
-OVERKILL GAMING video tutorial (updated) - <a href="https://youtu.be/IraA82T1bxE">here</a>.<br>
-baldsealion video tutorial <a href="https://www.youtube.com/watch?v=112Bw7GMqJI">here</a>.<br>
-</details>
 
 ## Using the Clover Install Script
 <details>
