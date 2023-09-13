@@ -36,6 +36,11 @@ A collection of tools that is packaged into an easy to use script that is stream
 I've created and has been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
 
 ## Quick Install Steps - if you are in a hurry then this is what you need (but really you should read the rest of the README!)
+Perform some Windows config first! Boot to Windows and open elevated command prompt -
+1. bcdedit.exe -set {globalsettings} highestmode on 
+2. reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+
+Once done, boot to SteamOS to install Clover!
 1. Boot into SteamOS, then go into Desktop Mode and open a konsole terminal.<br>
 2. Clone the github repo. <br>
    cd ~/ <br>
@@ -82,14 +87,25 @@ https://user-images.githubusercontent.com/98122529/229668217-23d03b25-b72d-47a9-
 ## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
 
-## What's New (as of July 30 2023)
-1. Updated Clover from 5151 to 5154
+## What's New (as of September 12 2023)
+1. Perform best effort to automatically remove rEFInd if it is previously installed
+2. Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
+3. Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!)
+4. Updated config.plist to support Pop!_OS
+5. Updated config.plist to reflect Nobara and Bazzite
+6. New config and new logos for HackBGRT (Windows Internal SSD only)
+7. Clover Toolbox - option to set static theme or random theme
+8. Clover Toolbox - option for DeckHD 1200p screen mod
 
 <details>
 <summary><b>Old Changelog</b></summary>
+<p><b>July 30 2023</b><br>
+1. Updated Clover from 5151 to 5154<br></p>
+
 <p><b>May 24 2023</b><br>
 1. cleanup the Clover Toolbox menu so it is easier to read<br>
 2. cleanup the config.plist<br></p>
+   
 <p><b>May 19 2023</b><br>
 1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.<br>
 2. Clover Toolbox - a simple GUI to toggle settings.<br>
@@ -523,11 +539,4 @@ And in no particular order -<br>
 
 
 ## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
-- Perform best effort to automatically remove rEFInd if it is previously installed
-- Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
-- Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!)
-- Updated config.plist to support Pop!_OS
-- Updated config.plist to reflect Nobara and Bazzite
-- New config and new logos for HackBGRT (Windows Internal SSD only)
-- Clover Toolbox - option to set static theme or random theme
-- Clover Toolbox - option for DeckHD 1200p screen mod
+- nothing at the moment
