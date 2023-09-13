@@ -91,6 +91,10 @@ Once done, boot to SteamOS to install Clover!
 ## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
 
+## What's New (as of September 13 2023)
+1. added notification dialog box after changing themes
+2. resized BMPs and new config for HackBGRT
+
 ## What's New (as of September 12 2023)
 1. Perform best effort to automatically remove rEFInd if it is previously installed
 2. Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
