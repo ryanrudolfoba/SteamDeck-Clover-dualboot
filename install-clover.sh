@@ -301,6 +301,7 @@ then
 Theme_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 300 --list \\
 	--column "Theme Name" \$(echo \$PASSWORD | sudo -S ls -l /esp/efi/clover/themes | cut -d " " -f 9) )
 	echo \$PASSWORD | sudo -S sed -i '/<key>Theme<\\/key>/!b;n;c\\\t\\t<string>'\$Theme_Choice'<\\/string>' /esp/efi/clover/config.plist
+	zenity --warning --title "Clover Toolbox" --text "Theme has been changed to \$Theme_Choice!" --width 400 --height 75
 
 elif [ "\$Choice" == "Timeout" ]
 then
