@@ -30,11 +30,11 @@ boot=\EFI\Microsoft\bootmgfw.efi
 #  - 1/54 chance for splash.bmp, automatically positioned
 #  - 50/54 chance for probable.bmp, automatically positioned
 # Default: just one image.
-image=path=\EFI\HackBGRT\alienware.bmp
-image=path=\EFI\HackBGRT\bestbuy.bmp
-image=path=\EFI\HackBGRT\coreboot.bmp
-image=path=\EFI\HackBGRT\rog.bmp
-image=path=\EFI\HackBGRT\splash.bmp
+image=x=auto,y=300,path=\EFI\HackBGRT\alienware.bmp
+image=x=auto,y=150,path=\EFI\HackBGRT\bestbuy.bmp
+image=x=auto,y=150,path=\EFI\HackBGRT\coreboot.bmp
+image=x=auto,y=100,path=\EFI\HackBGRT\rog.bmp
+image=x=auto,y=150,path=\EFI\HackBGRT\splash.bmp
 
 # Preferred resolution. Use 0x0 for maximum and -1x-1 for original.
 resolution=0x0
