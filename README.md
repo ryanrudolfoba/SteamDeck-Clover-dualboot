@@ -7,7 +7,6 @@ A collection of tools that is packaged into an easy to use script that is stream
 * The main program that does all the heavy lifting is [Clover - a graphical boot manager / boot loader.](https://github.com/CloverHackyColor/CloverBootloader)
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
-* Custom Windows splash / boot logo is made possible by [HackBGRT.](https://github.com/Metabolix/HackBGRT) (I modified it a bit and recompiled it to play nicely with Clover script)
 
 
 > **NOTE**\
@@ -91,11 +90,19 @@ Once done, boot to SteamOS to install Clover!
 ## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
 
-## What's New (as of September 13 2023)
+## What's New (as of September 26 2023)
+1. Does not rely on HackBGRT anymore! I've integrated my [BGRT Logo Changer script.](https://github.com/ryanrudolfoba/SteamDeck-Logo-Changer)
+2. Added SteamOS version number, build number and kernel number on the custom systemd script (useful when troubleshooting)
+3. Code cleanup on the Clover Toolbox
+4. Updated config.plist
+
+<details>
+<summary><b>Old Changelog</b></summary>
+<p><b>September 13 2023</b><br>
 1. added notification dialog box after changing themes
 2. resized BMPs and new config for HackBGRT
-
-## What's New (as of September 12 2023)
+   
+<p><b>September 12 2023</b><br>
 1. Perform best effort to automatically remove rEFInd if it is previously installed
 2. Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
 3. Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!)
@@ -104,9 +111,7 @@ https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93
 6. New config and new logos for HackBGRT (Windows Internal SSD only)
 7. Clover Toolbox - option to set static theme or random theme
 8. Clover Toolbox - option for DeckHD 1200p screen mod
-
-<details>
-<summary><b>Old Changelog</b></summary>
+   
 <p><b>July 30 2023</b><br>
 1. Updated Clover from 5151 to 5154<br></p>
 
@@ -534,7 +539,6 @@ And in no particular order -<br>
 - baldsealion for creating the custom splash screen for Windows. <br>
 - Kodi Ross from FB Steam Deck Community for the Rick and Morty theme. <br>
 - insanelymac and its forum members for creating beautiful Clover themes. <br>
-- Metabolix for his HackBGRT that loads a custom splash screen (BGRT) for Windows. I modified it a bit so it plays nicely with this Clover script.<br>
 - and the rest of WindowsOnDeck reddit community / discord server!<br>
 - PS I forgot to mention LOUP the author of the OpenAsRoot KDE extension.
 
