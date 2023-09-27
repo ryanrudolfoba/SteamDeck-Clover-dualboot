@@ -269,7 +269,8 @@ Choice=\$(zenity --width 750 --height 400 --list --radiolist --multiple \
 	FALSE Timeout "Set the default timeout to 1 5 10 or 15secs before it boots the default OS."\\
 	FALSE Service "Disable / Enable the Clover EFI entry and Clover systemd service."\\
 	FALSE Boot "Set the OS that will be booted by default."\\
-	FALSE Logo "Replace the BGRT startup logo."\\
+	FALSE NewLogo "Replace the BGRT startup logo."\\
+	False OldLogo "Restore the BGRT startup logo to the default."\\
 	FALSE Resolution "Set the screen resolution if using the DeckHD 1200p screen mod."\\
 	FALSE Uninstall "Choose this to uninstall Clover and revert any changes made."\\
 	TRUE EXIT "***** Exit the Clover Toolbox *****")
@@ -384,9 +385,9 @@ Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple --t
 		zenity --warning --title "Clover Toolbox" --text "The last OS used is now the default boot entry in Clover!" --width 425 --height 75
 	fi
 
-elif [ "\$Choice" == "Logo" ]
+elif [ "\$Choice" == "NewLogo" ]
 then
-Logo_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 300 --list \\
+Logo_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 350 --list \\
 	--column "Logo  Name" \$(ls -l ~/1Clover-tools/logos/*.png | cut -d "/" -f 6) )
 	if [ \$? -eq 1 ]
 	then
@@ -395,6 +396,11 @@ Logo_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 300 --list \
 		echo \$PASSWORD | sudo -S cp ~/1Clover-tools/logos/\$Logo_Choice /esp/efi/steamos/steamos.png
 		zenity --warning --title "Clover Toolbox" --text "BGRT logo has been changed to \$Logo_Choice!" --width 400 --height 75
 	fi
+
+elif [ "\$Choice" == "OldLogo" ]
+then
+	echo \$PASSWORD | sudo -S rm /esp/efi/steamos/steamos.png &> /dev/null
+	zenity --warning --title "Clover Toolbox" --text "BGRT logo has been restored to the default!" --width 400 --height 75
 
 elif [ "\$Choice" == "Resolution" ]
 then
@@ -437,7 +443,7 @@ then
 	done
 
 	# remove custom logo / BGRT
-	echo \$PASSWORD | sudo -S rm /esp/efi/steamos/steamos.png
+	echo \$PASSWORD | sudo -S rm /esp/efi/steamos/steamos.png &> /dev/null
 
 	# delete systemd service
 	echo \$PASSWORD | sudo -S steamos-readonly disable
