@@ -287,7 +287,7 @@ then
 elif [ "\$Choice" == "Themes" ]
 then
 Theme_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 300 --list \\
-	--column "Theme Name" \$(echo \$PASSWORD | sudo -S ls -l /esp/efi/clover/themes | cut -d " " -f 9) )
+	--column "Theme Name" \$(echo \$PASSWORD | sudo -S ls /esp/efi/clover/themes) )
 
 	if [ \$? -eq 1 ]
 	then
