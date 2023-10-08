@@ -8,6 +8,81 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
+## What's New (as of October 08 2023)
+1. Updated the script to fix the issue of theme names not getting parsed correctly. Thanks to u/Brian_H8951 for pointing out the issue and the fix!
+<details>
+<summary><b>Old Changelog</b></summary>
+<p><b>September 26 2023</b><br>
+1. Does not rely on HackBGRT anymore! I've integrated my [BGRT Logo Changer script.](https://github.com/ryanrudolfoba/SteamDeck-Logo-Changer) <br>
+2. Added SteamOS version number, build number and kernel number on the custom systemd script (useful when troubleshooting) <br>
+3. Code cleanup on the Clover Toolbox <br>
+4. Updated config.plist </p>
+ 
+<p><b>September 13 2023</b><br>
+1. added notification dialog box after changing themes <br>
+2. resized BMPs and new config for HackBGRT </p>
+   
+<p><b>September 12 2023</b><br>
+1. Perform best effort to automatically remove rEFInd if it is previously installed <br>
+2. Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23) <br>
+3. Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!) <br>
+4. Updated config.plist to support Pop!_OS <br>
+5. Updated config.plist to reflect Nobara and Bazzite <br>
+6. New config and new logos for HackBGRT (Windows Internal SSD only) <br>
+7. Clover Toolbox - option to set static theme or random theme <br>
+8. Clover Toolbox - option for DeckHD 1200p screen mod </p>
+   
+<p><b>July 30 2023</b><br>
+1. Updated Clover from 5151 to 5154<br></p>
+
+<p><b>May 24 2023</b><br>
+1. cleanup the Clover Toolbox menu so it is easier to read<br>
+2. cleanup the config.plist<br></p>
+   
+<p><b>May 19 2023</b><br>
+1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.<br>
+2. Clover Toolbox - a simple GUI to toggle settings.<br>
+3. added desktop shortcut to easily access Clover Toolbox.<br>
+4. added several Linux distros - CentOS, Debian, Manjaro.<br></p>
+
+<p><b>April 23 2023</b><br>
+1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.<br>
+2. re-write the inject systemd service on the other rootfs.<br>
+3. added custom splash screen when booting Windows from the internal SSD.<br>
+4. add Clover Boot Manager Service status as non-Steam game to easily check the systemd service from within Game Mode.<br></p>
+
+<p><b>March 31 2023</b><br>
+1. have a simple menu during install to select which OS will be the default in the Clover GUI boot menu.<br>
+2. implement systemd service / inject systemd service on the other rootfs.<br></p>
+
+<p><b>March 11 2023</b><br>
+1. rewrote the script <a href="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/7">(thanks arkag!)</a> so it pulls the ISO directly from the Clover repositories.<br>
+2. updated the config.plist so it supports more OS automatically - Kali, Ubuntu and Fedora.<br></p>
+   
+<p><b>February 20 2023</b><br>
+1. added more sanity checks and cleanup in the post-install script.<br>
+2. cleaned up the config.plist so it is more manageable and easier to read.<br>
+3. changed the mouse pointer speed to 20 to close the <a href="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/3">issue reported here.</a><br></p>
+
+<p><b>January 26 2023</b><br>
+1. <b>added experimental version (this is what i use)</b> - no need for Windows powershell script / scheduled task.<br>
+2. color coded the install script - if the output is RED then something went wrong.<br>
+3. updated script and scheduled task on the Windows side.<br>
+4. updated config.plist to support Windows, Batocera and Ventoy on microSD / external SSD.<br>
+5. easily add / remove themes via drag and drop / copy-paste in Dolphin file manager.<br>
+6. add multiple themes and Clover will automatically choose a random theme on each reboot.<br>
+7. Catalina and Mojave theme bundled by default.<br>
+8. community contributed icons / logos for SteamOS and Batocera (thanks to WindowsOnDeck reddit members u/ch3vr0n5 and u/ChewyYui).<br>
+9. re-wrote and re-organized the README.<br></p>
+
+<p><b>January 11 2023</b><br>
+1. Initial Release based on <a href="https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5151">Clover v5151.</a><br>
+2. Does not rename / move Windows EFI entries.<br>
+3. When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own.<br>
+4. Makes as few changes as possible - doesn't rely on pacman repositories, no systemd scripts and no EasyUEFI.<br>
+5. All-in-One script - install, disable / re-enable, uninstall.<br></p>
+</details>
+
 
 > **NOTE**\
 > If you are going to use this script for a video tutorial, PLEASE reference on your video where you got the script! This will make the support process easier!
@@ -87,81 +162,6 @@ Once done, boot to SteamOS to install Clover!
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.<br>
 ![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)<br>
 
-## Sample Video - Catalina Theme and Booting to Windows with Custom Splash Screen, BootVideoRandomizer and Playnite!
-https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/9fd93a4a-c279-44fa-8ff2-58552a454c7d.mp4
-
-## What's New (as of September 26 2023)
-1. Does not rely on HackBGRT anymore! I've integrated my [BGRT Logo Changer script.](https://github.com/ryanrudolfoba/SteamDeck-Logo-Changer)
-2. Added SteamOS version number, build number and kernel number on the custom systemd script (useful when troubleshooting)
-3. Code cleanup on the Clover Toolbox
-4. Updated config.plist
-
-<details>
-<summary><b>Old Changelog</b></summary>
-<p><b>September 13 2023</b><br>
-1. added notification dialog box after changing themes
-2. resized BMPs and new config for HackBGRT
-   
-<p><b>September 12 2023</b><br>
-1. Perform best effort to automatically remove rEFInd if it is previously installed
-2. Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23)
-3. Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!)
-4. Updated config.plist to support Pop!_OS
-5. Updated config.plist to reflect Nobara and Bazzite
-6. New config and new logos for HackBGRT (Windows Internal SSD only)
-7. Clover Toolbox - option to set static theme or random theme
-8. Clover Toolbox - option for DeckHD 1200p screen mod
-   
-<p><b>July 30 2023</b><br>
-1. Updated Clover from 5151 to 5154<br></p>
-
-<p><b>May 24 2023</b><br>
-1. cleanup the Clover Toolbox menu so it is easier to read<br>
-2. cleanup the config.plist<br></p>
-   
-<p><b>May 19 2023</b><br>
-1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.<br>
-2. Clover Toolbox - a simple GUI to toggle settings.<br>
-3. added desktop shortcut to easily access Clover Toolbox.<br>
-4. added several Linux distros - CentOS, Debian, Manjaro.<br></p>
-
-<p><b>April 23 2023</b><br>
-1. added new themes - Apocalypse, Crystal, Gothic, Rick and Morty.<br>
-2. re-write the inject systemd service on the other rootfs.<br>
-3. added custom splash screen when booting Windows from the internal SSD.<br>
-4. add Clover Boot Manager Service status as non-Steam game to easily check the systemd service from within Game Mode.<br></p>
-
-<p><b>March 31 2023</b><br>
-1. have a simple menu during install to select which OS will be the default in the Clover GUI boot menu.<br>
-2. implement systemd service / inject systemd service on the other rootfs.<br></p>
-
-<p><b>March 11 2023</b><br>
-1. rewrote the script <a href="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/7">(thanks arkag!)</a> so it pulls the ISO directly from the Clover repositories.<br>
-2. updated the config.plist so it supports more OS automatically - Kali, Ubuntu and Fedora.<br></p>
-   
-<p><b>February 20 2023</b><br>
-1. added more sanity checks and cleanup in the post-install script.<br>
-2. cleaned up the config.plist so it is more manageable and easier to read.<br>
-3. changed the mouse pointer speed to 20 to close the <a href="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/3">issue reported here.</a><br></p>
-
-<p><b>January 26 2023</b><br>
-1. <b>added experimental version (this is what i use)</b> - no need for Windows powershell script / scheduled task.<br>
-2. color coded the install script - if the output is RED then something went wrong.<br>
-3. updated script and scheduled task on the Windows side.<br>
-4. updated config.plist to support Windows, Batocera and Ventoy on microSD / external SSD.<br>
-5. easily add / remove themes via drag and drop / copy-paste in Dolphin file manager.<br>
-6. add multiple themes and Clover will automatically choose a random theme on each reboot.<br>
-7. Catalina and Mojave theme bundled by default.<br>
-8. community contributed icons / logos for SteamOS and Batocera (thanks to WindowsOnDeck reddit members u/ch3vr0n5 and u/ChewyYui).<br>
-9. re-wrote and re-organized the README.<br></p>
-
-<p><b>January 11 2023</b><br>
-1. Initial Release based on <a href="https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5151">Clover v5151.</a><br>
-2. Does not rename / move Windows EFI entries.<br>
-3. When the dual boot breaks, just boot back manually to SteamOS and it will fix the dual boot entries on its own.<br>
-4. Makes as few changes as possible - doesn't rely on pacman repositories, no systemd scripts and no EasyUEFI.<br>
-5. All-in-One script - install, disable / re-enable, uninstall.<br></p>
-</details>
 
 ## Why Use this Clover install script for dual boot?!?
 1. Makes as little changes as possible to the SteamOS / Windows installation.
