@@ -494,7 +494,16 @@ This happens even if not using dualboot / Clover / rEFInd.<br>
 </details>
 
 <details>
-<summary><b>Q8. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!</b></summary>
+<summary><b>Q8. I see 'Error mounting ISO!' when attempting to run the Clover script!</b></summary>
+This can happen if you have an old version of SteamOS installed or have installed SteamOS from the recovery image which is missing 7zip.<br>
+1. Boot to SteamOS. <br>
+2. Perform a System Update by going to Steam > Settings > System > Check for Updates <br>
+3. Once update has completed, restart in to SteamOS. <br>
+4. Go to Desktop Mode and rerun the Clover script. <br>
+</details>
+
+<details>
+<summary><b>Q9. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!</b></summary>
 1. Boot into SteamOS.<br>
 2. Go to Desktop Mode.<br>
 3. Double-click Clover Toolbox desktop icon. <br>
@@ -506,12 +515,12 @@ This happens even if not using dualboot / Clover / rEFInd.<br>
 </details>
 
 <details>
-<summary><b>Q9. I like your work how do I show a token of appreciation?</b></summary>
+<summary><b>Q10. I like your work how do I show a token of appreciation?</b></summary>
 You can send me a message on reddit / discord to say thanks!<br>
 </details>
 
 <details>
-<summary><b>Q10. Do you accept donations?</b></summary>
+<summary><b>Q11. Do you accept donations?</b></summary>
 If you want to donate, you can drop by at my <a href="https://greatcyclechallenge.ca/riders/RyanrudolfOba">fundraising page</a> to help fight kids cancer! I ride my bike in summertime to help raise awareness and help fight kids cancer! All proceeds go to <a href="https://www.sickkids.ca/">Canada Sick Kids Foundation.</a><br>
 </details>
 
