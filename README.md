@@ -8,10 +8,14 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
-## What's New (as of October 08 2023)
-1. Updated the script to fix the issue of theme names not getting parsed correctly. Thanks to u/Brian_H8951 for pointing out the issue and the fix!
+## What's New (as of October 26 2023)
+1. add sanity check for 7z binary. If the binary doesnt exist then the SteamOS is very old need to update SteamOS first!
+2. Clover Toolbox - capture the free space on EFI partition. Useful when doing troubleshooting.
 <details>
 <summary><b>Old Changelog</b></summary>
+<p><b>October 28 2023</b><br>
+1. Updated the script to fix the issue of theme names not getting parsed correctly. Thanks to u/Brian_H8951 for pointing out the issue and the fix!
+
 <p><b>September 26 2023</b><br>
 1. Does not rely on HackBGRT anymore! I've integrated my [BGRT Logo Changer script.](https://github.com/ryanrudolfoba/SteamDeck-Logo-Changer) <br>
 2. Added SteamOS version number, build number and kernel number on the custom systemd script (useful when troubleshooting) <br>
@@ -516,12 +520,18 @@ This can happen if you have an old version of SteamOS installed or have installe
 
 <details>
 <summary><b>Q10. I like your work how do I show a token of appreciation?</b></summary>
-You can send me a message on reddit / discord to say thanks!<br>
+If you like my work please show support by subscribing to my <a href="https://www.youtube.com/@10MinuteSteamDeckGamer">YouTube channel @10MinuteSteamDeckGamer.</a> <br>
 </details>
 
 <details>
 <summary><b>Q11. Do you accept donations?</b></summary>
-If you want to donate, you can drop by at my <a href="https://greatcyclechallenge.ca/riders/RyanrudolfOba">fundraising page</a> to help fight kids cancer! I ride my bike in summertime to help raise awareness and help fight kids cancer! All proceeds go to <a href="https://www.sickkids.ca/">Canada Sick Kids Foundation.</a><br>
+Monetary donations are also encouraged if you find this project helpful. Your donation inspires me to continue research on the Steam Deck! Clover script, 70Hz mod, SteamOS microSD, Secure Boot, etc.
+
+Scan the QR code or click the image below to visit my donation page.
+
+<p align="center">
+<a href="https://www.paypal.com/donate/?business=VSMP49KYGADT4&no_recurring=0&item_name=Your+donation+inspires+me+to+continue+research+on+the+Steam+Deck%21%0AClover+script%2C+70Hz+mod%2C+SteamOS+microSD%2C+Secure+Boot%2C+etc.%0A%0A&currency_code=CAD"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/QRCode.png"/> </a>
+</p>
 </details>
 
 ## Known Issue
