@@ -11,6 +11,8 @@ A collection of tools that is packaged into an easy to use script that is stream
 ## What's New (as of October 26 2023)
 1. add sanity check for 7z binary. If the binary doesnt exist then the SteamOS is very old need to update SteamOS first!
 2. Clover Toolbox - capture the free space on EFI partition. Useful when doing troubleshooting.
+3. Custom BGRT / Logo will be displayed when the Steam Deck is powered on.
+
 <details>
 <summary><b>Old Changelog</b></summary>
 <p><b>October 28 2023</b><br>
