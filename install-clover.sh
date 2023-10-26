@@ -95,6 +95,16 @@ then
 	sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\STEAMOS\\STEAMCL\.efi<\/string>' custom/config.plist
 fi
 
+# sanity check - is 7z available
+if [ -e /usr/bin/7z ]
+then
+	echo -e "$GREEN"7z exists! Let\'s download the Clover ISO!
+else
+	echo -e "$RED"7z is not available!
+	echo -e "$RED"This is most likely due to an old SteamOS version. Update SteamOS first then run the Clover script install again.
+	exit
+fi
+
 # obtain Clover ISO
 clover_archive=$(curl -s -O -L -w "%{filename_effective}" "https://github.com/CloverHackyColor/CloverBootloader/releases/download/${CLOVER_VERSION}/Clover-${CLOVER_VERSION}-X64.iso.7z")
 clover_base=$(basename -s .7z $clover_archive)
@@ -225,7 +235,9 @@ SteamOS=\$(efibootmgr | grep -i SteamOS | colrm 9 | colrm 1 4)
 efibootmgr -o \$Clover,\$SteamOS &> /dev/null
 
 echo "*** Current state of EFI entries ****" >> \$CloverStatus
-efibootmgr | grep -iv Boot2 >> \$CloverStatus
+efibootmgr | grep -iv 'Boot2\\|PXE' >> \$CloverStatus
+echo "*** Current state of EFI partition ****" >> \$CloverStatus
+df -h | grep -i 'Filesystem\\|esp' >> \$CloverStatus
 chown deck:deck \$CloverStatus
 EOF
 
@@ -282,7 +294,7 @@ then
 
 elif [ "\$Choice" == "Status" ]
 then
-	zenity --warning --title "Clover Toolbox" --text "\$(fold -w 120 -s ~/1Clover-tools/status.txt)" --width 400 --height 600
+	zenity --warning --title "Clover Toolbox" --text "\$(fold -w 120 -s ~/1Clover-tools/status.txt)" --width 1000 --height 400
 
 elif [ "\$Choice" == "Themes" ]
 then
