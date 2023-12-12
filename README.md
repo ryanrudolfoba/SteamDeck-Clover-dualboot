@@ -8,15 +8,18 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
-## What's New (as of October 26 2023)
-1. add sanity check for 7z binary. If the binary doesnt exist then the SteamOS is very old need to update SteamOS first!
-2. Clover Toolbox - capture the free space on EFI partition. Useful when doing troubleshooting.
-3. Custom BGRT / Logo will be displayed when the Steam Deck is powered on.
-
+## What's New (as of December 12 2023)
+1. Updated for Clover release 5156 <br>
+2. New Steam Deck OLED BGRT Logo
 <details>
 <summary><b>Old Changelog</b></summary>
 <p><b>October 28 2023</b><br>
 1. Updated the script to fix the issue of theme names not getting parsed correctly. Thanks to u/Brian_H8951 for pointing out the issue and the fix!
+
+<p><b>October 26 2023</b><br>
+1. add sanity check for 7z binary. If the binary doesnt exist then the SteamOS is very old need to update SteamOS first! <br>
+2. Clover Toolbox - capture the free space on EFI partition. Useful when doing troubleshooting. <br>
+3. Custom BGRT / Logo will be displayed when the Steam Deck is powered on. </p>p
 
 <p><b>September 26 2023</b><br>
 1. Does not rely on HackBGRT anymore! I've integrated my [BGRT Logo Changer script.](https://github.com/ryanrudolfoba/SteamDeck-Logo-Changer) <br>
