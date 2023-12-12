@@ -2,7 +2,7 @@
 # May 24 2003
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-CLOVER_VERSION='5155'
+CLOVER_VERSION='5156'
 
 clear
 
@@ -400,7 +400,7 @@ Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple --t
 elif [ "\$Choice" == "NewLogo" ]
 then
 Logo_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 350 --list \\
-	--column "Logo  Name" \$(ls -l ~/1Clover-tools/logos/*.png | cut -d "/" -f 6) )
+	--column "Logo  Name" \$(ls -l ~/1Clover-tools/logos/*.png | sed s/^.*\\\/\\//) )  
 	if [ \$? -eq 1 ]
 	then
 		echo User pressed CANCEL. Going back to main menu.
