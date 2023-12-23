@@ -123,7 +123,7 @@
 					<key>Image</key>
 					<string>os_batocera</string>
 					<key>Path</key>
-					<string>\EFI\batocera\grubx64.efi</string>
+					<string>\EFI\BOOT\BOOTX64.efi</string>
 					<key>Title</key>
 					<string>Batocera</string>
 					<key>Type</key>
