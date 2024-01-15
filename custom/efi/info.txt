@@ -1,0 +1,2 @@
+Custom Clover EFI is placed here.
+The only difference for the cusom Clover EFI is that it hides the OPTIONS button in the main Clover menu.
