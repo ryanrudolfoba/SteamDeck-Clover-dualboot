@@ -2,7 +2,7 @@
 # May 24 2003
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-CLOVER_VERSION='5156'
+CLOVER_VERSION='5157'
 
 clear
 
@@ -28,16 +28,6 @@ then
 else
 	echo -e "$RED"Sudo password is blank! Setup a sudo password first and then re-run script!
 	passwd
-	exit
-fi
-
-# sudo password is already set by the end user, all good let's go!
-echo -e "$current_password\n" | sudo -S ls &> /dev/null
-if [ $? -eq 0 ]
-then
-	echo -e "$GREEN"1st sanity check. So far so good!
-else
-	echo -e "$RED"Something went wrong on the 1st sanity check! Re-run script!
 	exit
 fi
 
@@ -111,13 +101,13 @@ clover_base=$(basename -s .7z $clover_archive)
 /usr/bin/7z x $clover_archive -aoa $clover_base
 
 # mount Clover ISO
-sudo mkdir ~/temp-clover && sudo mount $clover_base ~/temp-clover &> /dev/null
+echo -e "$current_password\n" | sudo -S sudo mkdir ~/temp-clover && sudo mount $clover_base ~/temp-clover &> /dev/null
 if [ $? -eq 0 ]
 then
 	echo -e "$GREEN"2nd sanity check. ISO has been mounted!
 else
 	echo -e "$RED"Error mounting ISO!
-	sudo umount ~/temp-clover
+	echo -e "$current_password\n" | sudo -S umount ~/temp-clover
 	rmdir ~/temp-clover
 	exit
 fi
@@ -147,12 +137,10 @@ done
 
 # install Clover to the EFI system partition
 sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\clover\cloverx64.efi" &> /dev/null
+sudo mv /esp/efi/boot/bootx64.efi /esp/efi/boot/bootx64.efi.orig && sudo cp /esp/efi/clover/cloverx64.efi /esp/efi/boot/bootx64.efi
 
 #Backup and disable the Windows EFI entry!
-sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft/Boot/bootmgfw.efi.orig \
-	&& sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft \
-	&& sudo mv /esp/efi/boot/bootx64.efi /esp/efi/boot/bootx64.efi.orig \
-	&& sudo cp /esp/efi/clover/cloverx64.efi /esp/efi/boot/bootx64.efi
+sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft/Boot/bootmgfw.efi.orig && sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft
 
 # re-arrange the boot order and make Clover the priority!
 Clover=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
@@ -183,6 +171,7 @@ cp custom/open_as_root.desktop ~/.local/share/kservices5/ServiceMenus
 mkdir ~/1Clover-tools &> /dev/null
 rm -f ~/1Clover-tools/* &> /dev/null
 cp -R custom/logos ~/1Clover-tools &> /dev/null
+cp -R custom/efi ~/1Clover-tools &> /dev/null
 sudo cp ~/1Clover-tools/logos/SteamDeckLogo.png /esp/efi/steamos/steamos.png &> /dev/null
 
 # clover-bootmanager.sh - script that gets called by clover-bootmanager.service on startup
@@ -271,7 +260,7 @@ fi
 
 while true
 do
-Choice=\$(zenity --width 750 --height 400 --list --radiolist --multiple \
+Choice=\$(zenity --width 750 --height 425 --list --radiolist --multiple \
 	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
 	--column "Select One" \\
 	--column "Option" \\
@@ -284,6 +273,7 @@ Choice=\$(zenity --width 750 --height 400 --list --radiolist --multiple \
 	FALSE NewLogo "Replace the BGRT startup logo."\\
 	False OldLogo "Restore the BGRT startup logo to the default."\\
 	FALSE Resolution "Set the screen resolution if using the DeckHD 1200p screen mod."\\
+	FALSE Custom "Replace Clover EFI with a custom one that hides the OPTIONS button."\\
 	FALSE Uninstall "Choose this to uninstall Clover and revert any changes made."\\
 	TRUE EXIT "***** Exit the Clover Toolbox *****")
 
@@ -298,7 +288,7 @@ then
 
 elif [ "\$Choice" == "Themes" ]
 then
-Theme_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 300 --list \\
+Theme_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 325 --list \\
 	--column "Theme Name" \$(echo \$PASSWORD | sudo -S ls /esp/efi/clover/themes) )
 
 	if [ \$? -eq 1 ]
@@ -439,6 +429,11 @@ Resolution_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multip
 		zenity --warning --title "Clover Toolbox" --text "Screen resolution is now set to 1920x1200." --width 400 --height 75
 	fi
 
+elif [ "\$Choice" == "Custom" ]
+then
+	echo \$PASSWORD | sudo -S cp ~/1Clover-tools/efi/custom_clover_5157.efi /esp/efi/clover/cloverx64.efi
+	zenity --warning --title "Clover Toolbox" --text "Custom Clover EFI has been installed!" --width 400 --height 75
+
 elif [ "\$Choice" == "Uninstall" ]
 then
 	# restore Windows EFI entry from backup
@@ -468,7 +463,7 @@ then
 	rm ~/.local/share/kservices5/ServiceMenus/open_as_root.desktop
 
 	rm -rf ~/SteamDeck-Clover-dualboot
-	rm -rf ~/1Clover-tools/*
+	rm -rf ~/1Clover-tools/
 	rm ~/Desktop/Clover-Toolbox
 	
 	zenity --warning --title "Clover Toolbox" --text "Clover has been uninstalled and the Windows EFI entry has been activated!" --width 600 --height 75
