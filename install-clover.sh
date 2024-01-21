@@ -260,12 +260,13 @@ fi
 
 while true
 do
-Choice=\$(zenity --width 750 --height 425 --list --radiolist --multiple \
+Choice=\$(zenity --width 750 --height 450 --list --radiolist --multiple \
 	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
 	--column "Select One" \\
 	--column "Option" \\
 	--column="Description - Read this carefully!"\\
 	FALSE Status "Choose this when filing a bug report!"\\
+	FALSE Batocera "Choose config between Batocera v39 (and newer) or v38 (and older)."\\
 	FALSE Themes "Select a static theme or random themes."\\
 	FALSE Timeout "Set the default timeout to 1 5 10 or 15secs before it boots the default OS."\\
 	FALSE Service "Disable / Enable the Clover EFI entry and Clover systemd service."\\
@@ -285,6 +286,34 @@ then
 elif [ "\$Choice" == "Status" ]
 then
 	zenity --warning --title "Clover Toolbox" --text "\$(fold -w 120 -s ~/1Clover-tools/status.txt)" --width 1000 --height 400
+
+elif [ "\$Choice" == "Batocera" ]
+then
+Batocera_Choice=\$(zenity --width 550 --height 220 --list --radiolist --multiple --title "Clover Toolbox" --column "Select One" \\
+	--column "Option" --column="Description - Read this carefully!"\\
+	FALSE v39 "Set the Clover config for Batocera v39 and newer."\\
+	FALSE v38 "Set the Clover config for Batocera v38 and older."\\
+	TRUE EXIT "***** Exit the Clover Toolbox *****")
+
+	if [ \$? -eq 1 ] || [ "\$Batocera_Choice" == "EXIT" ]
+	then
+		echo User pressed CANCEL. Going back to main menu.
+
+	elif [ "\$Batocera_Choice" == "v39" ]
+	then
+		# Update the config.plist for Batocera v39 and newer
+		echo \$PASSWORD | sudo -S sed -i '/<string>os_batocera<\\/string>/!b;n;n;c\\\t\\t\\t\\t\\t<string>\\\EFI\\\batocera\\\grubx64\\.efi<\\/string>' /esp/efi/clover/config.plist
+
+		zenity --warning --title "Clover Toolbox" --text "Clover config has been updated for Batocera v39 and newer!" --width 450 --height 75
+
+	elif [ "\$Batocera_Choice" == "v38" ]
+	then
+		# Update the config.plist for Batocera v38 and older
+		echo \$PASSWORD | sudo -S sed -i '/<string>os_batocera<\\/string>/!b;n;n;c\\\t\\t\\t\\t\\t<string>\\\EFI\\\BOOT\\\BOOTX64\\.efi<\\/string>' /esp/efi/clover/config.plist
+
+		zenity --warning --title "Clover Toolbox" --text "Clover config has been updated for Batocera v38 and older!" --width 450 --height 75
+
+	fi
 
 elif [ "\$Choice" == "Themes" ]
 then
