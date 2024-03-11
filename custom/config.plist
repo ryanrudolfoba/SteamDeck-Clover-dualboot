@@ -221,6 +221,18 @@
 				</dict>
 				<dict>
 					<key>Image</key>
+					<string>os_endeavouros</string>
+					<key>Path</key>
+					<string>\EFI\endeavouros\grubx64.efi</string>
+					<key>Title</key>
+					<string>EndeavourOS</string>
+					<key>Type</key>
+					<string>Linux</string>
+					<key>FullTitle</key>
+					<string>EndeavourOS Linux</string>
+				</dict>
+				<dict>
+					<key>Image</key>
 					<string>os_ubuntu</string>
 					<key>Path</key>
 					<string>\EFI\systemd\systemd-bootx64.efi</string>
