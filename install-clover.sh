@@ -330,19 +330,20 @@ Theme_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 325 --list 
 
 elif [ "\$Choice" == "Timeout" ]
 then
-Timeout_Choice=\$(zenity --width 500 --height 275 --list --radiolist --multiple \
+Timeout_Choice=\$(zenity --width 500 --height 300 --list --radiolist --multiple \
 	--title "Clover Toolbox" --column "Select One" --column "Option" --column="Description - Read this carefully!"\\
 	FALSE 1 "Set the default timeout to 1sec."\\
 	FALSE 5 "Set the default timeout to 5secs."\\
 	FALSE 10 "Set the default timeout to 10secs."\\
 	FALSE 15 "Set the default timeout to 15secs."\\
+ 	FALSE 60 "Set the default timeout to 60secs."\\
 	TRUE EXIT "***** Exit the Clover Toolbox *****")
 
 	if [ \$? -eq 1 ] || [ "\$Timeout_Choice" == "EXIT" ]
 	then
 		echo User pressed CANCEL. Going back to main menu.
 	else
-		# change the Default Timeout in config,plist 
+		# change the Default Timeout in config.plist 
 		echo \$PASSWORD | sudo -S sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>'\$Timeout_Choice'<\\/integer>' /esp/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to \$Timeout_Choice !" --width 400 --height 75
 	fi
