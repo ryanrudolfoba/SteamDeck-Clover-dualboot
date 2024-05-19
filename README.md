@@ -602,4 +602,4 @@ And in no particular order -<br>
 
 
 ## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
-- nothing at the moment
+- implement /etc whitelist once SteamOS 3.6 rolls out to Stable
