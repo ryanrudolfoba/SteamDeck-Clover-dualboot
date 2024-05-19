@@ -11,7 +11,7 @@ A collection of tools that is packaged into an easy to use script that is stream
 ## What's New (as of May 19 2024)
 1. Removed the 7z sanity check as this is now installed by default in SteamOS 3.5.x / 3.6.x
 2. Added ESP sanity check - make sure there is enough space in ESP before doing anything
-3. Removed option for Windows To Go sdcard - you shouldn't run Windows from sdcard anyways!
+3. Removed option for Windows To Go sdcard - you shouldn't run Windows from sdcard anyways! This will also fix the issue of intermittently showing Windows To Go sdcard when Windows is updated.
 4. code cleanup
 
 
