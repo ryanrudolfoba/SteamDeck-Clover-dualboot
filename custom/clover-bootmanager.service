@@ -1,0 +1,10 @@
+[Unit]
+Description=Custom systemd service for Clover - GUI Boot Manager.
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c '/etc/systemd/system/clover-bootmanager.sh'
+
+[Install]
+WantedBy=multi-user.target
