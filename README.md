@@ -8,6 +8,12 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
+## What's New (as of May 19 2024)
+1. Removed the 7z sanity check as this is now installed by default in SteamOS 3.5.x / 3.6.x
+2. Added ESP sanity check - make sure there is enough space in ESP before doing anything
+3. Removed option for Windows To Go sdcard - you shouldn't run Windows from sdcard anyways!
+4. code cleanup
+
 
 ## What's New (as of January 21 2024)
 1. Minor update to easily change config between Batocera v38 and the upcoming Batocera v39. <br>
