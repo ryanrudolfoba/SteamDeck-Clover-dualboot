@@ -11,7 +11,7 @@
 		<key>Debug</key>
 		<false/>
 		<key>DefaultLoader</key>
-		<string>\EFI\MICROSOFT\bootmgfw.efi</string>
+		<string>\EFI\STEAMOS\STEAMCL.efi</string>
 		<key>DefaultVolume</key>
 		<string>esp</string>
 		<key>DisableCloverHotkeys</key>
@@ -104,20 +104,6 @@
 					<string>Windows To Go - External SSD</string>
 					<key>VolumeType</key>
 					<string>External</string>
-				</dict>
-				<dict>
-					<key>Image</key>
-					<string>os_win</string>
-					<key>Path</key>
-					<string>\EFI\MICROSOFT\boot\bootmgfw.efi</string>
-					<key>Title</key>
-					<string>Windows</string>
-					<key>Type</key>
-					<string>Windows</string>
-					<key>FullTitle</key>
-					<string>Windows To Go - sdcard</string>
-					<key>VolumeType</key>
-					<string>Internal</string>
 				</dict>
 				<dict>
 					<key>Image</key>
