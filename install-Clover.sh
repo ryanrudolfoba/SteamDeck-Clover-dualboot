@@ -37,15 +37,15 @@ else
 fi
 
 # sanity check - is there enough spoace on esp
-if [ $ESP -ge 30000 ]
-then
-	echo ESP partition has $ESP KB free space.
-	echo ESP partition has enough free space.
-else
-	echo ESP partition has $ESP KB free space.
-	echo Not enough space on the ESP partition!
-	exit
-fi
+#if [ $ESP -ge 30000 ]
+#then
+#	echo ESP partition has $ESP KB free space.
+#	echo ESP partition has enough free space.
+#else
+#	echo ESP partition has $ESP KB free space.
+#	echo Not enough space on the ESP partition!
+#	exit
+#fi
 
 # sanity check - is rEFInd installed?
 efibootmgr | grep -i refind
