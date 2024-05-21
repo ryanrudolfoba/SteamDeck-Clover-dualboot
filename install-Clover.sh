@@ -8,7 +8,6 @@ CLOVER_VERSION=5157
 CLOVER_URL=https://github.com/CloverHackyColor/CloverBootloader/releases/download/$CLOVER_VERSION/Clover-$CLOVER_VERSION-X64.iso.7z
 CLOVER_ARCHIVE=$(curl -s -O -L -w "%{filename_effective}" $CLOVER_URL)
 CLOVER_BASE=$(basename -s .7z $CLOVER_ARCHIVE)
-ESP=$(df | grep -i esp | tr -s ' ' | cut -d " " -f 4)
 
 clear
 
@@ -37,15 +36,31 @@ else
 fi
 
 # sanity check - is there enough spoace on esp
-#if [ $ESP -ge 30000 ]
-#then
-#	echo ESP partition has $ESP KB free space.
-#	echo ESP partition has enough free space.
-#else
-#	echo ESP partition has $ESP KB free space.
-#	echo Not enough space on the ESP partition!
-#	exit
-#fi
+mkdir ~/temp-ESP
+echo -e "$current_password\n" | sudo -S mount /dev/nvme0n1p1 ~/temp-ESP
+if [ $? -eq 0 ]
+then
+	echo ESP has been mounted.
+else
+	echo Error mounting ESP.
+	rmdir ~/temp-ESP
+	exit
+fi
+
+ESP=$(df | grep -i temp-ESP | tr -s ' ' | cut -d " " -f 4)
+if [ $ESP -ge 30000 ]
+then
+	echo ESP partition has $ESP KB free space.
+	echo ESP partition has enough free space.
+	echo -e "$current_password\n" | sudo -S umount ~/temp-ESP
+	rmdir ~/temp-ESP
+else
+	echo ESP partition has $ESP KB free space.
+	echo Not enough space on the ESP partition!
+	echo -e "$current_password\n" | sudo -S umount ~/temp-ESP
+	rmdir ~/temp-ESP
+	exit
+fi
 
 # sanity check - is rEFInd installed?
 efibootmgr | grep -i refind
