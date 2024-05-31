@@ -145,8 +145,8 @@ Config will be updated based on user selection - <br>
 
 I've created and has been using this script since December 2022 and a lot of users are reporting success too. You are in good hands - I know what I'm doing but I just need the standard disclaimer to protect myself from any liability.
 
-## [Video Tutorial - How to Install Clover for Steam Deck dual boot](https://www.youtube.com/watch?v=heo2yFycnsM)
-[Click the image below for a video tutorial and to see the functionalities of the script!](https://www.youtube.com/watch?v=heo2yFycnsM)
+## [Video Tutorial - How to Install Clover for Steam Deck dual boot](https://www.youtube.com/watch?v=HDnxOw6j3EY&t=975s)
+[Click the image below for a video tutorial and to see the functionalities of the script!](https://www.youtube.com/watch?v=HDnxOw6j3EY&t=975s)
 </b>
 <p align="center">
 <a href="https://www.youtube.com/watch?v=heo2yFycnsM"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/banner.png"/> </a>
