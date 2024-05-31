@@ -48,7 +48,7 @@ else
 fi
 
 ESP=$(df /dev/nvme0n1p1 --output=avail | tail -n1)
-if [ $ESP -ge 30000 ]
+if [ $ESP -ge 15000 ]
 then
 	echo ESP partition has $ESP KB free space.
 	echo ESP partition has enough free space.
@@ -57,6 +57,7 @@ then
 else
 	echo ESP partition has $ESP KB free space.
 	echo Not enough space on the ESP partition!
+	echo -e "$current_password\n" | sudo -S du -hd2 /esp
 	echo -e "$current_password\n" | sudo -S umount ~/temp-ESP
 	rmdir ~/temp-ESP
 	exit
