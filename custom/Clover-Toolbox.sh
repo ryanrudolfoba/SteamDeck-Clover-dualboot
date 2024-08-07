@@ -84,7 +84,7 @@ Timeout_Choice=$(zenity --width 500 --height 300 --list --radiolist --multiple 	
 	FALSE 5 "Set the default timeout to 5secs."\
 	FALSE 10 "Set the default timeout to 10secs."\
 	FALSE 15 "Set the default timeout to 15secs."\
- 	FALSE 60 "Set the default timeout to 15secs."\
+ 	FALSE 60 "Set the default timeout to 60secs."\
 	TRUE EXIT "***** Exit the Clover Toolbox *****")
 
 	if [ $? -eq 1 ] || [ "$Timeout_Choice" == "EXIT" ]
