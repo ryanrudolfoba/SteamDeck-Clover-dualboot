@@ -11,104 +11,106 @@ CLOVER_BASE=$(basename -s .7z $CLOVER_ARCHIVE)
 
 clear
 
-echo Clover Dual Boot Install Script 
-echo Translated by Nicvank
+echo Clover Dual Boot Install Script by ryanrudolf
+echo https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
+echo YT - 10MinuteSteamDeckGamer
 sleep 2
 
 if [ "$(passwd --status $(whoami) | tr -s " " | cut -d " " -f 2)" == "P" ]
 then
-    read -s -p "请输入当前sudo密码：" current_password ; echo
-    echo 检查sudo密码是否正确。
-    echo -e "$current_password\n" | sudo -S -k ls &> /dev/null
+	read -s -p "Please enter current sudo password: " current_password ; echo
+	echo Checking if the sudo password is correct.
+	echo -e "$current_password\n" | sudo -S -k ls &> /dev/null
 
-    if [ $? -eq 0 ]
-    then
-        echo Sudo密码是有效的！
-    else
-        echo Sudo密码是错误的！重新运行脚本并确保输入正确的sudo密码！
-        exit
-    fi
+	if [ $? -eq 0 ]
+	then
+		echo Sudo password is good!
+	else
+		echo Sudo password is wrong! Re-run the script and make sure to enter the correct sudo password!
+		exit
+	fi
 else
-    echo Sudo密码是空白的！首先设置一个sudo密码，然后再重新运行脚本！
-    passwd
-    exit
+	echo Sudo password is blank! Setup a sudo password first and then re-run script!
+	passwd
+	exit
 fi
 
+# sanity check - is there enough spoace on esp
 mkdir ~/temp-ESP
 echo -e "$current_password\n" | sudo -S mount /dev/nvme0n1p1 ~/temp-ESP
 if [ $? -eq 0 ]
 then
-    echo ESP已经挂载。
+	echo ESP has been mounted.
 else
-    echo ESP挂载失败。
-    rmdir ~/temp-ESP
-    exit
+	echo Error mounting ESP.
+	rmdir ~/temp-ESP
+	exit
 fi
 
 ESP=$(df /dev/nvme0n1p1 --output=avail | tail -n1)
 if [ $ESP -ge 15000 ]
 then
-    echo ESP分区有$ESP KB空闲空间。
-    echo ESP分区有足够的空闲空间。
+	echo ESP partition has $ESP KB free space.
+	echo ESP partition has enough free space.
 	echo -e "$current_password\n" | sudo -S umount ~/temp-ESP
 	rmdir ~/temp-ESP
 else
-    echo ESP分区有$ESP KB空闲空间。
-    echo ESPPartition中没有足够的空间!
-    echo -e "$current_password\n" | sudo -S du -hd2 /esp
+	echo ESP partition has $ESP KB free space.
+	echo Not enough space on the ESP partition!
+ 	echo -e "$current_password\n" | sudo -S du -hd2 /esp
 	echo -e "$current_password\n" | sudo -S umount ~/temp-ESP
 	rmdir ~/temp-ESP
 	exit
 fi
 
-
+# sanity check - is rEFInd installed?
 efibootmgr | grep -i refind
 if [ $? -ne 0 ]
 then
-    echo rEFInd未检测到！继续进行Clover安装。
+	echo rEFInd is not detected! Proceeding with the Clover install.
 else
-    echo rEFInd似乎已经安装！尽力卸载rEFInd！
-    for rEFInd_boot in $REFIND
-    do
-        echo -e "$current_password\n" | sudo -S efibootmgr -b $rEFInd_boot -B &> /dev/null
-    done
-    echo -e "$current_password\n" | sudo -S systemctl disable bootnext-refind.service &> /dev/null
-    echo -e "$current_password\n" | sudo -S rm -rf /esp/efi/refind &> /dev/null
-    echo -e "$current_password\n" | sudo -S rm /etc/systemd/system/bootnext-refind.service &> /dev/null
-    rm -rf ~/.SteamDeck_rEFInd &> /dev/null
+	echo rEFInd seems to be installed! Performing best effort to uninstall rEFInd!
+	for rEFInd_boot in $REFIND
+	do
+		echo -e "$current_password\n" | sudo -S efibootmgr -b $rEFInd_boot -B &> /dev/null
+	done
+	echo -e "$current_password\n" | sudo -S systemctl disable bootnext-refind.service &> /dev/null
+	echo -e "$current_password\n" | sudo -S rm -rf /esp/efi/refind &> /dev/null
+	echo -e "$current_password\n" | sudo -S rm /etc/systemd/system/bootnext-refind.service &> /dev/null
+	rm -rf ~/.SteamDeck_rEFInd &> /dev/null
 
-
-    efibootmgr | grep -i refind
-    if [ $? -ne 0 ]
-    then
-    echo rEFInd已成功卸载！继续进行Clover安装。
-    else
-    echo rEFInd仍然安装。请手动卸载rEFInd！
-    exit
-    fi
+	# check again if rEFInd is gone?	
+	efibootmgr | grep -i refind
+	if [ $? -ne 0 ]
+	then
+		echo rEFInd has been successfully uninstalled! Proceeding with the Clover install.
+	else
+		echo rEFInd is still installed. Please manually uninstall rEFInd first!
+		exit
+	fi
 fi
 
-
+# obtain Clover ISO
 /usr/bin/7z x $CLOVER_ARCHIVE -aoa $CLOVER_BASE &> /dev/null
 if [ $? -eq 0 ]
 then
-    echo 从github仓库下载了Clover！
+	echo Clover has been downloaded from the github repo!
 else
-    echo 下载Clover出错！ 
-    exit
+	echo Error downloading Clover!
+	exit
 fi
 
-
+# mount Clover ISO
 mkdir ~/temp-clover &> /dev/null
 echo -e "$current_password\n" | sudo -S mount $CLOVER_BASE ~/temp-clover &> /dev/null
 if [ $? -eq 0 ]
 then
-    echo Clover ISO已挂载！
+	echo Clover ISO has been mounted!
 else
-    echo 挂载ISO出错！ 
-    echo -e "$current_password\n" | sudo -S umount ~/temp-clover
-    rmdir ~/temp-clover
-    exit
+	echo Error mounting ISO!
+	echo -e "$current_password\n" | sudo -S umount ~/temp-clover
+	rmdir ~/temp-clover
+	exit
 fi
 
 # copy Clover files to EFI system partition
@@ -140,15 +142,16 @@ echo -e "$current_password\n" | sudo -S mv /esp/efi/Microsoft/Boot/bootmgfw.efi 
 echo -e "$current_password\n" | sudo -S efibootmgr -n $CLOVER &> /dev/null
 echo -e "$current_password\n" | sudo -S efibootmgr -o $CLOVER,$STEAMOS &> /dev/null
 
-
+# Final sanity check
 efibootmgr | grep "Clover - GUI" &> /dev/null
 if [ $? -eq 0 ]
 then
-    echo Clover已成功安装到EFI系统分区！
+	echo Clover has been successfully installed to the EFI system partition!
 else
-    echo 哎呀! 出现了一些问题。Clover没有被安装。
-    exit
+	echo Whoopsie something went wrong. Clover is not installed.
+	exit
 fi
+
 # create ~/1Clover-tools and place the scripts in there
 mkdir ~/1Clover-tools &> /dev/null
 rm -f ~/1Clover-tools/* &> /dev/null
@@ -171,8 +174,8 @@ echo -e "$current_password\n" | sudo -S /etc/systemd/system/clover-bootmanager.s
 mkdir -p ~/.local/share/kservices5/ServiceMenus
 cp custom/open_as_root.desktop ~/.local/share/kservices5/ServiceMenus
 
-
+# create desktop icon for Clover Toolbox
 ln -s ~/1Clover-tools/Clover-Toolbox.sh ~/Desktop/Clover-Toolbox &> /dev/null
-echo Clover Toolbox的桌面图标已创建！
+echo -e Desktop icon for Clover Toolbox has been created!
 
-echo Clover安装完成！ 
+echo Clover install completed!
