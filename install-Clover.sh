@@ -4,7 +4,7 @@
 CLOVER=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
 STEAMOS=$(efibootmgr | grep -i SteamOS | colrm 9 | colrm 1 4)
 REFIND=$(efibootmgr | grep -i rEFInd | colrm 9 | colrm 1 4)
-CLOVER_VERSION=5157
+CLOVER_VERSION=5159
 CLOVER_URL=https://github.com/CloverHackyColor/CloverBootloader/releases/download/$CLOVER_VERSION/Clover-$CLOVER_VERSION-X64.iso.7z
 CLOVER_ARCHIVE=$(curl -s -O -L -w "%{filename_effective}" $CLOVER_URL)
 CLOVER_BASE=$(basename -s .7z $CLOVER_ARCHIVE)
