@@ -154,25 +154,43 @@ I've created and has been using this script since December 2022 and a lot of use
 
 ## Quick Install Steps - if you are in a hurry then this is what you need (but really you should read the rest of the README!)
 Perform some Windows config first! Boot to Windows and open elevated command prompt -
-1. bcdedit.exe -set {globalsettings} highestmode on 
-2. reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+1. ```cmd
+   bcdedit.exe -set {globalsettings} highestmode on
+   ```
+2. ```cmd
+   reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+   ```
 
 Once done, boot to SteamOS to install Clover!
 1. Boot into SteamOS, then go into Desktop Mode and open a konsole terminal.<br>
 2. Clone the github repo. <br>
-   cd ~/ <br>
-   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
+   ```cmd
+   cd ~/
+   ```
+   ```cmd
+   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
+   ```
    
    If it errors that folder already exists, delete the old folder first - <br>
-   rm -rf ~/SteamDeck-Clover-dualboot <br>
+   ```cmd
+   rm -rf ~/SteamDeck-Clover-dualboot
+   ```
    
    Then perform the clone again - <br>
-   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
+   ```cmd
+   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
+   ```
    
 3. Execute the script! <br>
-   cd ~/SteamDeck-Clover-dualboot <br>
-   chmod +x install-Clover.sh <br>
-   ./install-Clover.sh <br>
+   ```cmd
+   cd ~/SteamDeck-Clover-dualboot
+   ```
+   ```cmd
+   chmod +x install-Clover.sh
+   ```
+   ```cmd
+   ./install-Clover.sh
+   ```
    
    ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png) <br>
 
