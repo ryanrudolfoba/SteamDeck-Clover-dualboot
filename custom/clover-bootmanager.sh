@@ -8,7 +8,7 @@ ESP_MOUNT_POINT=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 6)
 ESP_ALLOCATED_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 2)
 ESP_USED_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 3)
 ESP_FREE_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 4)
-OWNER=$(w | tail -n1 | cut -d " " -f1)
+OWNER=$(users | cut -d " " -f1)
 CloverStatus=/home/$OWNER/1Clover-tools/status.txt
 
 # check if Bazzite or SteamOS
