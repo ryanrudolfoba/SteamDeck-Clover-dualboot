@@ -11,7 +11,7 @@
 		<key>Debug</key>
 		<false/>
 		<key>DefaultLoader</key>
-		<string>\EFI\FEDORA\SHIMX64.efi</string>
+		<string>\EFI\STEAMOS\STEAMCL.efi</string>
 		<key>DefaultVolume</key>
 		<string>esp</string>
 		<key>DisableCloverHotkeys</key>
