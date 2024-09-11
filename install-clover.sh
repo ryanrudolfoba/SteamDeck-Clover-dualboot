@@ -233,9 +233,11 @@ echo -e "$current_password\n" | sudo -S /etc/systemd/system/clover-bootmanager.s
 # custom config if using SteamOS or Bazzite
 if [ $OS = SteamOS ]
 then
+	echo Making final configuration for $OS.
 	mkdir -p ~/.local/share/kservices5/ServiceMenus
 	cp custom/open_as_root.desktop ~/.local/share/kservices5/ServiceMenus
 else
+	echo Making final configuration for $OS.
 	echo -e "$current_password\n" | sudo -S blkid | grep nvme0n1p1 | grep esp &> /dev/null
 	if [ $? -eq 0 ]
 	then
@@ -247,6 +249,7 @@ else
 
 	# set bazzite as the default boot in Clover config
 	echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\FEDORA\\SHIMX64\.efi<\/string>' $EFI_PATH/clover/config.plist
+
 fi
 
 # create desktop icon for Clover Toolbox
