@@ -8,6 +8,8 @@ ESP_MOUNT_POINT=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 6)
 ESP_ALLOCATED_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 2)
 ESP_USED_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 3)
 ESP_FREE_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 4)
+OWNER=$(w | tail -n1 | cut -d " " -f1)
+CloverStatus=/home/$OWNER/1Clover-tools/status.txt
 
 # check if Bazzite or SteamOS
 grep -i bazzite /etc/os-release &> /dev/null
@@ -16,8 +18,6 @@ then
 	OS=bazzite
 	EFI_PATH=/boot/efi/EFI
 	EFI_NAME=\\EFI\\fedora\\shimx64.efi
-	OWNER=bazzite\:bazzite
-	CloverStatus=/home/bazzite/1Clover-tools/status.txt
 	echo Script is running on supported OS - $OS! > $CloverStatus
 else
 	grep -i SteamOS /etc/os-release &> /dev/null
@@ -26,8 +26,6 @@ else
 		OS=SteamOS
 		EFI_PATH=/esp/efi
 		EFI_NAME=\\EFI\\steamos\\steamcl.efi
-		OWNER=deck\:deck
-		CloverStatus=/home/deck/1Clover-tools/status.txt
 		echo Script is running on supported OS - $OS! > $CloverStatus
 	else
 		echo This is neither Bazzite nor SteamOS! > $CloverStatus
@@ -114,4 +112,4 @@ echo ESP allocated space: $ESP_ALLOCATED_SPACE >> $CloverStatus
 echo ESP used space: $ESP_USED_SPACE >> $CloverStatus
 echo ESP free space: $ESP_FREE_SPACE >> $CloverStatus
 
-chown $OWNER $CloverStatus
+chown $OWNER:$OWNER $CloverStatus
