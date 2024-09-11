@@ -87,7 +87,7 @@ Batocera_Choice=$(zenity --width 550 --height 220 --list --radiolist --multiple 
 elif [ "$Choice" == "Themes" ]
 then
 Theme_Choice=$(zenity --title "Clover Toolbox"	--width 200 --height 325 --list \
-	--column "Theme Name" $(echo -e "$current_password\n" | sudo -S ls /esp/efi/clover/themes) )
+	--column "Theme Name" $(echo -e "$current_password\n" | sudo -S ls $EFI_PATH/clover/themes) )
 
 	if [ $? -eq 1 ]
 	then
