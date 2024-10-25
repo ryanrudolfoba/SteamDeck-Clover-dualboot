@@ -8,6 +8,13 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
+## What's New (as of October 25 2024)
+1. Updated Clover EFI from 5159 to 5160.
+2. Implemented Clover whitelist - make sure you are on SteamOS 3.6.x for the whitelist to work correctly!
+3. Script can now be installed in Bazzite!
+4. Updated icons for Bazzite.
+5. Added sanity check - make sure SteamOS / Bazzite is installed before Windows! (sorry WinDeckOS users)
+
 ## What's New (as of May 19 2024)
 1. Removed the 7z sanity check as this is now installed by default in SteamOS 3.5.x / 3.6.x
 2. Added ESP sanity check - make sure there is enough space in ESP before doing anything
@@ -617,7 +624,3 @@ And in no particular order -<br>
 - insanelymac and its forum members for creating beautiful Clover themes. <br>
 - and the rest of WindowsOnDeck reddit community / discord server!<br>
 - PS I forgot to mention LOUP the author of the OpenAsRoot KDE extension.
-
-
-## Upcoming Version (unreleased and no ETA, this is just to track things I have in mind that will be in the next version)
-- implement /etc whitelist once SteamOS 3.6 rolls out to Stable
