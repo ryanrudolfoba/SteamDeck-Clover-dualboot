@@ -42,11 +42,22 @@ else
 	fi
 fi
 
+# check if  dual boot configuration is supported
+blkid | grep nvme0n1p1\: | grep Microsoft
+if [ $? -eq 0 ]
+then
+	echo Unsupported dual boot configuration detected.
+	echo Make sure $OS is installed before Windows!
+	exit
+else
+	echo Dual boot configuration supported.
+fi
+
 # define variables here
 CLOVER=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
 REFIND=$(efibootmgr | grep -i rEFInd | colrm 9 | colrm 1 4)
 ESP=$(df /dev/nvme0n1p1 --output=avail | tail -n1)
-CLOVER_VERSION=5159
+CLOVER_VERSION=5160
 CLOVER_URL=https://github.com/CloverHackyColor/CloverBootloader/releases/download/$CLOVER_VERSION/Clover-$CLOVER_VERSION-X64.iso.7z
 CLOVER_ARCHIVE=$(curl -s -O -L -w "%{filename_effective}" $CLOVER_URL)
 CLOVER_BASE=$(basename -s .7z $CLOVER_ARCHIVE)
@@ -236,6 +247,7 @@ then
 	echo Making final configuration for $OS.
 	mkdir -p ~/.local/share/kservices5/ServiceMenus
 	cp custom/open_as_root.desktop ~/.local/share/kservices5/ServiceMenus
+	echo -e "$current_password\n" | sudo -S cp custom/clover-whitelist.conf /etc/atomic-update.conf.d
 else
 	echo Making final configuration for $OS.
 	echo -e "$current_password\n" | sudo -S blkid | grep nvme0n1p1 | grep esp &> /dev/null
