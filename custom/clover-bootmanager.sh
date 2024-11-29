@@ -2,8 +2,16 @@
 
 # define variables here
 CLOVER=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
+CLOVER_VERSION=5160
 CLOVER_EFI=\\EFI\\clover\\cloverx64.efi
+BIOS_VERSION=$(cat /sys/class/dmi/id/bios_version)
+MODEL=$(cat /sys/class/dmi/id/board_name)
 ESP_PARTITION=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 1)
+OS_Name=$(grep PRETTY_NAME /etc/os-release | cut -d "=" -f 2)
+OS_Version_Bazzite=$(grep OSTREE_VERSION /etc/os-release | cut -d "=" -f 2)
+OS_Version_SteamOS=$(grep VERSION_ID /etc/os-release | cut -d "=" -f 2)
+OS_Build=$(grep BUILD_ID /etc/os-release | cut -d "=" -f 2)
+KERNEL_VERSION=$(uname -r | cut -d "-" -f 1-5)
 ESP_MOUNT_POINT=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 6)
 ESP_ALLOCATED_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 2)
 ESP_USED_SPACE=$(df -h | grep nvme0n1p1 | tr -s " " | cut -d " " -f 3)
@@ -18,7 +26,7 @@ then
 	OS=bazzite
 	EFI_PATH=/boot/efi/EFI
 	EFI_NAME=\\EFI\\fedora\\shimx64.efi
-	echo Script is running on supported OS - $OS! > $CloverStatus
+	echo Script is running on supported OS - $OS version $OS_Version_Bazzite build $OS_Build > $CloverStatus
 else
 	grep -i SteamOS /etc/os-release &> /dev/null
 	if [ $? -eq 0 ]
@@ -26,7 +34,7 @@ else
 		OS=SteamOS
 		EFI_PATH=/esp/efi
 		EFI_NAME=\\EFI\\steamos\\steamcl.efi
-		echo Script is running on supported OS - $OS! > $CloverStatus
+		echo Script is running on supported OS - $OS version $OS_Version_SteamOS build $OS_Build > $CloverStatus
 	else
 		echo This is neither Bazzite nor SteamOS! > $CloverStatus
 		echo Exiting immediately! >> $CloverStatus
@@ -34,21 +42,10 @@ else
 	fi
 fi
 
-echo Clover Boot Manager - $(date) >> $CloverStatus
-echo BIOS Version : $(cat /sys/class/dmi/id/bios_version) >> $CloverStatus
+echo Clover $CLOVER_VERSION Boot Manager - $(date) >> $CloverStatus
+echo Steam Deck Model : $MODEL with  BIOS version $BIOS_VERSION >> $CloverStatus
 
-if [ $OS = bazzite ]
-then
-	echo OS Name : $(grep PRETTY_NAME /etc/os-release | cut -d "=" -f 2) >> $CloverStatus
-	echo OS Version : $(grep OSTREE_VERSION /etc/os-release | cut -d "=" -f 2) >> $CloverStatus
-	echo OS Build : $(grep BUILD_ID /etc/os-release | cut -d "=" -f 2) >> $CloverStatus
-else
-	echo OS Name : $(grep PRETTY_NAME /etc/os-release | cut -d "=" -f 2) >> $CloverStatus
-	echo OS Version : $(grep VERSION_ID /etc/os-release | cut -d "=" -f 2) >> $CloverStatus
-	echo OS Build : $(grep BUILD_ID /etc/os-release | cut -d "=" -f 2) >> $CloverStatus
-fi
-
-echo Kernel Version : $(uname -a) >> $CloverStatus
+echo Kernel Version : $KERNEL_VERSION >> $CloverStatus
 
 # check for dump files
 dumpfiles=$(ls -l /sys/firmware/efi/efivars/dump-type* 2> /dev/null | wc -l)
