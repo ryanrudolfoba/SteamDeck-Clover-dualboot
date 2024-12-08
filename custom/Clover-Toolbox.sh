@@ -263,11 +263,15 @@ then
 	# remove custom logo / BGRT
 	echo -e "$current_password\n" | sudo -S rm $EFI_PATH/steamos/steamos.png &> /dev/null
 
-	# delete systemd service
 	echo -e "$current_password\n" | sudo -S steamos-readonly disable
+
+	# delete systemd service
 	echo -e "$current_password\n" | sudo -S systemctl stop clover-bootmanager.service
 	echo -e "$current_password\n" | sudo -S rm /etc/systemd/system/clover-bootmanager*
 	echo -e "$current_password\n" | sudo -S sudo systemctl daemon-reload
+
+	echo -e "$current_password\n" | sudo -S rm -f /etc/atomic-update.conf.d/clover-whitelist.conf
+
 	echo -e "$current_password\n" | sudo -S steamos-readonly enable
 
 	# delete dolphin root extension
