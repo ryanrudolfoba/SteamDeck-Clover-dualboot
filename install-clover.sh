@@ -121,11 +121,20 @@ else
 		echo -e "$current_password\n" | sudo -S efibootmgr -b $rEFInd_boot -B &> /dev/null
 	done
 	echo -e "$current_password\n" | sudo -S systemctl disable bootnext-refind.service &> /dev/null
+	echo -e "$current_password\n" | sudo -S systemctl disable rEFInd_bg_randomizer.service
 	echo -e "$current_password\n" | sudo -S rm -rf $EFI_PATH/refind &> /dev/null
+	echo -e "$current_password\n" | sudo -S steamos-readonly disable
 	echo -e "$current_password\n" | sudo -S rm /etc/systemd/system/bootnext-refind.service &> /dev/null
+	echo -e "$current_password\n" | sudo -S rm -f /etc/systemd/system/rEFInd_bg_randomizer.service
+	echo -e "$current_password\n" | sudo -S pacman-key --init
+	echo -e "$current_password\n" | sudo -S pacman-key --populate archlinux
+	echo -e "$current_password\n" | sudo -S pacman -R --noconfirm SteamDeck_rEFInd
+	echo -e "$current_password\n" | sudo -S steamos-readonly enable
+	rm -fr ~/.local/SteamDeck_rEFInd
 	rm -rf ~/.SteamDeck_rEFInd &> /dev/null
+	rm -f ~/Desktop/SteamDeck_rEFInd.desktop
 
-	# check again if rEFInd is gone?	
+	# check again if rEFInd is gone?
 	efibootmgr | grep -i refind
 	if [ $? -ne 0 ]
 	then
