@@ -53,7 +53,7 @@
 					<key>Image</key>
 					<string>os_bazzite</string>
 					<key>Path</key>
-					<string>\EFI\fedora\shimx64.efi</string>
+					<string>\efi\fedora\shimx64.efi</string>
 					<key>Title</key>
 					<string>Bazzite</string>
 					<key>Type</key>
@@ -67,7 +67,7 @@
 					<key>Image</key>
 					<string>os_bazzite</string>
 					<key>Path</key>
-					<string>\EFI\fedora\shimx64.efi</string>
+					<string>\efi\fedora\shimx64.efi</string>
 					<key>Title</key>
 					<string>Bazzite</string>
 					<key>Type</key>
@@ -81,7 +81,7 @@
 					<key>Image</key>
 					<string>os_steamos</string>
 					<key>Path</key>
-					<string>\EFI\STEAMOS\STEAMCL.efi</string>
+					<string>\efi\steamos\steamcl.efi</string>
 					<key>Title</key>
 					<string>SteamOS</string>
 					<key>Type</key>
@@ -95,7 +95,7 @@
 					<key>Image</key>
 					<string>os_steamos</string>
 					<key>Path</key>
-					<string>\EFI\STEAMOS\STEAMCL.efi</string>
+					<string>\efi\steamos\steamcl.efi</string>
 					<key>Title</key>
 					<string>SteamOS</string>
 					<key>Type</key>
@@ -109,7 +109,7 @@
 					<key>Image</key>
 					<string>os_win</string>
 					<key>Path</key>
-					<string>\EFI\MICROSOFT\bootmgfw.efi</string>
+					<string>\efi\microsoft\bootmgfw.efi</string>
 					<key>Title</key>
 					<string>Windows</string>
 					<key>Type</key>
@@ -123,7 +123,7 @@
 					<key>Image</key>
 					<string>os_win</string>
 					<key>Path</key>
-					<string>\EFI\MICROSOFT\boot\bootmgfw.efi</string>
+					<string>\efi\microsoft\boot\bootmgfw.efi</string>
 					<key>Title</key>
 					<string>Windows</string>
 					<key>Type</key>
@@ -137,7 +137,7 @@
 					<key>Image</key>
 					<string>os_batocera</string>
 					<key>Path</key>
-					<string>\EFI\batocera\grubX64.efi</string>
+					<string>\efi\batocera\grubX64.efi</string>
 					<key>Title</key>
 					<string>Batocera</string>
 					<key>Type</key>
@@ -151,7 +151,7 @@
 					<key>Image</key>
 					<string>os_recovery</string>
 					<key>Path</key>
-					<string>\EFI\BOOT\BOOTX64.efi</string>
+					<string>\efi\boot\bootx64.efi</string>
 					<key>Title</key>
 					<string>Ventoy</string>
 					<key>Type</key>
@@ -165,7 +165,7 @@
 					<key>Image</key>
 					<string>os_kali</string>
 					<key>Path</key>
-					<string>\EFI\kali\grubx64.efi</string>
+					<string>\efi\kali\grubx64.efi</string>
 					<key>Title</key>
 					<string>Kali</string>
 					<key>Type</key>
@@ -177,7 +177,7 @@
 					<key>Image</key>
 					<string>os_ubuntu</string>
 					<key>Path</key>
-					<string>\EFI\ubuntu\shimx64.efi</string>
+					<string>\efi\ubuntu\shimx64.efi</string>
 					<key>Title</key>
 					<string>Ubuntu</string>
 					<key>Type</key>
@@ -189,7 +189,7 @@
 					<key>Image</key>
 					<string>os_centos</string>
 					<key>Path</key>
-					<string>\EFI\centos\shimx64.efi</string>
+					<string>\efi\centos\shimx64.efi</string>
 					<key>Title</key>
 					<string>CentOS / RHEL</string>
 					<key>Type</key>
@@ -201,7 +201,7 @@
 					<key>Image</key>
 					<string>os_debian</string>
 					<key>Path</key>
-					<string>\EFI\debian\grubx64.efi</string>
+					<string>\efi\debian\grubx64.efi</string>
 					<key>Title</key>
 					<string>Debian</string>
 					<key>Type</key>
@@ -213,7 +213,7 @@
 					<key>Image</key>
 					<string>os_manjaro</string>
 					<key>Path</key>
-					<string>\EFI\manjaro\grubx64.efi</string>
+					<string>\efi\manjaro\grubx64.efi</string>
 					<key>Title</key>
 					<string>Manjaro</string>
 					<key>Type</key>
@@ -225,7 +225,7 @@
 					<key>Image</key>
 					<string>os_endeavouros</string>
 					<key>Path</key>
-					<string>\EFI\endeavouros\grubx64.efi</string>
+					<string>\efi\endeavouros\grubx64.efi</string>
 					<key>Title</key>
 					<string>EndeavourOS</string>
 					<key>Type</key>
@@ -237,7 +237,7 @@
 					<key>Image</key>
 					<string>os_ubuntu</string>
 					<key>Path</key>
-					<string>\EFI\systemd\systemd-bootx64.efi</string>
+					<string>\efi\systemd\systemd-bootx64.efi</string>
 					<key>Title</key>
 					<string>Pop!_ OS</string>
 					<key>Type</key>

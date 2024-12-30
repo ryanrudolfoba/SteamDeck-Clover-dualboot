@@ -71,14 +71,14 @@ Batocera_Choice=$(zenity --width 550 --height 220 --list --radiolist --multiple 
 	elif [ "$Batocera_Choice" == "v39" ]
 	then
 		# Update the config.plist for Batocera v39 and newer
-		echo -e "$current_password\n" | sudo -S sed -i '/<string>os_batocera<\/string>/!b;n;n;c\\t\t\t\t\t<string>\\EFI\\batocera\\grubx64\.efi<\/string>' $EFI_PATH/clover/config.plist
+		echo -e "$current_password\n" | sudo -S sed -i '/<string>os_batocera<\/string>/!b;n;n;c\\t\t\t\t\t<string>\\efi\\batocera\\grubx64\.efi<\/string>' $EFI_PATH/clover/config.plist
 
 		zenity --warning --title "Clover Toolbox" --text "Clover config has been updated for Batocera v39 and newer!" --width 450 --height 75
 
 	elif [ "$Batocera_Choice" == "v38" ]
 	then
 		# Update the config.plist for Batocera v38 and older
-		echo -e "$current_password\n" | sudo -S sed -i '/<string>os_batocera<\/string>/!b;n;n;c\\t\t\t\t\t<string>\\EFI\\BOOT\\BOOTX64\.efi<\/string>' $EFI_PATH/clover/config.plist
+		echo -e "$current_password\n" | sudo -S sed -i '/<string>os_batocera<\/string>/!b;n;n;c\\t\t\t\t\t<string>\\efi\\boot\\bootx64\.efi<\/string>' $EFI_PATH/clover/config.plist
 
 		zenity --warning --title "Clover Toolbox" --text "Clover config has been updated for Batocera v38 and older!" --width 450 --height 75
 
@@ -167,7 +167,7 @@ Boot_Choice=$(zenity --width 550 --height 300 --list --radiolist --multiple --ti
 	then
 		# change the Default Loader to Windows in config.plist 
 
-		echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\MICROSOFT\\bootmgfw\.efi<\/string>' $EFI_PATH/clover/config.plist
+		echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\efi\\microsoft\\bootmgfw\.efi<\/string>' $EFI_PATH/clover/config.plist
 		echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultVolume<\/key>/!b;n;c\\t\t<string>esp<\/string>' $EFI_PATH/clover/config.plist
 
 		zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
@@ -175,7 +175,7 @@ Boot_Choice=$(zenity --width 550 --height 300 --list --radiolist --multiple --ti
 	elif [ "$Boot_Choice" == "SteamOS" ]
 	then
 		# change the Default Loader in config.plist 
-		echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\STEAMOS\\STEAMCL\.efi<\/string>' $EFI_PATH/clover/config.plist
+		echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\efi\\steamos\\steamcl\.efi<\/string>' $EFI_PATH/clover/config.plist
 		echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultVolume<\/key>/!b;n;c\\t\t<string>esp<\/string>' $EFI_PATH/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "SteamOS is now the default boot entry in Clover!" --width 400 --height 75
 
