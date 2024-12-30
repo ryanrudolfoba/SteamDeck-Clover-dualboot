@@ -269,7 +269,7 @@ else
 	fi
 
 	# set bazzite as the default boot in Clover config
-	echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\FEDORA\\SHIMX64\.efi<\/string>' $EFI_PATH/clover/config.plist
+	echo -e "$current_password\n" | sudo -S sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\efi\\fedora\\shimx64\.efi<\/string>' $EFI_PATH/clover/config.plist
 
 fi
 
