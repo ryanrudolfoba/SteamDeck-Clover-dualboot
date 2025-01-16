@@ -256,7 +256,7 @@
 			<key>DoubleClickTime?</key>
 			<integer>500</integer>
 			<key>Enabled</key>
-			<true/>
+			<false/>
 			<key>Mirror?</key>
 			<false/>
 			<key>Speed</key>
