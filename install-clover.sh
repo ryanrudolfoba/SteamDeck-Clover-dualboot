@@ -10,7 +10,7 @@ echo Doing preliminary sanity checks ...
 sleep 2
 
 # check if running on Steam Deck OLED or LCD
-if [ "$(cat /sys/class/dmi/id/board_name)" = "Jupiter" ] || [ "$(cat /sys/class/dmi/id/board_name)" = "Galileo" ]
+if [ "$(cat /sys/class/dmi/id/board_name)" = "Jupiter" ] || [ "$(cat /sys/class/dmi/id/board_name)" = "Galileo" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ]
 then
 	echo Script is running on supported model - Steam Deck $(cat /sys/class/dmi/id/board_name).
 else
