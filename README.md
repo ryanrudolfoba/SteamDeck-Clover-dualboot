@@ -1,8 +1,8 @@
-# Steam Deck - Installing Clover Script for Dual Boot Between SteamOS and Windows (and other OSes too!)
+# Steam Deck and Legion Go S - Installing Clover Script for Dual Boot Between SteamOS (or Bazzite) and Windows (and other OSes too!)
 
 ## About
 
-A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck running on SteamOS.
+A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck and Lenovo Legion Go S running on SteamOS.
 
 * The main program that does all the heavy lifting is [Clover - a graphical boot manager / boot loader.](https://github.com/CloverHackyColor/CloverBootloader)
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
