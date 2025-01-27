@@ -10,12 +10,18 @@ echo Doing preliminary sanity checks ...
 sleep 2
 
 # check if running on Steam Deck OLED or LCD
-if [ "$(cat /sys/class/dmi/id/board_name)" = "Jupiter" ] || [ "$(cat /sys/class/dmi/id/board_name)" = "Galileo" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ]
+if [ "$(cat /sys/class/dmi/id/board_name)" = "Jupiter" ] || [ "$(cat /sys/class/dmi/id/board_name)" = "Galileo" ] 
 then
 	echo Script is running on supported model - Steam Deck $(cat /sys/class/dmi/id/board_name).
+
+# check if running on Lenovo Legion GO S
+elif [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ]
+then
+	echo Script is running on supported model - Legion Go S $(cat /sys/class/dmi/id/product_name).
+
 else
-	echo Script is not running on a Steam Deck.
-	echo Script is only tested on a Steam Deck running on SteamOS or Bazzite.
+	echo Script is not running on a Steam Deck or Legion Go S.
+	echo Script is only tested on a Steam Deck or Legion Go S running on SteamOS / Bazzite.
 	exit
 fi
 
