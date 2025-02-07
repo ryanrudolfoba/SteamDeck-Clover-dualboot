@@ -212,28 +212,36 @@ then
 
 elif [ "$Choice" == "Resolution" ]
 then
-Resolution_Choice=$(zenity --width 550 --height 250 --list --radiolist --multiple --title "Clover Toolbox"\
+Resolution_Choice=$(zenity --width 550 --height 270 --list --radiolist --multiple --title "Clover Toolbox"\
 	--column "Select One" --column "Option" --column="Description - Read this carefully!"\
-	FALSE 800p "Use the default screen resolution 1280x800."\
-	FALSE 1200p "Use DeckHD screen resolution 1920x1200."\
-	TRUE EXIT "***** Exit the Clover Toolbox *****")
+	FALSE STOCK "Use the default screen resolution 1280x800."\
+	FALSE DeckHD "Use DeckHD screen resolution 1920x1200."\
+	FALSE DeckSight "Use DeckSight screen resolution 1920x1080."\
+ 	TRUE EXIT "***** Exit the Clover Toolbox *****")
 
 	if [ $? -eq 1 ] || [ "$Resolution_Choice" == "EXIT" ]
 	then
 		echo User pressed CANCEL. Going back to main menu.
 
-	elif [ "$Resolution_Choice" == "800p" ]
+	elif [ "$Resolution_Choice" == "STOCK" ]
 	then
 		# change the sceen resolution to 1280x800 in config,plist 
 		echo -e "$current_password\n" | sudo -S sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1280x800<\/string>' $EFI_PATH/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "Screen resolution is now set to 1280x800." --width 400 --height 75
 
-	elif [ "$Resolution_Choice" == "1200p" ]
+	elif [ "$Resolution_Choice" == "DeckHD" ]
 	then
 		# change the sceen resolution to 1920x1200 in config,plist 
 		echo -e "$current_password\n" | sudo -S sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1200<\/string>' $EFI_PATH/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "Screen resolution is now set to 1920x1200." --width 400 --height 75
-	fi
+
+	elif [ "$Resolution_Choice" == "DeckSight" ]
+	then
+		# change the sceen resolution to 1920x1080 in config,plist 
+		echo -e "$current_password\n" | sudo -S sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1080<\/string>' $EFI_PATH/clover/config.plist
+		zenity --warning --title "Clover Toolbox" --text "Screen resolution is now set to 1920x1080." --width 400 --height 75
+
+ 	fi
 
 elif [ "$Choice" == "Custom" ]
 then
