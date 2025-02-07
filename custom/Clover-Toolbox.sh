@@ -42,7 +42,7 @@ Choice=$(zenity --width 750 --height 450 --list --radiolist --multiple 	--title 
 	FALSE Boot "Set the OS that will be booted by default."\
 	FALSE NewLogo "Replace the BGRT startup logo."\
 	False OldLogo "Restore the BGRT startup logo to the default."\
-	FALSE Resolution "Set the screen resolution if using the DeckHD 1200p screen mod."\
+	FALSE Resolution "Set the screen resolution if using the DeckHD or DeckSight screen mod."\
 	FALSE Custom "Replace Clover EFI with a custom one that hides the OPTIONS button."\
 	FALSE Uninstall "Choose this to uninstall Clover and revert any changes made."\
 	TRUE EXIT "***** Exit the Clover Toolbox *****")
@@ -212,7 +212,7 @@ then
 
 elif [ "$Choice" == "Resolution" ]
 then
-Resolution_Choice=$(zenity --width 550 --height 270 --list --radiolist --multiple --title "Clover Toolbox"\
+Resolution_Choice=$(zenity --width 550 --height 250 --list --radiolist --multiple --title "Clover Toolbox"\
 	--column "Select One" --column "Option" --column="Description - Read this carefully!"\
 	FALSE STOCK "Use the default screen resolution 1280x800."\
 	FALSE DeckHD "Use DeckHD screen resolution 1920x1200."\
