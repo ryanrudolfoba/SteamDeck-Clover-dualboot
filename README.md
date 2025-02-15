@@ -438,13 +438,7 @@ To update to a new version -
 </details>
        
 <details>
-<summary><b>Q4. I reinstalled Windows and now it boots directly to Windows instead of Clover!</b></summary>
-1. Shutdown the Steam Deck. While powered OFF, press VOLDOWN + POWER and select SteamOS from the list.<br>
-2. Script will automatically fix the dual boot entries! Reboot and it will go back to Clover!<br>
-</details>
-
-<details>
-<summary><b>Q5. Windows automatically installed updates and on reboot it goes automatically to Windows!</b></summary>
+<summary><b>Q4. I reinstalled/updated Windows and now it boots directly to Windows instead of Clover!</b></summary>
 1. Shutdown the Steam Deck. While powered OFF, press VOLDOWN + POWER and select SteamOS from the list.<br>
 2. Script will automatically fix the dual boot entries! Reboot and it will go back to Clover!<br>
 </details>
@@ -475,7 +469,7 @@ This can happen if you have an old version of SteamOS installed or have installe
 </details>
 
 <details>
-<summary><b>Q9. I hate Clover / I want to just dual boot the manual way / A better script came along and I want to uninstall your work!</b></summary>
+<summary><b>Q9. I want to uninstall your work!</b></summary>
 1. Boot into SteamOS.<br>
 2. Go to Desktop Mode.<br>
 3. Double-click Clover Toolbox desktop icon. <br>
