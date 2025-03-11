@@ -512,6 +512,10 @@ Scan the QR code or click the image below to visit my donation page.
 4K TV \
 ![image](https://user-images.githubusercontent.com/98122529/230472728-b73bc18f-563d-4149-9d18-27792d6031b7.png)
 
+2. Some users are experiencing Windows BSOD when the Steam Deck is docked to a display higher than 1080p (4K, 1440p). [Here](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/43) and [here](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/85).
+
+3. For best results if using the Steam Deck in docked mode and this Clover script please make sure you are using an external display that does not exceed 1080p.
+
 
 ## Acknowledgement / Thanks
 Thanks to jlobue10 for his rEFInd script [available here.](https://github.com/jlobue10/SteamDeck_rEFInd) This Clover script was inspired by jlobue10's rEFInd script.
