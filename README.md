@@ -502,20 +502,25 @@ Scan the QR code or click the image below to visit my donation page.
 </p>
 </details>
 
-## Known Issue
-1. If Steam Deck is docked and connected a TV / display higher than 1080p (4K, 1440p), the GUI screen will be sideways. This is purely cosmetics and once an OS is selected it will boot in the correct orientation.
+## Known issues
+### Issues with external display with resolution higher than 1080p
+If Steam Deck is connected to an external display with a resolution **higher than 1080p** (1440p, 4K, etc.), there are some issues that Clover may cause.
+* Clover screen **will be rotated**. See images below for examples. Once an OS is started, the screen should show in the correct orientation.
+* Windows **may show BSoD** or otherwise **fail to boot**. See these issues for the reference: [#43](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/43), [#85](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/85)
 
-1080p TV \
-![image](https://user-images.githubusercontent.com/98122529/230472962-0c981a47-2677-4766-80ad-c2b27d7f62c7.png)
+| Resolution | Clover screen |
+|-|-|
+| 1080p | ![Clover on 1080p display](https://user-images.githubusercontent.com/98122529/230472962-0c981a47-2677-4766-80ad-c2b27d7f62c7.png) |
+| 4K | ![Clover on 4K display](https://user-images.githubusercontent.com/98122529/230472728-b73bc18f-563d-4149-9d18-27792d6031b7.png) |
 
+Because of these issues, when using an external display, it is recommended to use a display with 1080p or lower resolution.
 
-4K TV \
-![image](https://user-images.githubusercontent.com/98122529/230472728-b73bc18f-563d-4149-9d18-27792d6031b7.png)
+If you use a display with a resolution higher than 1080p anyway, a workaround for these issues is available to make Windows boot normally and make Clover screen show in the correct orientation only on the external display.
+1. Open Clover Toolbox.
+1. Select "Resolution".
+1. Change the resolution option to "DeckSight".
 
-2. Some users are experiencing Windows BSOD when the Steam Deck is docked to a display higher than 1080p (4K, 1440p). [Here](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/43) and [here](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/85).
-
-3. For best results if using the Steam Deck in docked mode and this Clover script please make sure you are using an external display that does not exceed 1080p.
-
+Note that this workaround **will make Clover screen rotated on Steam Deck's built-in display** when it is not connected to an external display.
 
 ## Acknowledgement / Thanks
 Thanks to jlobue10 for his rEFInd script [available here.](https://github.com/jlobue10/SteamDeck_rEFInd) This Clover script was inspired by jlobue10's rEFInd script.
