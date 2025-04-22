@@ -15,7 +15,7 @@ then
 	echo Script is running on supported model - Steam Deck $(cat /sys/class/dmi/id/board_name).
 
 # check if running on Lenovo Legion GO S
-elif [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ]
+elif [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83Q2" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83Q3" ]
 then
 	echo Script is running on supported model - Legion Go S $(cat /sys/class/dmi/id/product_name).
 
