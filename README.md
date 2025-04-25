@@ -8,6 +8,12 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
+## What's New as of April 25 2025
+1. Add Legion GO S support with different variants - 83Q2 83Q3 83N6 83L3
+2. automatically set config.plist to enable mouse and use screen resolution 1920x1200 when running on Legion GO S
+3. add support for DeckSight OLED panel
+4. Clover 5161
+
 ## What's New (as of December 31 2024)
 1. Windows to GO SDCARD config updated. [Use this guide to configure Clover for Windows to GO SDCARD](https://youtu.be/DPUEjOTkTDY)
 2. Cleanup the README.
