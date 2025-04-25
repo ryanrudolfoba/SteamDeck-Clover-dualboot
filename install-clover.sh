@@ -18,7 +18,9 @@ then
 elif [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83Q2" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83Q3" ]
 then
 	echo Script is running on supported model - Legion Go S $(cat /sys/class/dmi/id/product_name).
-
+	echo Creating config specific for Legion GO S
+	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
+	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1200<\/string>' custom/config.plist
 else
 	echo Script is not running on a Steam Deck or Legion Go S.
 	echo Script is only tested on a Steam Deck or Legion Go S running on SteamOS / Bazzite.
