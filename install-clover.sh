@@ -21,9 +21,16 @@ then
 	echo Creating config specific for Legion GO S
 	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1200<\/string>' custom/config.plist
+
+# check if running on Lenovo Legion GO
+elif [ "$(cat /sys/class/dmi/id/product_name)" = "83E1" ]
+then
+	echo Script is running on supported model - Legion Go $(cat /sys/class/dmi/id/product_name).
+	echo Creating config specific for Legion GO
+	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
+	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>2560x1260<\/string>' custom/config.plist
 else
-	echo Script is not running on a Steam Deck or Legion Go S.
-	echo Script is only tested on a Steam Deck or Legion Go S running on SteamOS / Bazzite.
+	echo Unsupported device! Exiting immediately.
 	exit
 fi
 
