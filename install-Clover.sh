@@ -37,10 +37,6 @@ then
 	echo Creating config specific for Asus ROG Ally
 	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1080<\/string>' custom/config.plist
-else
-	echo Unsupported device! Exiting immediately.
-	exit
-fi
 
 # check if running on Asus ROG Ally X
 elif [ "$(cat /sys/class/dmi/id/board_name)" = "RC72LA" ]
