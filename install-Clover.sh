@@ -28,7 +28,7 @@ then
 	echo Script is running on supported model - Legion Go $(cat /sys/class/dmi/id/product_name).
 	echo Creating config specific for Legion GO
 	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
-	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>2560x1260<\/string>' custom/config.plist
+	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>2560x1600<\/string>' custom/config.plist
 
 # check if running on Asus ROG Ally
 elif [ "$(cat /sys/class/dmi/id/board_name)" = "RC71L" ]
