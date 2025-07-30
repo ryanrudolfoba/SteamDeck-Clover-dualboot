@@ -173,9 +173,9 @@ I've created and has been using this script since December 2022 and a lot of use
 </p>
 
 ## Quick Install Steps - if you are in a hurry then this is what you need (but really you should read the rest of the README!)
-Perform some Windows config first! Boot to Windows and open elevated command prompt -
+Perform some Windows config first! Boot to Windows and open elevated command prompt or PowerShell -
 1. ```cmd
-   bcdedit.exe -set {globalsettings} highestmode on
+   bcdedit.exe -set "{globalsettings}" highestmode on
    ```
 2. ```cmd
    reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
