@@ -223,7 +223,10 @@ Once done, boot to SteamOS to install Clover!
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.<br>
 ![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)<br>
 
-<b>6. OPTIONAL - Scheduled Task for Windows. Use this only if you have Windows installed on microSD / external SSD and if Windows keeps hijacking the bootloader!</b>
+**6a. OPTIONAL - If you have Windows installed on SDCARD (not recommended) or External SSD you need to do this additional step -**\
+`sudo cp custom/config_sdcard_plist /esp/efi/clover/config.plist`
+
+<b>6b. OPTIONAL - Scheduled Task for Windows. Use this only if you have Windows installed on microSD / external SSD and if Windows keeps hijacking the bootloader!</b>
 <details>
 <summary><b>Use this only if you have Windows installed on microSD / external SSD and if Windows keeps hijacking the bootloader!</b></summary>
 
