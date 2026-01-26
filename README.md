@@ -224,7 +224,7 @@ Once done, boot to SteamOS to install Clover!
 ![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)<br>
 
 **6a. OPTIONAL - If you have Windows installed on SDCARD (not recommended) or External SSD you need to do this additional step -**\
-`sudo cp custom/config_sdcard_plist /esp/efi/clover/config.plist`
+`sudo cp custom/config_sdcard.plist /esp/efi/clover/config.plist`
 
 <b>6b. OPTIONAL - Scheduled Task for Windows. Use this only if you have Windows installed on microSD / external SSD and if Windows keeps hijacking the bootloader!</b>
 <details>
