@@ -9,40 +9,53 @@ echo YT - 10MinuteSteamDeckGamer \| https://youtube.com/\@10MinuteSteamDeckGamer
 echo Doing preliminary sanity checks ...
 sleep 2
 
+# define variables here
+CLOVER=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
+REFIND=$(efibootmgr | grep -i rEFInd | colrm 9 | colrm 1 4)
+ESP=$(df /dev/nvme0n1p1 --output=avail | tail -n1)
+CLOVER_VERSION=5163
+CLOVER_URL=https://github.com/CloverHackyColor/CloverBootloader/releases/download/$CLOVER_VERSION/Clover-$CLOVER_VERSION-X64.iso.7z
+CLOVER_ARCHIVE=$(curl -s -O -L -w "%{filename_effective}" $CLOVER_URL)
+CLOVER_BASE=$(basename -s .7z $CLOVER_ARCHIVE)
+CLOVER_EFI=\\EFI\\clover\\cloverx64.efi
+BOARD_NAME=$(cat /sys/class/dmi/id/board_name)
+PRODUCT_NAME=$(cat /sys/class/dmi/id/product_name)
+
 # check if running on Steam Deck OLED or LCD
-if [ "$(cat /sys/class/dmi/id/board_name)" = "Jupiter" ] || [ "$(cat /sys/class/dmi/id/board_name)" = "Galileo" ] 
+if [ "$BOARD_NAME"  = "Jupiter" ] || [ "$BOARD_NAME" = "Galileo" ] 
 then
-	echo Script is running on supported model - Steam Deck $(cat /sys/class/dmi/id/board_name).
+	echo Script is running on supported model - Steam Deck $BOARD_NAME.
+	echo No further edits needed to the config.plist.
 
 # check if running on Lenovo Legion GO S
-elif [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83Q2" ] || [ "$(cat /sys/class/dmi/id/product_name)" = "83Q3" ]
+elif [ "$PRODUCT_NAME" = "83N6" ] || [ "$PRODUCT_NAME" = "83L3" ] || [ "$PRODUCT_NAME" = "83Q2" ] || [ "$PRODUCT_NAME" = "83Q3" ]
 then
-	echo Script is running on supported model - Legion Go S $(cat /sys/class/dmi/id/product_name).
-	echo Creating config specific for Legion GO S
+	echo Script is running on supported model - Legion Go S $PRDUCT_NAME.
+	echo Creating config specific for Legion Go S.
 	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1200<\/string>' custom/config.plist
 
 # check if running on Lenovo Legion GO
-elif [ "$(cat /sys/class/dmi/id/product_name)" = "83E1" ]
+elif [ "$PRODUCT_NAME" = "83E1" ]
 then
-	echo Script is running on supported model - Legion Go $(cat /sys/class/dmi/id/product_name).
-	echo Creating config specific for Legion GO
+	echo Script is running on supported model - Legion Go $PRODUCT_NAME.
+	echo Creating config specific for Legion Go.
 	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>2560x1600<\/string>' custom/config.plist
 
 # check if running on Asus ROG Ally
-elif [ "$(cat /sys/class/dmi/id/board_name)" = "RC71L" ]
+elif [ "$BOARD_NAME" = "RC71L" ]
 then
-	echo Script is running on supported model - Asus ROG Ally $(cat /sys/class/dmi/id/board_name).
-	echo Creating config specific for Asus ROG Ally
+	echo Script is running on supported model - Asus ROG Ally $BOARD_NAME.
+	echo Creating config specific for Asus ROG Ally.
 	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1080<\/string>' custom/config.plist
 
 # check if running on Asus ROG Ally X
-elif [ "$(cat /sys/class/dmi/id/board_name)" = "RC72LA" ]
+elif [ "$BOARD_NAME" = "RC72LA" ]
 then
-	echo Script is running on supported model - Asus ROG Ally X $(cat /sys/class/dmi/id/board_name).
-	echo Creating config specific for Asus ROG Ally X
+	echo Script is running on supported model - Asus ROG Ally X $BOARD_NAME.
+	echo Creating config specific for Asus ROG Ally X.
 	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1080<\/string>' custom/config.plist
 else
@@ -83,16 +96,6 @@ then
 else
 	echo Dual boot configuration supported.
 fi
-
-# define variables here
-CLOVER=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
-REFIND=$(efibootmgr | grep -i rEFInd | colrm 9 | colrm 1 4)
-ESP=$(df /dev/nvme0n1p1 --output=avail | tail -n1)
-CLOVER_VERSION=5163
-CLOVER_URL=https://github.com/CloverHackyColor/CloverBootloader/releases/download/$CLOVER_VERSION/Clover-$CLOVER_VERSION-X64.iso.7z
-CLOVER_ARCHIVE=$(curl -s -O -L -w "%{filename_effective}" $CLOVER_URL)
-CLOVER_BASE=$(basename -s .7z $CLOVER_ARCHIVE)
-CLOVER_EFI=\\EFI\\clover\\cloverx64.efi
 
 if [ "$(passwd --status $(whoami) | tr -s " " | cut -d " " -f 2)" == "P" ]
 then
@@ -205,13 +208,13 @@ echo -e "$current_password\n" | sudo -S cp custom/config.plist $EFI_PATH/clover/
 echo -e "$current_password\n" | sudo -S cp -Rf custom/themes/* $EFI_PATH/clover/themes
 
 # copy XBOX 360 UEFI driver if running on Legion Go, Legion Go S, ROG Ally or ROG Ally X
-if [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || \
-	[ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ] || \
-	[ "$(cat /sys/class/dmi/id/product_name)" = "83Q2" ] || \
-	[ "$(cat /sys/class/dmi/id/product_name)" = "83Q3" ] || \ 
-	[ "$(cat /sys/class/dmi/id/product_name)" = "83E1" ] || \ 
-	[ "$(cat /sys/class/dmi/id/board_name)" = "RC71L" ] || \ 
-	[ "$(cat /sys/class/dmi/id/board_name)" = "RC72LA" ]
+if [ "$PRODUCT_NAME" = "83N6" ] || \
+	[ "$PRODUCT_NAME" = "83L3" ] || \
+	[ "$PRODUCT_NAME" = "83Q2" ] || \
+	[ "$PRODUCT_NAME" = "83Q3" ] || \
+	[ "$PRODUCT_NAME" = "83E1" ] || \
+	[ "$BOARD_NAME" = "RC71L" ] || \
+	[ "$BOARD_NAME" = "RC72LA" ]
 then
 	echo Script is running on Legion Go, Legion Go S, ROG Ally or ROG Ally X.
 	echo Installing XBOX 360 UEFI driver.
