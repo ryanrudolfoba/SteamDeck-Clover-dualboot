@@ -204,6 +204,30 @@ echo -e "$current_password\n" | sudo -S cp -Rf ~/temp-clover/efi/clover $EFI_PAT
 echo -e "$current_password\n" | sudo -S cp custom/config.plist $EFI_PATH/clover/config.plist
 echo -e "$current_password\n" | sudo -S cp -Rf custom/themes/* $EFI_PATH/clover/themes
 
+# copy XBOX 360 UEFI driver if running on Legion Go, Legion Go S, ROG Ally or ROG Ally X
+if [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || \
+	[ "$(cat /sys/class/dmi/id/product_name)" = "83L3" ] || \
+	[ "$(cat /sys/class/dmi/id/product_name)" = "83Q2" ] || \
+	[ "$(cat /sys/class/dmi/id/product_name)" = "83Q3" ] || \ 
+	[ "$(cat /sys/class/dmi/id/product_name)" = "83E1" ] || \ 
+	[ "$(cat /sys/class/dmi/id/board_name)" = "RC71L" ] || \ 
+	[ "$(cat /sys/class/dmi/id/board_name)" = "RC72LA" ]
+then
+	echo Script is running on Legion Go, Legion Go S, ROG Ally or ROG Ally X.
+	echo Installing XBOX 360 UEFI driver.
+	echo -e "$current_password\n" | sudo -S cp custom/UsbXbox360Dxe.efi $EFI_PATH/clover/drivers/bios
+	if [ $? -eq 0 ]
+	then
+		echo Successfully installed XBOX 360 UEFI driver.
+	else
+		echo Error installing XBOX 360 UEFI driver.
+		exit
+	fi
+else
+	echo Script is running on a Steam Deck.
+	echo XBOX 360 UEFI driver not needed.
+fi
+
 # delete temp directories created and delete the Clover ISO
 echo -e "$current_password\n" | sudo -S umount ~/temp-clover
 rmdir ~/temp-clover
