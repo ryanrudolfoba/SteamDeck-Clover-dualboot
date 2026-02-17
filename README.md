@@ -8,6 +8,16 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
+## What's New as of Feb 17 2026
+**This project is not dead!**
+
+Just made aware that there is an xbox controller uefi driver. The idea is to use this driver so that Legion Go / Legion Go S will fully work with Clover, and this opens the possibility for Clover to work with other handhelds too like ROG Ally. Please check the pinned issue -
+
+https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/130
+
+https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/126
+
+
 ## What's New as of July 07 2025
 1. Add Legion GO support 83E1 variant
 
