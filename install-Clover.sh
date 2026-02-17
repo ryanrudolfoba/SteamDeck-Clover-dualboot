@@ -215,7 +215,7 @@ if [ "$(cat /sys/class/dmi/id/product_name)" = "83N6" ] || \
 then
 	echo Script is running on Legion Go, Legion Go S, ROG Ally or ROG Ally X.
 	echo Installing XBOX 360 UEFI driver.
-	echo -e "$current_password\n" | sudo -S cp custom/UsbXbox360Dxe.efi $EFI_PATH/clover/drivers/bios
+	echo -e "$current_password\n" | sudo -S cp custom/UsbXbox360Dxe.efi $EFI_PATH/clover/drivers/uefi
 	if [ $? -eq 0 ]
 	then
 		echo Successfully installed XBOX 360 UEFI driver.
