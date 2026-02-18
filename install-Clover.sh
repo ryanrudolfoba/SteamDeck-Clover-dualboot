@@ -202,6 +202,7 @@ fi
 echo -e "$current_password\n" | sudo -S cp -Rf ~/temp-clover/efi/clover $EFI_PATH
 echo -e "$current_password\n" | sudo -S cp custom/config.plist $EFI_PATH/clover/config.plist
 echo -e "$current_password\n" | sudo -S cp -Rf custom/themes/* $EFI_PATH/clover/themes
+echo -e "$current_password\n" | sudo -S rm -rf $EFI_PATH/clover/themes/{bgm,cesium,christmas,glass,purple_swirl,theme-sample.plist}
 
 # copy XBOX 360 UEFI driver if running on Legion Go, Legion Go S, ROG Ally or ROG Ally X
 if [ "$PRODUCT_NAME" = "83N6" ] || \
