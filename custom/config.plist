@@ -4,47 +4,15 @@
 <dict>
 	<key>Boot</key>
 	<dict>
-		<key>Arguments?</key>
-		<string>slide=0 darkwake=0</string>
-		<key>CustomLogo</key>
-		<false/>
-		<key>Debug</key>
-		<false/>
 		<key>DefaultLoader</key>
 		<string>\EFI\STEAMOS\STEAMCL.efi</string>
 		<key>DefaultVolume</key>
 		<string>esp</string>
-		<key>DisableCloverHotkeys</key>
-		<false/>
-		<key>Fast</key>
-		<false/>
-		<key>Legacy</key>
-		<string>PBR</string>
-		<key>LegacyBiosDefaultEntry</key>
-		<integer>0</integer>
-		<key>NeverDoRecovery</key>
-		<true/>
-		<key>NeverHibernate</key>
-		<false/>
-		<key>NoEarlyProgress</key>
-		<false/>
-		<key>RtcHibernateAware</key>
-		<false/>
-		<key>SignatureFixup</key>
-		<false/>
-		<key>SkipHibernateTimeout</key>
-		<false/>
-		<key>StrictHibernate</key>
-		<false/>
 		<key>Timeout</key>
 		<integer>15</integer>
-		<key>XMPDetection?</key>
-		<string>-1</string>
 	</dict>
 	<key>GUI</key>
 	<dict>
-		<key>ConsoleMode</key>
-		<string>0</string>
 		<key>Custom</key>
 		<dict>
 			<key>Entries</key>
@@ -253,18 +221,14 @@
 		<string>Daytime</string>
 		<key>Mouse</key>
 		<dict>
-			<key>DoubleClickTime?</key>
-			<integer>500</integer>
 			<key>Enabled</key>
 			<true/>
 			<key>Mirror?</key>
 			<false/>
 			<key>Speed</key>
-			<integer>20</integer>
+			<integer>5</integer>
 		</dict>
 		<key>PlayAsync</key>
-		<true/>
-		<key>ProvideConsoleGop</key>
 		<true/>
 		<key>Scan</key>
 		<false/>
@@ -273,7 +237,7 @@
 		<key>Timezone</key>
 		<integer>3</integer>
 		<key>Theme</key>
-		<string>Apocalypse</string>
+		<string>Eclipse</string>
 	</dict>
 </dict>
 </plist>
