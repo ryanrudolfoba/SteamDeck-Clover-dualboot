@@ -32,7 +32,6 @@ elif [ "$PRODUCT_NAME" = "83N6" ] || [ "$PRODUCT_NAME" = "83L3" ] || [ "$PRODUCT
 then
 	echo Script is running on supported model - Legion Go S $PRDUCT_NAME.
 	echo Creating config specific for Legion Go S.
-	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1200<\/string>' custom/config.plist
 
 # check if running on Lenovo Legion GO
@@ -40,7 +39,6 @@ elif [ "$PRODUCT_NAME" = "83E1" ]
 then
 	echo Script is running on supported model - Legion Go $PRODUCT_NAME.
 	echo Creating config specific for Legion Go.
-	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>2560x1600<\/string>' custom/config.plist
 
 # check if running on Asus ROG Ally
@@ -48,7 +46,6 @@ elif [ "$BOARD_NAME" = "RC71L" ]
 then
 	echo Script is running on supported model - Asus ROG Ally $BOARD_NAME.
 	echo Creating config specific for Asus ROG Ally.
-	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1080<\/string>' custom/config.plist
 
 # check if running on Asus ROG Ally X
@@ -56,7 +53,6 @@ elif [ "$BOARD_NAME" = "RC72LA" ]
 then
 	echo Script is running on supported model - Asus ROG Ally X $BOARD_NAME.
 	echo Creating config specific for Asus ROG Ally X.
-	sed -i '/<key>Enabled<\/key>/!b;n;c\\t\t\t<true\/>' custom/config.plist
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1080<\/string>' custom/config.plist
 else
 	echo Unsupported device! Exiting immediately.
