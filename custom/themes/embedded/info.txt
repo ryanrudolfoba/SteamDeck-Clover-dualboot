@@ -1,2 +1,0 @@
-This is a placeholder for the default Embedded theme.
-Do not delete if you want to use the Embedded theme.
