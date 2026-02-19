@@ -7,7 +7,7 @@ A collection of tools that is packaged into an easy to use script that is stream
 * The main program that does all the heavy lifting is [Clover - a graphical boot manager / boot loader.](https://github.com/CloverHackyColor/CloverBootloader)
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
-* XBOX 360 Controller UEFI driver by [SkorionOS](https://github.com/SkorionOS/UsbXbox360Dxe) / [chenx-dust](https://github.com/chenx-dust/UsbXbox360Dxe) to allow the built-in controller of ROG Ally / Legion Go work in Clover and other bootloaders!
+* XBOX 360 Controller UEFI driver by [SkorionOS](https://github.com/SkorionOS/UsbXbox360Dxe) / [chenx-dust](https://github.com/chenx-dust/UsbXbox360Dxe) to allow the built-in controller of ROG Ally / Legion Go (and other handhelds / USB controllers) work in Clover and other bootloaders! I've also tested my Logitech F710 it works on this XBOX 360 Conbtroller UEFI driver!
 * [chris1111](https://github.com/chris1111/) for the modified Eclipse theme.
 
 ## What's New as of Feb 17 2026
