@@ -35,22 +35,20 @@ https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/130
 
 https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/126
 
-
-## What's New as of July 07 2025
+<details>
+<summary><b>Old Changelog - Click here for more details</b></summary>
+<p><b>July 07 2025</b></p>br
 1. Add Legion GO support 83E1 variant
 
-## What's New as of April 25 2025
+<p><b>April 25 2025</b></p>br
 1. Add Legion GO S support with different variants - 83Q2 83Q3 83N6 83L3
 2. automatically set config.plist to enable mouse and use screen resolution 1920x1200 when running on Legion GO S
 3. add support for DeckSight OLED panel
 4. Clover 5161
 
-## What's New (as of December 31 2024)
+<p><b>December 31 2024</b></p>br
 1. Windows to GO SDCARD config updated. [Use this guide to configure Clover for Windows to GO SDCARD](https://youtu.be/DPUEjOTkTDY)
 2. Cleanup the README.
-
-<details>
-<summary><b>Old Changelog - Click here for more details</b></summary>
 <p><b>October 25 2024</b><br>
 1. Updated Clover EFI from 5159 to 5160. <br>
 2. Implemented Clover whitelist - make sure you are on SteamOS 3.6.x for the whitelist to work correctly! <br>
@@ -58,7 +56,7 @@ https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/126
 4. Updated icons for Bazzite. <br>
 5. Added sanity check - make sure SteamOS / Bazzite is installed before Windows! (sorry WinDeckOS users) </p><br>
 
-<p><b>May 19 2024</b>b<br>
+<p><b>May 19 2024</b><br>
 1. Removed the 7z sanity check as this is now installed by default in SteamOS 3.5.x / 3.6.x <br>
 2. Added ESP sanity check - make sure there is enough space in ESP before doing anything <br>
 3. Removed option for Windows To Go sdcard - you shouldn't run Windows from sdcard anyways! This will also fix the issue of intermittently showing Windows To Go sdcard when Windows is updated. <br>
