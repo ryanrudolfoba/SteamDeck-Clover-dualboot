@@ -10,6 +10,22 @@ A collection of tools that is packaged into an easy to use script that is stream
 * XBOX 360 Controller UEFI driver by [SkorionOS](https://github.com/SkorionOS/UsbXbox360Dxe) / [chenx-dust](https://github.com/chenx-dust/UsbXbox360Dxe) to allow the built-in controller of ROG Ally / Legion Go (and other handhelds / USB controllers) work in Clover and other bootloaders! I've also tested my Logitech F710 it works on this XBOX 360 Conbtroller UEFI driver!
 * [chris1111](https://github.com/chris1111/) for the modified Eclipse theme.
 
+## What's New as of Feb 19 2026
+Clover script updated!
+* updated to Clover 5168
+* mouse enabled in the config
+* XBOX 360 UEFI driver for ROG Ally / Legion Go devices
+  * DPAD for arrowkeys
+  * A = ENTER
+  * B = ESC
+  * If DPAD doesnt work, use the LEFT THUMBSTICK to control the mouse pointer
+  * RIGHT TRIGGER for LEFT MOUSE CLICK
+  * LEFT TRIGGER for RIGHT MOUSE CLICK
+* XBOX 360 UEFI driver may stall / hang on Legion Go devices
+   * XBOX 360 UEFI driver keeps polling the controller which makes Clover look like in a hang state
+   * Manually delete the XBOX 360 UEFI driver - `sudo rm /esp/efi/clover/drivers/uefi/UsbXbox360Dxe.efi`
+* new theme!
+
 ## What's New as of Feb 17 2026
 **This project is not dead!**
 
