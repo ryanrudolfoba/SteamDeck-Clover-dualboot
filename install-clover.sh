@@ -54,6 +54,12 @@ then
 	echo Script is running on supported model - Asus ROG Ally X $BOARD_NAME.
 	echo Creating config specific for Asus ROG Ally X.
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1080<\/string>' custom/config.plist
+# check if running on Onexplayer 2 Pro
+elif [ "$PRODUCT_NAME" = "ONEXPLAYER 2 PRO ARP23P" ]
+then
+	echo Script is running on supported model - Onexplayer 2 Pro $PRODUCT_NAME.
+	echo Creating config specific for Onexplayer 2 Pro.
+	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>2560x1600<\/string>' custom/config.plist
 else
 	echo Unsupported device! Exiting immediately.
 	exit
@@ -211,7 +217,8 @@ if [ "$PRODUCT_NAME" = "83N6" ] || \
 	[ "$PRODUCT_NAME" = "83Q3" ] || \
 	[ "$PRODUCT_NAME" = "83E1" ] || \
 	[ "$BOARD_NAME" = "RC71L" ] || \
-	[ "$BOARD_NAME" = "RC72LA" ]
+	[ "$BOARD_NAME" = "RC72LA" ] || \
+	[ "$PRODUCT_NAME" = "ONEXPLAYER 2 PRO ARP23P" ]
 then
 	echo Script is running on Legion Go, Legion Go S, ROG Ally or ROG Ally X.
 	echo Installing XBOX 360 UEFI driver.
