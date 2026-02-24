@@ -217,7 +217,8 @@ if [ "$PRODUCT_NAME" = "83N6" ] || \
 	[ "$PRODUCT_NAME" = "83Q3" ] || \
 	[ "$PRODUCT_NAME" = "83E1" ] || \
 	[ "$BOARD_NAME" = "RC71L" ] || \
-	[ "$BOARD_NAME" = "RC72LA" ]
+	[ "$BOARD_NAME" = "RC72LA" ] || \
+	[ "$BOARD_NAME" = "ONEXPLAYER 2 PRO ARP23P" ]
 then
 	echo Script is running on Legion Go, Legion Go S, ROG Ally or ROG Ally X.
 	echo Installing XBOX 360 UEFI driver.
