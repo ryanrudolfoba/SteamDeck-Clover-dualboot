@@ -1,4 +1,4 @@
-# Steam Deck, ROG Ally and Legion Go S - Installing Clover Script for Dual Boot Between SteamOS (or Bazzite) and Windows (and other OSes too!)
+# Steam Deck, ROG Ally and ~~Legion Go S~~ Lenovo Legion Go devices - Installing Clover Script for Dual Boot Between SteamOS (or Bazzite) and Windows (and other OSes too!)
 
 ## About
 
