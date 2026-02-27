@@ -2,13 +2,17 @@
 
 ## About
 
-A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck and Lenovo Legion Go S running on SteamOS.
+A collection of tools that is packaged into an easy to use script that is streamlined and tested to work with the Steam Deck and Lenovo Legion Go devices running on SteamOS.
 
 * The main program that does all the heavy lifting is [Clover - a graphical boot manager / boot loader.](https://github.com/CloverHackyColor/CloverBootloader)
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 * XBOX 360 Controller UEFI driver by [SkorionOS](https://github.com/SkorionOS/UsbXbox360Dxe) / [chenx-dust](https://github.com/chenx-dust/UsbXbox360Dxe) to allow the built-in controller of ROG Ally / Legion Go (and other handhelds / USB controllers) work in Clover and other bootloaders! I've also tested my Logitech F710 it works on this XBOX 360 Conbtroller UEFI driver!
 * [chris1111](https://github.com/chris1111/) for the modified Eclipse theme.
+
+## What's New as of Feb 19 2026
+* updated to Clover 5169
+* blocked Legion Go S as the XBOX 360 UEFI driver is not compatible with it (feel free to test / poke around)
 
 ## What's New as of Feb 19 2026
 Clover script updated!
