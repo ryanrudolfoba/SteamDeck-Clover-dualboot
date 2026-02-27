@@ -28,11 +28,18 @@ then
 	echo No further edits needed to the config.plist.
 
 # check if running on Lenovo Legion GO S
-elif [ "$PRODUCT_NAME" = "83N6" ] || [ "$PRODUCT_NAME" = "83L3" ] || [ "$PRODUCT_NAME" = "83Q2" ] || [ "$PRODUCT_NAME" = "83Q3" ]
+elif [ "$PRODUCT_NAME" = "83L3" ] || [ "$PRODUCT_NAME" = "83Q2" ] || [ "$PRODUCT_NAME" = "83Q3" ]
 then
 	echo Script is running on supported model - Legion Go S $PRDUCT_NAME.
 	echo Creating config specific for Legion Go S.
 	sed -i '/<key>ScreenResolution<\/key>/!b;n;c\\t\t<string>1920x1200<\/string>' custom/config.plist
+
+# check if running on Lenovo Legion GO S 83N6 (this doesnt work in XBOX 360 UEFI driver so block it)
+elif [ "$PRODUCT_NAME" = "83N6" ]
+then
+	echo Script is running on unsupported model - Legion Go S $PRDUCT_NAME.
+	echo Unsupported device! Exiting immediately.
+	exit
 
 # check if running on Lenovo Legion GO
 elif [ "$PRODUCT_NAME" = "83E1" ]
