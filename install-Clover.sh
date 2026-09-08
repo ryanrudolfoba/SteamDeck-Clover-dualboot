@@ -22,7 +22,7 @@ BOARD_NAME=$(cat /sys/class/dmi/id/board_name)
 PRODUCT_NAME=$(cat /sys/class/dmi/id/product_name)
 
 # check if running on Steam Deck OLED or LCD
-if [ "$BOARD_NAME"  = "Jupiter" ] || [ "$BOARD_NAME" = "Galileo" ] 
+if [ "$BOARD_NAME"  = "Jupiter" ] || [ "$BOARD_NAME" = "Galileo" ] || [ "$BOARD_NAME" == "Fremont" ]
 then
 	echo Script is running on supported model - Steam Deck $BOARD_NAME.
 	echo No further edits needed to the config.plist.
